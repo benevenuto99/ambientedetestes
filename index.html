@@ -127,7 +127,7 @@ body{padding-bottom:90px}
 .ob-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .3s}
 .ob-dot.on{width:20px;border-radius:3px;background:var(--acid)}
 /* Step nav */
-.ob-nav{display:flex;gap:10px;width:100%;max-width:400px;padding:16px 24px 32px;flex-shrink:0}
+.ob-nav{display:flex;gap:10px;width:100%;max-width:400px;padding:16px 24px 32px;flex-shrink:0;margin:0 auto}
 .ob-nav-back{flex:0 0 auto;background:none;border:1px solid var(--border2);color:var(--muted2);border-radius:12px;padding:0 16px;height:52px;font-family:"Space Mono",monospace;font-size:10px;cursor:pointer;touch-action:manipulation;transition:all .2s}
 .ob-nav-next{flex:1;height:52px;border-radius:12px;border:none;background:var(--acid);color:#000;font-family:"Bebas Neue",sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer;touch-action:manipulation;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .ob-nav-next:active{transform:scale(.97)}
@@ -142,7 +142,7 @@ body{padding-bottom:90px}
 .ob-logo-icon{font-size:36px}
 .ob-sub{font-size:12px;color:var(--muted2);letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
 .ob-question{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;text-align:center;margin-bottom:20px}
-.ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px;margin-bottom:10px}
+.ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px;margin:0 auto 10px;}
 .ob-card{border:2px solid var(--border2);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s;user-select:none;position:relative;overflow:hidden}
 .ob-card.selected{border-color:var(--act-color,var(--acid));background:rgba(0,0,0,.3)}
 .ob-card.selected .ob-check{opacity:1;transform:scale(1)}
@@ -1296,7 +1296,7 @@ select option{background:var(--card2)}
         </div>
         <div class="ob-profile-row">
           <div class="field-grp" style="flex:1"><label class="field-label">Seu nome</label><input type="text" id="obName" placeholder="Ex: Felipe" style="font-size:16px"></div>
-          <div class="field-grp" style="flex:0 0 90px"><label class="field-label">Idade</label><input type="number" id="obAge" min="10" max="99" placeholder="25" style="font-size:16px"></div>
+          <div class="field-grp" style="flex:0 0 130px"><label class="field-label">Data de Nasc.</label><input type="date" id="obBirthday" style="font-size:14px"></div>
         </div>
         <div class="ob-profile-row">
           <div class="field-grp" style="flex:1"><label class="field-label">Peso atual (kg)</label><input type="number" id="obWeight" step="0.1" placeholder="75.0" style="font-size:16px"></div>
@@ -2271,10 +2271,10 @@ function finishOnboarding(){
   db.activities=[...selActs];
   const name=document.getElementById('obName').value.trim();
   const wt=parseFloat(document.getElementById('obWeight').value);
-  const age=parseInt(document.getElementById('obAge')?.value||'0');
+  const bday=document.getElementById('obBirthday')?.value||'';
   if(name) db.profile.name=name;
   if(_obSex) db.profile.sexo=_obSex;
-  if(age>0)  db.profile.idade=age;
+  if(bday) db.profile.birthday=bday;
   if(wt>0){
     db.profile.weight=wt;
     db.weight.push({id:Date.now(),kg:wt,date:todayStr(),time:new Date().toTimeString().slice(0,5),ts:Date.now(),source:'manual'});
@@ -2462,11 +2462,11 @@ function _preSelectObCards() {
   if(db.profile && db.profile.sexo) {
     selectObSex(db.profile.sexo);
   }
-  // Preenche nome e idade se já existirem
-  var nameInp = document.getElementById('obName');
-  var ageInp  = document.getElementById('obAge');
-  if(nameInp && db.profile && db.profile.name) nameInp.value = db.profile.name;
-  if(ageInp  && db.profile && db.profile.idade) ageInp.value = db.profile.idade;
+  // Preenche nome e data de nascimento se já existirem
+  var nameInp    = document.getElementById('obName');
+  var bdayInp    = document.getElementById('obBirthday');
+  if(nameInp && db.profile && db.profile.name)     nameInp.value = db.profile.name;
+  if(bdayInp && db.profile && db.profile.birthday) bdayInp.value = db.profile.birthday;
   var obGrid = document.getElementById('obGrid');
   if (!obGrid) return;
   obGrid.querySelectorAll('.ob-card[data-act]').forEach(function(card) {
@@ -2514,6 +2514,8 @@ function initApp(){
   autoBackupCheck();
   initPWA();
   scheduleMidnightReset();
+  // Verificar aniversário (mensagens e overlay)
+  setTimeout(() => Birthday.check(), 1200);
 }
 
 function dailyReset(){
@@ -5844,6 +5846,200 @@ async function shareNative() {
     if (e.name !== 'AbortError') toast('⚠️ Compartilhamento não suportado');
   }
 }
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: BIRTHDAY — Mensagens de aniversário                    ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const Birthday = {
+
+  /** Retorna {month, day} do aniversário salvo */
+  _getDate() {
+    const bday = db.profile?.birthday; // formato 'YYYY-MM-DD'
+    if (!bday) return null;
+    const parts = bday.split('-');
+    if (parts.length < 3) return null;
+    return { month: parseInt(parts[1]), day: parseInt(parts[2]) };
+  },
+
+  /** Dias restantes até o próximo aniversário (0 = hoje, negativo = já passou este ano) */
+  _daysUntil() {
+    const bd = this._getDate();
+    if (!bd) return null;
+    const now = new Date();
+    const thisYear = new Date(now.getFullYear(), bd.month - 1, bd.day);
+    let diff = Math.round((thisYear - now) / 86400000);
+    if (diff < 0) {
+      const nextYear = new Date(now.getFullYear() + 1, bd.month - 1, bd.day);
+      diff = Math.round((nextYear - now) / 86400000);
+    }
+    return diff;
+  },
+
+  /** Chave única por dia para não repetir msg */
+  _storageKey(daysAway) {
+    return 'ct_bday_shown_' + daysAway + '_' + new Date().getFullYear();
+  },
+
+  _alreadyShown(daysAway) {
+    return localStorage.getItem(this._storageKey(daysAway)) === '1';
+  },
+
+  _markShown(daysAway) {
+    localStorage.setItem(this._storageKey(daysAway), '1');
+  },
+
+  /** Verifica e exibe mensagem ou overlay adequado */
+  check() {
+    const days = this._daysUntil();
+    if (days === null) return;
+
+    if (days === 0) {
+      this._showBirthdayOverlay();
+    } else if (days === 1 && !this._alreadyShown(1)) {
+      this._markShown(1);
+      this._showPreMsg(1);
+    } else if (days === 2 && !this._alreadyShown(2)) {
+      this._markShown(2);
+      this._showPreMsg(2);
+    } else if (days === 3 && !this._alreadyShown(3)) {
+      this._markShown(3);
+      this._showPreMsg(3);
+    }
+  },
+
+  _preMessages: [
+    null, // placeholder index 0
+    { icon:'🥗', title:'É AMANHÃ!! 👀', text:'Tá na dieta hoje? <strong>Aproveita — porque amanhã você pode relaxar!</strong> Segura hoje que vai valer a pena!', topic:'🥦 Dieta' },
+    { icon:'🏃', title:'FALTA POUQUINHO!', text:'O aniversariante <strong>não pode relaxar no treino!</strong> Já foi hoje? Daqui a 2 dias você comemora — hoje é foco!', topic:'🔥 Atividade física' },
+    { icon:'💧', title:'PSIU... TÁ CHEGANDO!', text:'Seu aniversário tá chegando e a gente sabe! <strong>Beba sua água em dia</strong> — você vai precisar de energia pra comemorar!', topic:'💧 Hidratação' },
+  ],
+
+  _showPreMsg(daysAway) {
+    const name = db.profile?.name ? db.profile.name.split(' ')[0] : 'você';
+    const msg = this._preMessages[daysAway];
+    if (!msg) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'bdayPreMsg';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)';
+    overlay.innerHTML = `
+      <div style="max-width:360px;width:100%;background:#1a1a2e;border:1px solid rgba(200,244,101,.25);border-radius:20px;padding:28px 24px 24px;text-align:center;animation:slideUp .35s ease">
+        <div style="font-size:40px;margin-bottom:12px">${msg.icon}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#c8f465;margin-bottom:8px">${msg.title}</div>
+        <div style="font-size:14px;color:#e0e0f0;line-height:1.7;margin-bottom:16px">${msg.text.replace('{name}', name)}</div>
+        <div style="display:inline-block;background:rgba(15,110,86,.5);color:#9FE1CB;font-size:11px;padding:4px 12px;border-radius:8px;margin-bottom:20px">${msg.topic}</div>
+        <button onclick="document.getElementById('bdayPreMsg').remove()" style="width:100%;height:48px;border-radius:12px;border:none;background:#c8f465;color:#000;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer">⚡ VALEU!</button>
+      </div>`;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  },
+
+  _showBirthdayOverlay() {
+    const bdKey = 'ct_bday_overlay_' + new Date().getFullYear();
+    if (localStorage.getItem(bdKey) === '1') return;
+    localStorage.setItem(bdKey, '1');
+
+    const name = db.profile?.name ? db.profile.name.split(' ')[0] : 'você';
+
+    const overlay = document.createElement('div');
+    overlay.id = 'bdayOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:10001;background:#0a0a1a;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden';
+
+    overlay.innerHTML = `
+      <canvas id="bdayCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+      <div style="position:relative;z-index:2;width:100%;max-width:400px;padding:40px 24px 32px;display:flex;flex-direction:column;align-items:center;text-align:center">
+        <div id="bdayBalloons" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1"></div>
+        <div style="font-size:56px;margin-bottom:12px;animation:dropBounce .6s ease">🎂</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#c8f465;line-height:1;margin-bottom:4px">PARABÉNS!</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:1px;margin-bottom:20px">${name.toUpperCase()}!</div>
+        <div style="background:rgba(200,244,101,.06);border:1px solid rgba(200,244,101,.15);border-radius:16px;padding:16px;width:100%;margin-bottom:12px">
+          <p style="font-size:14px;color:#e0e0f0;line-height:1.7">🎉 Obrigado por usar o <strong style="color:#c8f465">Controle Total</strong> e confiar no app pra cuidar da sua saúde! Você é incrível e merece demais esse dia especial!</p>
+        </div>
+        <div style="background:rgba(250,199,117,.08);border:1px solid rgba(250,199,117,.2);border-radius:16px;padding:14px;width:100%;margin-bottom:12px">
+          <p style="font-size:15px;color:#FAC775;font-weight:600">🍕 HOJE VOCÊ PODE SAIR DA DIETA!</p>
+          <p style="font-size:13px;color:#e0e0f0;margin-top:4px">Aproveite, comemore e curta o dia! rsrsrs</p>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;width:100%;margin-bottom:24px">
+          <p style="font-size:14px;color:#e0e0f0">💪 <strong style="color:#c8f465">Amanhã: foco total.</strong> Volta pro ritmo e continua sendo esse guerreiro(a)!</p>
+        </div>
+        <button onclick="document.getElementById('bdayOverlay').remove()" style="width:100%;height:54px;border-radius:14px;border:none;background:#c8f465;color:#000;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;cursor:pointer;position:relative;z-index:3">⚡ VALEU, VAMOS LÁ!</button>
+      </div>`;
+
+    document.body.appendChild(overlay);
+
+    // Balões caindo
+    setTimeout(() => this._startBalloons(overlay), 100);
+    // Confetti no canvas
+    setTimeout(() => this._startConfetti(), 200);
+  },
+
+  _startBalloons(parent) {
+    const colors = ['#c8f465','#ff6b9d','#ffd166','#06d6a0','#a29bfe','#ef476f','#ffc6ff','#74b9ff'];
+    const area = parent.querySelector('#bdayBalloons');
+    if (!area) return;
+    const spawn = () => {
+      if (!document.getElementById('bdayOverlay')) return;
+      const b = document.createElement('div');
+      const size = 28 + Math.random() * 20;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const left = 5 + Math.random() * 90;
+      const dur = 4 + Math.random() * 3;
+      b.style.cssText = `position:absolute;top:-60px;left:${left}%;width:${size}px;height:${size*1.25}px;background:${color};border-radius:50% 50% 50% 50%/60% 60% 40% 40%;opacity:.85;animation:bdayFloat ${dur}s ease-in forwards`;
+      b.innerHTML = `<div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:1px;height:14px;background:rgba(255,255,255,.3)"></div>`;
+      area.appendChild(b);
+      setTimeout(() => b.remove(), dur * 1000 + 500);
+      setTimeout(spawn, 400 + Math.random() * 600);
+    };
+    spawn();
+  },
+
+  _startConfetti() {
+    const canvas = document.getElementById('bdayCanvas');
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    const colors = ['#c8f465','#ff6b9d','#ffd166','#06d6a0','#a29bfe','#ef476f'];
+    const pieces = Array.from({length: 80}, () => ({
+      x: Math.random() * canvas.width,
+      y: -10 - Math.random() * 300,
+      w: 6 + Math.random() * 8,
+      h: 6 + Math.random() * 8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: 2 + Math.random() * 3,
+      vx: -1 + Math.random() * 2,
+      rot: Math.random() * 360,
+      rotV: -3 + Math.random() * 6,
+      circle: Math.random() > 0.5,
+    }));
+    let frame;
+    const draw = () => {
+      if (!document.getElementById('bdayCanvas')) { cancelAnimationFrame(frame); return; }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.y += p.vy; p.x += p.vx; p.rot += p.rotV;
+        if (p.y > canvas.height + 20) { p.y = -10; p.x = Math.random() * canvas.width; }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.85;
+        if (p.circle) { ctx.beginPath(); ctx.arc(0, 0, p.w/2, 0, Math.PI*2); ctx.fill(); }
+        else { ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); }
+        ctx.restore();
+      });
+      frame = requestAnimationFrame(draw);
+    };
+    draw();
+  },
+};
+
+// CSS para animação dos balões do birthday
+(function() {
+  const s = document.createElement('style');
+  s.textContent = '@keyframes bdayFloat{0%{transform:translateY(0) rotate(-5deg);opacity:0}5%{opacity:.85}90%{opacity:.7}100%{transform:translateY(110vh) rotate(5deg);opacity:0}}';
+  document.head.appendChild(s);
+})();
 
 function scheduleMidnightReset(){
   const now=new Date();
