@@ -1140,7 +1140,7 @@ select option{background:var(--card2)}
   position:fixed;inset:0;z-index:9998;
   background:var(--dark);
   display:flex;flex-direction:column;
-  align-items:stretch;overflow:hidden;
+  align-items:center;overflow:hidden;
 }
 #welcomeScreen.hidden { display:none !important; }
 
@@ -1186,7 +1186,7 @@ select option{background:var(--card2)}
     <div class="ob-dot on"></div><div class="ob-dot"></div>
   </div>
 
-  <div class="ob-steps" style="transform:none;width:100%">
+  <div class="ob-steps" style="transform:none;width:100%;max-width:520px">
     <div class="ob-step" style="width:100%">
       <div class="ob-logo" style="margin-bottom:8px"><span class="ob-logo-icon">⚡</span>CONTROLE <em>TOTAL</em></div>
       <div class="ob-sub" style="margin-bottom:32px">Performance · Dieta · Evolução</div>
@@ -1221,8 +1221,8 @@ select option{background:var(--card2)}
     </div>
   </div>
 
-  <div class="ob-nav">
-    <button class="ob-nav-next" id="welcomeNextBtn" onclick="_welcomeNext()" style="opacity:0;pointer-events:none">
+  <div class="ob-nav" style="max-width:520px;width:100%;justify-content:center">
+    <button class="ob-nav-next" id="welcomeNextBtn" onclick="_welcomeNext()" style="opacity:0;pointer-events:none;max-width:320px">
       Começar <span style="font-size:18px">›</span>
     </button>
   </div>
@@ -1246,7 +1246,7 @@ select option{background:var(--card2)}
       <div class="ob-logo" style="font-size:32px;margin-bottom:6px"><span class="ob-logo-icon" style="font-size:28px">⚡</span>CONTROLE <em>TOTAL</em></div>
       <div class="ob-question" style="margin-bottom:6px">Quais atividades você pratica?</div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:18px;text-transform:uppercase;letter-spacing:1px">Selecione uma ou mais</div>
-      <div class="ob-grid" id="obGrid">
+      <div class="ob-grid" id="obGrid" translate="no">
         <div class="ob-card" data-act="gym" onclick="toggleOb(this)" style="--act-color:var(--gym)">
           <div class="ob-check"><span class="icon icon-check"></span></div>
           <span class="ob-icon">🏋️</span><div class="ob-name">Academia</div><div class="ob-name-sub">Musculação</div>
@@ -1278,10 +1278,27 @@ select option{background:var(--card2)}
     <div class="ob-step">
       <div class="ob-logo" style="font-size:32px;margin-bottom:6px"><span class="ob-logo-icon" style="font-size:28px">⚡</span>CONTROLE <em>TOTAL</em></div>
       <div class="ob-question" style="margin-bottom:6px">Perfil básico</div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:24px;text-transform:uppercase;letter-spacing:1px">Opcional — pode pular</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:18px;text-transform:uppercase;letter-spacing:1px">Opcional — pode pular</div>
       <div class="ob-profile" style="width:100%">
+        <!-- Sexo -->
+        <div class="field-grp" style="margin-bottom:12px">
+          <label class="field-label">Sexo</label>
+          <div style="display:flex;gap:8px">
+            <button type="button" id="obSexM" onclick="selectObSex('M')"
+              style="flex:1;padding:10px;border-radius:10px;border:2px solid var(--border2);background:transparent;color:var(--muted2);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer;transition:all .2s">
+              ♂ Masculino
+            </button>
+            <button type="button" id="obSexF" onclick="selectObSex('F')"
+              style="flex:1;padding:10px;border-radius:10px;border:2px solid var(--border2);background:transparent;color:var(--muted2);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer;transition:all .2s">
+              ♀ Feminino
+            </button>
+          </div>
+        </div>
         <div class="ob-profile-row">
-          <div class="field-grp" style="flex:1"><label class="field-label">Seu nome</label><input type="text" id="obName" placeholder="Ex: Juliana" style="font-size:16px"></div>
+          <div class="field-grp" style="flex:1"><label class="field-label">Seu nome</label><input type="text" id="obName" placeholder="Ex: Felipe" style="font-size:16px"></div>
+          <div class="field-grp" style="flex:0 0 90px"><label class="field-label">Idade</label><input type="number" id="obAge" min="10" max="99" placeholder="25" style="font-size:16px"></div>
+        </div>
+        <div class="ob-profile-row">
           <div class="field-grp" style="flex:1"><label class="field-label">Peso atual (kg)</label><input type="number" id="obWeight" step="0.1" placeholder="75.0" style="font-size:16px"></div>
         </div>
       </div>
@@ -1450,7 +1467,7 @@ select option{background:var(--card2)}
 
   <!-- ═══ EVOLUÇÃO ═══ -->
   <div id="v-evo" class="view">
-    <button class="view-back-btn" onclick="switchView('diet')"><span class="arrow">←</span> Início</button>
+    <button class="view-back-btn" onclick="switchView('diet')" style="width:36px;padding:7px;min-width:0"><span class="arrow">←</span></button>
     <div class="weight-hero">
       <div class="wh-lbl">Peso Atual</div>
       <div class="wh-val" id="wHeroVal">--<span class="wh-unit">kg</span></div>
@@ -1800,61 +1817,50 @@ select option{background:var(--card2)}
 <div class="sheet-overlay" id="sheetBackup" onclick="bgClose(event,'sheetBackup')"><div class="sheet">
   <div class="sheet-handle"></div>
   <button class="sheet-back-btn" onclick="closeSheet('sheetBackup')"><span class="icon icon-arrow-left"></span> Voltar</button>
-  <div class="sheet-title">💾 Backup & Configurações</div>
+  <div class="sheet-title">⚙️ Configurações</div>
+
+  <!-- SEÇÃO 1: Configurações do app -->
   <div class="backup-card">
-    <h3>📤 Exportar Backup</h3>
-    <p>Gera um código com todos os seus dados. Guarde em notas ou envie pelo WhatsApp.</p>
-    <button class="btn btn-ghost" style="font-size:13px;margin-bottom:10px" onclick="generateBackup()"><span class="icon icon-download"></span> Gerar Código de Backup</button>
-    <div class="backup-code" id="backupCode" style="display:none"></div>
-    <button class="btn btn-ghost btn-sm" id="copyBackupBtn" style="display:none" onclick="copyBackup()">📋 Copiar Código</button>
-  </div>
-  <div class="backup-card" style="margin-top:12px">
-    <h3>⚙️ Configurações</h3>
-    <p>Ajuste as funcionalidades do app. As mudanças são salvas automaticamente.</p>
+    <h3>⚙️ App</h3>
     <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div>
-        <div style="font-size:13px;font-weight:500">Aba de Dieta</div>
-        <div style="font-size:10px;color:var(--muted2);margin-top:1px">Controle de refeições e plano alimentar</div>
-      </div>
+      <div><div style="font-size:13px;font-weight:500">Dieta</div><div style="font-size:10px;color:var(--muted2);margin-top:1px">Controle de refeições</div></div>
       <button class="toggle-switch" id="settingsDietToggle" onclick="Settings.toggleDietTab();updateSettingsToggles()"></button>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div>
-        <div style="font-size:13px;font-weight:500">Creatina</div>
-        <div style="font-size:10px;color:var(--muted2);margin-top:1px">Card de controle e streak de creatina</div>
-      </div>
+      <div><div style="font-size:13px;font-weight:500">Creatina</div><div style="font-size:10px;color:var(--muted2);margin-top:1px">Card de streak de creatina</div></div>
       <button class="toggle-switch" id="settingsCreatinaToggle" onclick="Settings.toggleCreatina();updateSettingsToggles()"></button>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div>
-        <div style="font-size:13px;font-weight:500">Notificações Inteligentes</div>
-        <div style="font-size:10px;color:var(--muted2);margin-top:1px">Lembretes de água, treino e missões pendentes</div>
-      </div>
+      <div><div style="font-size:13px;font-weight:500">Notificações</div><div style="font-size:10px;color:var(--muted2);margin-top:1px">Lembretes de água, treino e missões</div></div>
       <button class="toggle-switch" id="settingsNotifToggle" onclick="Notif.toggleSetting();updateSettingsToggles()"></button>
     </div>
     <div style="padding-top:10px">
-      <button class="btn btn-ghost" style="font-size:12px" onclick="closeSheet('sheetBackup');openSheet('sheetManageActs')">⚙️ Gerenciar Esportes Ativos</button>
+      <button class="btn btn-ghost" style="font-size:12px" onclick="closeSheet('sheetBackup');openSheet('sheetManageActs')">⚙️ Gerenciar Esportes</button>
     </div>
   </div>
+
+  <!-- SEÇÃO 2: Backup & Restauração -->
   <div class="backup-card" style="margin-top:12px">
-    <h3>📊 Treinos CSV</h3>
-    <p>Exporte ou importe sessões de treino em CSV.</p>
-    <button class="btn btn-ghost" style="font-size:12px;margin-bottom:8px" onclick="exportSessionsCSV()">📥 Exportar Treinos CSV</button>
-    <div class="field-grp"><label class="field-label">Importar CSV (cole abaixo)</label><textarea id="csvSessionPaste" placeholder="data;tipo;titulo;kcal..." style="min-height:65px;font-family:'Space Mono',monospace;font-size:9px;margin-bottom:6px"></textarea></div>
-    <button class="btn btn-ghost" style="font-size:12px" onclick="importSessionsCSV(document.getElementById('csvSessionPaste').value);document.getElementById('csvSessionPaste').value=''">⬆️ Importar Sessões</button>
+    <h3>💾 Backup & Restauração</h3>
+    <p>Gere um código com seus dados ou restaure em um novo dispositivo.</p>
+    <button class="btn btn-ghost" style="font-size:13px;margin-bottom:8px" onclick="generateBackup()"><span class="icon icon-download"></span> Gerar Código de Backup</button>
+    <div class="backup-code" id="backupCode" style="display:none"></div>
+    <button class="btn btn-ghost btn-sm" id="copyBackupBtn" style="display:none;margin-bottom:12px" onclick="copyBackup()">📋 Copiar Código</button>
+    <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px">
+      <label class="field-label" style="margin-bottom:6px;display:block">Restaurar — cole o código abaixo</label>
+      <textarea id="restoreCode" placeholder="Cole o código de backup aqui..." style="min-height:72px;font-family:'Space Mono',monospace;font-size:10px;margin-bottom:8px;width:100%"></textarea>
+      <button class="btn btn-ghost" style="font-size:13px" onclick="restoreBackup()"><span class="icon icon-file-import"></span> Restaurar Dados</button>
+      <div id="restoreResult" style="font-size:11px;font-family:'Space Mono',monospace;margin-top:6px"></div>
+    </div>
   </div>
-  <div class="backup-card" style="margin-top:12px">
-    <h3>🔄 Backup Automático</h3>
-    <p>O app salva automaticamente a cada 24h.</p>
-    <button class="btn btn-ghost" style="font-size:12px;margin-bottom:6px" onclick="autoBackupSave();toast('💾 Backup salvo!')">💾 Salvar Agora</button>
-    <button class="btn btn-ghost" style="font-size:12px" onclick="promptAutoBackupRestore()">🔄 Restaurar Automático</button>
-  </div>
-  <div class="backup-card" style="margin-top:12px">
-    <h3>📥 Restaurar Backup Manual</h3>
-    <p>Cole o código de backup abaixo para restaurar seus dados em um novo celular.</p>
-    <textarea id="restoreCode" placeholder="Cole o código de backup aqui..." style="min-height:80px;font-family:'Space Mono',monospace;font-size:10px;margin-bottom:8px"></textarea>
-    <button class="btn btn-ghost" style="font-size:13px" onclick="restoreBackup()"><span class="icon icon-file-import"></span> Restaurar Dados</button>
-    <div id="restoreResult" style="font-size:11px;font-family:'Space Mono',monospace;margin-top:6px"></div>
+
+  <!-- Área oculta mantida para compatibilidade de funções -->
+  <div style="display:none">
+    <div class="backup-code" id="backupCode2"></div>
+    <button id="copyBackupBtn2" onclick="copyBackup2()"></button>
+    <textarea id="restoreCode2"></textarea>
+    <div id="restoreResult2"></div>
+    <textarea id="csvSessionPaste"></textarea>
   </div>
 </div></div>
 
@@ -2234,6 +2240,25 @@ function renderWater(){
 //  ONBOARDING
 // ══════════════════════════════════════════════════
 let selActs=new Set();
+let _obSex=''; // 'M' ou 'F'
+
+function selectObSex(sex){
+  _obSex = sex;
+  const mBtn = document.getElementById('obSexM');
+  const fBtn = document.getElementById('obSexF');
+  const nameInp = document.getElementById('obName');
+  if(mBtn && fBtn){
+    const acid = 'var(--acid)';
+    mBtn.style.borderColor = sex==='M' ? acid : 'var(--border2)';
+    mBtn.style.color       = sex==='M' ? acid : 'var(--muted2)';
+    mBtn.style.background  = sex==='M' ? 'rgba(212,255,0,.08)' : 'transparent';
+    fBtn.style.borderColor = sex==='F' ? acid : 'var(--border2)';
+    fBtn.style.color       = sex==='F' ? acid : 'var(--muted2)';
+    fBtn.style.background  = sex==='F' ? 'rgba(212,255,0,.08)' : 'transparent';
+  }
+  if(nameInp) nameInp.placeholder = sex==='F' ? 'Ex: Lívia' : 'Ex: Felipe';
+}
+
 function toggleOb(el){
   el.classList.toggle('selected');
   const a=el.dataset.act;
@@ -2246,7 +2271,10 @@ function finishOnboarding(){
   db.activities=[...selActs];
   const name=document.getElementById('obName').value.trim();
   const wt=parseFloat(document.getElementById('obWeight').value);
+  const age=parseInt(document.getElementById('obAge')?.value||'0');
   if(name) db.profile.name=name;
+  if(_obSex) db.profile.sexo=_obSex;
+  if(age>0)  db.profile.idade=age;
   if(wt>0){
     db.profile.weight=wt;
     db.weight.push({id:Date.now(),kg:wt,date:todayStr(),time:new Date().toTimeString().slice(0,5),ts:Date.now(),source:'manual'});
@@ -2430,6 +2458,15 @@ function startSportsReview() {
   obGoTo(0);
 }
 function _preSelectObCards() {
+  // Restaura seleção de sexo se já existir
+  if(db.profile && db.profile.sexo) {
+    selectObSex(db.profile.sexo);
+  }
+  // Preenche nome e idade se já existirem
+  var nameInp = document.getElementById('obName');
+  var ageInp  = document.getElementById('obAge');
+  if(nameInp && db.profile && db.profile.name) nameInp.value = db.profile.name;
+  if(ageInp  && db.profile && db.profile.idade) ageInp.value = db.profile.idade;
   var obGrid = document.getElementById('obGrid');
   if (!obGrid) return;
   obGrid.querySelectorAll('.ob-card[data-act]').forEach(function(card) {
