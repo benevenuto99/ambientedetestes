@@ -252,64 +252,6 @@ select option{background:var(--card2)}
 .bar-track{height:5px;background:var(--border2);border-radius:3px;overflow:hidden}
 .bar-fill{height:100%;background:linear-gradient(90deg,var(--acid2),var(--acid));border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 
-/* ══ WATER CARD — NEW SYSTEM ══ */
-.water-card{background:var(--card);border:1px solid rgba(61,155,255,.2);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color .3s}
-.water-card.goal-reached{border-color:rgba(61,155,255,.5);box-shadow:0 0 20px rgba(61,155,255,.08)}
-
-/* Header row */
-.wc-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px 10px}
-.wc-title{font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px;color:var(--text)}
-.wc-title-icon{font-size:16px}
-.wc-goal-btn{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);background:rgba(61,155,255,.1);border:1px solid rgba(61,155,255,.2);border-radius:6px;padding:3px 8px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.wc-goal-btn:hover{background:rgba(61,155,255,.2)}
-
-/* Numbers row */
-.wc-numbers{display:flex;align-items:baseline;gap:6px;padding:0 16px 10px}
-.wc-current{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--blue);filter:drop-shadow(0 0 12px rgba(61,155,255,.3));transition:color .3s}
-.wc-current.goal-reached{color:#7ed3ff}
-.wc-unit{font-size:14px;color:var(--muted2);font-family:'Space Mono',monospace}
-.wc-goal-of{font-size:11px;color:var(--muted2);margin-left:4px}
-
-/* Progress bar */
-.wc-bar-wrap{padding:0 16px 12px}
-.wc-bar-track{height:8px;background:var(--border2);border-radius:4px;overflow:hidden;position:relative}
-.wc-bar-fill{height:100%;background:linear-gradient(90deg,#1a6bcc,var(--blue));border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1);min-width:0;position:relative}
-.wc-bar-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.4);border-radius:2px}
-.wc-bar-fill.done{background:linear-gradient(90deg,#1a6bcc,#7ed3ff);box-shadow:0 0 8px rgba(61,155,255,.4)}
-.wc-pct{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);text-align:right;margin-top:4px}
-
-/* Quick-add buttons */
-.wc-quick{display:flex;gap:6px;padding:0 16px 12px;flex-wrap:nowrap}
-.wc-quick-btn{flex:1;padding:9px 4px;background:rgba(61,155,255,.08);border:1px solid rgba(61,155,255,.18);border-radius:9px;color:var(--blue);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer;transition:all .18s;text-align:center;white-space:nowrap}
-.wc-quick-btn:hover{background:rgba(61,155,255,.18);border-color:rgba(61,155,255,.4);transform:translateY(-1px)}
-.wc-quick-btn:active{transform:scale(.95)}
-.wc-quick-btn.pulse{animation:waterPulse .4s ease}
-
-/* Custom ml input */
-.wc-custom{display:flex;gap:6px;padding:0 16px 12px;align-items:center}
-.wc-custom input{flex:1;background:#0c0c0c;border:1px solid var(--border2);color:var(--text);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;padding:8px 12px;outline:none;transition:border-color .2s;width:auto}
-.wc-custom input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(61,155,255,.07)}
-.wc-custom-btn{background:rgba(61,155,255,.15);border:1px solid rgba(61,155,255,.3);color:var(--blue);border-radius:9px;padding:8px 14px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
-.wc-custom-btn:hover{background:rgba(61,155,255,.25)}
-
-/* Goal-reached banner */
-.wc-congrats{display:flex;align-items:center;gap:8px;margin:0 16px 12px;background:rgba(61,155,255,.08);border:1px solid rgba(61,155,255,.2);border-radius:9px;padding:9px 12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--blue);opacity:0;max-height:0;overflow:hidden;transition:opacity .4s,max-height .4s}
-.wc-congrats.show{opacity:1;max-height:60px}
-
-/* Entry log list */
-.wc-log{border-top:1px solid var(--border)}
-.wc-log-empty{padding:14px 16px;font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;text-align:center}
-.wc-entry{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid var(--border);animation:slideUp .2s ease both}
-.wc-entry:last-child{border-bottom:none}
-.wc-entry-left{display:flex;align-items:center;gap:10px}
-.wc-entry-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);opacity:.6;flex-shrink:0}
-.wc-entry-ml{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--blue);line-height:1}
-.wc-entry-unit{font-size:10px;color:var(--muted2);font-family:'Space Mono',monospace;margin-left:2px}
-.wc-entry-time{font-size:10px;color:var(--muted2);font-family:'Space Mono',monospace}
-.wc-entry-del{background:none;border:none;color:var(--muted);cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:all .15s;opacity:.5}
-.wc-entry-del:hover{opacity:1;color:var(--red);background:rgba(255,61,61,.1)}
-.wc-entry-del .icon-times{filter:brightness(0) saturate(100%) invert(35%);}
-.wc-entry-del:hover .icon-times{filter:brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(500%) hue-rotate(300deg);}
 
 /* ══ MEAL CARDS ══ */
 .meal-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;margin-bottom:8px;overflow:hidden;transition:border-color .2s;animation:slideUp .28s ease both}
@@ -626,9 +568,6 @@ select option{background:var(--card2)}
 /* Streak marco toast special */
 @keyframes marcoShake{0%,100%{transform:translateX(-50%) translateY(0)}20%{transform:translateX(-50%) translateY(-4px)}40%{transform:translateX(-50%) translateY(0)}60%{transform:translateX(-50%) translateY(-2px)}80%{transform:translateX(-50%) translateY(0)}}
 .toast.marco{border-color:var(--acid);color:var(--acid);font-size:12px;padding:11px 22px;animation:marcoShake .5s ease .1s}
-/* Water quick-add button pulse */
-@keyframes waterBurst{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(61,155,255,.5)}50%{transform:scale(1.08);box-shadow:0 0 0 8px rgba(61,155,255,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(61,155,255,0)}}
-.wc-quick-btn.burst{animation:waterBurst .4s ease}
 /* Creatina circle celebrate */
 @keyframes creatinaSpin{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.15)}100%{transform:rotate(360deg) scale(1)}}
 .cr-circle.spin{animation:creatinaSpin .5s cubic-bezier(.34,1.56,.64,1)}
@@ -1009,14 +948,41 @@ select option{background:var(--card2)}
 .food-item.ticked .food-check{background:var(--acid)!important;border-color:var(--acid)!important;animation:completePop .3s ease}
 .food-item.optional .food-check{border-style:dashed!important;border-color:var(--muted)!important}
 
-/* ══ WATER BAR IMPROVEMENT ══ */
-.wc-bar-track{height:10px!important;border-radius:5px!important}
-.wc-bar-fill{border-radius:5px!important}
-.wc-bar-fill.done{box-shadow:0 0 12px rgba(61,155,255,.5)!important}
-.wc-current{transition:all .3s!important}
-.wc-current.goal-reached{animation:waterPop .5s ease}
 
-/* ══ UTILITY ══ */
+/* ══ HOME MISSION CARDS — tappable ══ */
+.mission-card{cursor:pointer;touch-action:manipulation}
+.mission-card:active{transform:scale(.97);transition:transform .1s}
+.mission-tap-hint{font-family:'Space Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:.5px;margin-top:6px;opacity:.7}
+
+/* ══ HOME OVERVIEW — clean summary cards ══ */
+.home-overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.home-ov-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:13px 14px;cursor:pointer;touch-action:manipulation;transition:border-color .2s,background .15s;position:relative;overflow:hidden}
+.home-ov-card:active{background:var(--card2)}
+.home-ov-card.water-ov{border-color:rgba(61,155,255,.2)}
+.home-ov-card.water-ov.done{border-color:rgba(61,155,255,.45);background:linear-gradient(145deg,rgba(61,155,255,.06),var(--card))}
+.home-ov-card.training-ov{border-color:rgba(255,140,0,.15)}
+.home-ov-card.training-ov.done{border-color:rgba(255,140,0,.35);background:linear-gradient(145deg,rgba(255,140,0,.06),var(--card))}
+.home-ov-icon{font-size:22px;margin-bottom:6px;display:block}
+.home-ov-label{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.8px;color:var(--muted2)}
+.home-ov-value{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;line-height:1.4}
+.home-ov-card.water-ov .home-ov-label{color:var(--blue)}
+.home-ov-card.training-ov .home-ov-label{color:var(--orange)}
+.home-ov-check{position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;background:var(--acid);display:flex;align-items:center;justify-content:center;font-size:9px;opacity:0;transform:scale(0);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.home-ov-card.done .home-ov-check{opacity:1;transform:scale(1)}
+.home-ov-card.water-ov.done .home-ov-check{background:var(--blue)}
+.home-ov-card.training-ov.done .home-ov-check{background:var(--orange)}
+.home-ov-bar{height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
+.home-ov-bar-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.home-ov-card.water-ov .home-ov-bar-fill{background:linear-gradient(90deg,#1a6bcc,var(--blue))}
+.home-ov-card.training-ov .home-ov-bar-fill{background:linear-gradient(90deg,#cc6000,var(--orange))}
+
+/* ══ WATER NAV BUTTON — subtle blue accent ══ */
+#nb-water{position:relative}
+#nb-water .nav-lbl{transition:color .3s}
+#nb-water.on .nav-lbl,#nb-water.on{color:var(--blue)!important}
+/* Water ring animation on nav tap */
+@keyframes navWaterPing{0%{box-shadow:0 0 0 0 rgba(61,155,255,.5)}70%{box-shadow:0 0 0 6px rgba(61,155,255,0)}100%{box-shadow:0 0 0 0 rgba(61,155,255,0)}}
+#nb-water:active{animation:navWaterPing .4s ease}
 .empty{text-align:center;padding:36px 16px;color:var(--muted)}
 .empty p{font-size:12px}
 .divider{height:1px;background:var(--border);margin:12px 0}
@@ -1162,6 +1128,99 @@ select option{background:var(--card2)}
   opacity:1 !important;
   pointer-events:auto !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   WATER MODULE — scoped CSS (#water-module prefix on all rules)
+   ══════════════════════════════════════════════════════════════════ */
+
+#water-module {
+  width:100%; padding:0 12px 20px; box-sizing:border-box; font-family:'Nunito',sans-serif; position:relative;
+}
+
+/* Celebration overlay */
+#wm-overlay {
+  position:fixed;inset:0;z-index:9997;pointer-events:none;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+}
+#wm-overlay.wm-show{display:flex;}
+#water-module .wm-overlay-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(14,165,233,0.22),rgba(6,13,26,0.88));backdrop-filter:blur(4px);}
+#water-module .wm-char{font-size:5rem;position:relative;z-index:1;animation:wm-jump .6s cubic-bezier(.34,1.56,.64,1) infinite alternate;filter:drop-shadow(0 0 20px rgba(56,189,248,.8));}
+@keyframes wm-jump{0%{transform:translateY(0) scale(1);}100%{transform:translateY(-40px) scale(1.1);}}
+#water-module .wm-celeb-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;font-weight:800;color:white;text-shadow:0 0 20px rgba(56,189,248,.9);margin-top:14px;text-align:center;position:relative;z-index:1;animation:wm-celebIn .5s ease-out;}
+#water-module .wm-celeb-sub{font-size:.9rem;font-weight:800;color:#7dd3fc;margin-top:6px;text-align:center;position:relative;z-index:1;animation:wm-celebIn .5s .2s ease-out both;}
+@keyframes wm-celebIn{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+
+/* Confetti (appended to body) */
+.wm-confetti-dot{position:fixed;pointer-events:none;z-index:9998;animation:wm-confettiFall 1.8s ease-out forwards;}
+@keyframes wm-confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(80vh) rotate(720deg);opacity:0;}}
+
+/* Bottle */
+#water-module .wm-bottle-wrap{display:flex;flex-direction:column;align-items:center;margin:8px 0 10px;position:relative;}
+#water-module .wm-bottle-glow{position:absolute;width:130px;height:130px;background:radial-gradient(circle,rgba(56,189,248,.2) 0%,transparent 70%);bottom:20px;left:50%;transform:translateX(-50%);filter:blur(18px);transition:opacity 1s;pointer-events:none;}
+#water-module .wm-bottle-container{width:140px;height:200px;position:relative;filter:drop-shadow(0 12px 30px rgba(14,165,233,.25));}
+#water-module .wm-remaining-badge{font-weight:800;font-size:.82rem;margin-top:6px;color:#38bdf8;letter-spacing:.5px;transition:color .5s;text-align:center;}
+
+/* Splash */
+#water-module .wm-splash{position:absolute;pointer-events:none;z-index:10;}
+#water-module .wm-splash-dot{position:absolute;width:6px;height:6px;background:#7dd3fc;border-radius:50%;animation:wm-splashAnim .7s ease-out forwards;}
+@keyframes wm-splashAnim{0%{transform:scale(1) translate(0,0);opacity:1;}100%{transform:scale(0) translate(var(--dx),var(--dy));opacity:0;}}
+
+/* Card */
+#water-module .wm-card{background:linear-gradient(145deg,rgba(17,32,56,.8),rgba(13,29,52,.6));backdrop-filter:blur(10px);border-radius:22px;padding:18px;margin-bottom:12px;border:1px solid rgba(56,189,248,.08);box-shadow:0 4px 24px rgba(0,0,0,.3);transition:border-color .3s;}
+#water-module .wm-card:hover{border-color:rgba(56,189,248,.14);}
+
+/* Progress */
+#water-module .wm-progress-bar{width:100%;height:10px;background:rgba(255,255,255,.04);border-radius:100px;overflow:hidden;margin:10px 0;}
+#water-module .wm-progress-fill{height:100%;background:linear-gradient(90deg,#0284c7,#38bdf8,#7dd3fc);background-size:200% 100%;border-radius:100px;transition:width .8s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(56,189,248,.5);animation:wm-shimmer 2.5s linear infinite;}
+@keyframes wm-shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+#water-module .wm-pct-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#38bdf8,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#water-module .wm-progress-total{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#38bdf8;}
+
+/* Cups */
+#water-module .wm-cups-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+#water-module .wm-cup-btn{background:linear-gradient(145deg,rgba(17,32,56,.9),rgba(11,24,44,.7));border:1px solid rgba(56,189,248,.1);border-radius:18px;padding:14px 12px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .15s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;}
+#water-module .wm-cup-btn::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(56,189,248,.08) 0%,transparent 60%);opacity:0;transition:opacity .3s;}
+#water-module .wm-cup-btn:hover{border-color:rgba(56,189,248,.3);box-shadow:0 0 20px rgba(56,189,248,.1);}
+#water-module .wm-cup-btn:hover::before{opacity:1;}
+#water-module .wm-cup-btn:active{transform:scale(.96);border-color:#38bdf8;}
+#water-module .wm-cup-svg{margin-bottom:7px;}
+#water-module .wm-cup-ml{font-family:'Space Grotesk',sans-serif;font-weight:800;color:white;font-size:1.05rem;line-height:1;}
+#water-module .wm-cup-desc{font-size:.6rem;color:#4a7fa5;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;}
+
+/* Ripple */
+#water-module .wm-ripple{position:absolute;border-radius:50%;background:rgba(56,189,248,.25);transform:scale(0);animation:wm-rippleAnim .5s linear;pointer-events:none;}
+@keyframes wm-rippleAnim{to{transform:scale(4);opacity:0;}}
+
+/* Manual input */
+#water-module .wm-manual-row{display:flex;gap:10px;align-items:stretch;margin-bottom:12px;}
+#water-module .wm-manual-input{flex:1;background:rgba(6,13,26,.8);border:1px solid rgba(56,189,248,.15);border-radius:14px;padding:13px 16px;color:white;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;outline:none;text-align:center;transition:border-color .3s,box-shadow .3s;}
+#water-module .wm-manual-input:focus{border-color:rgba(56,189,248,.5);box-shadow:0 0 0 3px rgba(56,189,248,.08);}
+#water-module .wm-manual-input::placeholder{color:#4a7fa5;font-weight:600;font-size:.8rem;font-family:'Nunito',sans-serif;}
+#water-module .wm-add-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);border:none;border-radius:14px;color:white;padding:0 18px;font-family:'Syne',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.5px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 14px rgba(14,165,233,.35);transition:transform .15s,box-shadow .2s;}
+#water-module .wm-add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(14,165,233,.45);}
+#water-module .wm-add-btn:active{transform:scale(.96);}
+
+/* Action buttons */
+#water-module .wm-action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+#water-module .wm-undo-btn,#water-module .wm-reset-btn{padding:13px;border-radius:16px;border:1px solid;cursor:pointer;font-family:'Syne',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.5px;background:none;transition:background .2s,transform .15s;}
+#water-module .wm-undo-btn{color:#fcd34d;border-color:rgba(252,211,77,.2);}
+#water-module .wm-undo-btn:hover{background:rgba(252,211,77,.06);}
+#water-module .wm-undo-btn:active{transform:scale(.97);}
+#water-module .wm-reset-btn{color:#fca5a5;border-color:rgba(252,165,165,.2);}
+#water-module .wm-reset-btn:hover{background:rgba(252,165,165,.06);}
+#water-module .wm-reset-btn:active{transform:scale(.97);}
+
+/* Section divider */
+#water-module .wm-divider{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:.65rem;font-weight:900;color:#4a7fa5;text-transform:uppercase;letter-spacing:1.5px;}
+#water-module .wm-divider::before,#water-module .wm-divider::after{content:'';flex:1;height:1px;background:rgba(56,189,248,.1);}
+
+/* History items */
+#water-module .wm-history-item{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;background:linear-gradient(145deg,rgba(17,32,56,.7),rgba(13,29,52,.5));border:1px solid rgba(56,189,248,.07);border-radius:14px;margin-bottom:7px;animation:wm-itemIn .3s ease both;}
+@keyframes wm-itemIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
+#water-module .wm-history-ml{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;color:#38bdf8;}
+#water-module .wm-history-time{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;color:#4a7fa5;}
+#water-module .wm-history-empty{text-align:center;padding:18px 0;font-size:.72rem;font-weight:700;color:#4a7fa5;letter-spacing:.5px;}
+
 </style>
 </head>
 <body>
@@ -1382,11 +1441,12 @@ select option{background:var(--card2)}
     <!-- ── DASHBOARD — MISS&#213;ES & STREAK (renderizado por JS) ── -->
     <div id="dashCard"></div>
 
-    <!-- ── WATER CARD (renderizado por JS) ── -->
+    <!-- ── WATER CARD (agora na tela dedicada v-water) ── -->
+    <!-- waterGoalCard removido do home — acessar via nav 💧 ou missão -->
     <div id="waterGoalCard" style="display:none"></div>
 
-    <!-- ── CREATINA CARD (renderizado por JS) ── -->
-    <div id="creatinaCard"></div>
+    <!-- ── CREATINA CARD (renderizado por JS, oculto no home) ── -->
+    <div id="creatinaCard" style="display:none"></div>
 
     <!-- ── INSIGHTS / MENSAGENS INTELIGENTES (renderizado por JS) ── -->
     <div id="insightsArea"></div>
@@ -1424,6 +1484,173 @@ select option{background:var(--card2)}
       <div style="height:12px"></div>
     </div><!-- /home-panel-resumo -->
 
+  </div>
+
+  <!-- ═══ ÁGUA (standalone premium screen) ═══ -->
+  <div id="v-water" class="view" style="padding:0">
+    <div id="water-module">
+
+      <!-- CELEBRATION OVERLAY -->
+      <div id="wm-overlay">
+        <div class="wm-overlay-bg"></div>
+        <div class="wm-char">🥷</div>
+        <div class="wm-celeb-title" id="wm-celeb-title">META BATIDA!</div>
+        <div class="wm-celeb-sub"   id="wm-celeb-sub">Você é um shinobi da hidratação! 💧</div>
+      </div>
+
+      <!-- BACK BUTTON -->
+      <div style="padding:12px 12px 0">
+        <button class="view-back-btn" onclick="switchView('diet')" style="margin-bottom:0;min-width:0;width:auto;padding:8px 14px"><span class="arrow">←</span> Home</button>
+      </div>
+
+      <!-- BOTTLE -->
+      <div class="wm-bottle-wrap">
+        <div class="wm-bottle-glow" id="bottleGlow"></div>
+        <div class="wm-bottle-container">
+          <svg width="140" height="200" viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wm-wG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#7dd3fc"/>
+                <stop offset="100%" stop-color="#0284c7"/>
+              </linearGradient>
+              <linearGradient id="wm-waveG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="rgba(125,211,252,0.8)"/>
+                <stop offset="100%" stop-color="rgba(56,189,248,0.4)"/>
+              </linearGradient>
+              <linearGradient id="wm-bG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.04)"/>
+                <stop offset="35%"  stop-color="rgba(255,255,255,0.15)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0.01)"/>
+              </linearGradient>
+              <filter id="wm-glow">
+                <feGaussianBlur stdDeviation="2.5" result="cb"/>
+                <feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <clipPath id="wm-bClip">
+                <path d="M42 22 L38 54 Q18 68 18 84 L18 212 Q18 230 42 230 L78 230 Q102 230 102 212 L102 84 Q102 68 82 54 L78 22 Z"/>
+              </clipPath>
+            </defs>
+            <rect x="46" y="6"  width="28" height="9" rx="3.5" fill="#1a3550" stroke="rgba(56,189,248,0.4)"  stroke-width="1"/>
+            <rect x="42" y="15" width="36" height="9" rx="4"   fill="#162e48" stroke="rgba(56,189,248,0.25)" stroke-width="1"/>
+            <path d="M42 22 L38 54 Q18 68 18 84 L18 212 Q18 230 42 230 L78 230 Q102 230 102 212 L102 84 Q102 68 82 54 L78 22 Z"
+              fill="#0b1928" stroke="rgba(56,189,248,0.4)" stroke-width="2"/>
+            <rect id="wm-waterRect" x="18" y="230" width="84" height="0"
+              fill="url(#wm-wG)" clip-path="url(#wm-bClip)"
+              style="transition:height 0.9s cubic-bezier(0.4,0,0.2,1),y 0.9s cubic-bezier(0.4,0,0.2,1);"/>
+            <g id="wm-waveGroup" clip-path="url(#wm-bClip)" style="display:none;">
+              <path id="wm-wavePath" d="M18 0 Q37 -5 56 0 Q75 5 84 0 L84 12 Q65 7 46 12 Q27 17 18 12 Z" fill="url(#wm-waveG)" opacity="0.7"/>
+            </g>
+            <path d="M42 22 L40 54 Q21 68 20 84 L20 160 Q24 160 26 84 L28 54 L43 26 Z" fill="url(#wm-bG)"/>
+            <g font-size="8" font-weight="900">
+              <line x1="18" y1="190" x2="36" y2="190" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+              <text x="38" y="194" fill="rgba(255,255,255,0.7)" font-family="'Space Grotesk',sans-serif">1L</text>
+              <line x1="18" y1="150" x2="36" y2="150" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+              <text x="38" y="154" fill="rgba(255,255,255,0.7)" font-family="'Space Grotesk',sans-serif">2L</text>
+              <line x1="18" y1="110" x2="36" y2="110" stroke="#38bdf8" stroke-width="2"/>
+              <text x="38" y="114" fill="#38bdf8" font-family="'Space Grotesk',sans-serif">3L</text>
+              <text x="34" y="68"  fill="rgba(255,255,255,0.65)" font-family="'Space Grotesk',sans-serif" font-size="7.5">4L</text>
+            </g>
+            <text id="wm-svgMl" x="60" y="170" text-anchor="middle"
+              font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="800"
+              fill="white" filter="url(#wm-glow)" opacity="0.95">0ml</text>
+          </svg>
+        </div>
+        <div id="wm-remainingBadge" class="wm-remaining-badge">Faltam 4.000ml para a meta</div>
+      </div>
+
+      <!-- PROGRESS CARD -->
+      <div class="wm-card" style="padding:14px 18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <div class="wm-progress-total">
+            <span id="wm-totalDisplay">0</span><span style="font-size:0.72rem;color:#4a7fa5;font-family:'Nunito';"> / </span><span id="wm-goalLabel" style="font-size:0.85rem;color:#4a7fa5;font-family:'Space Grotesk';">4000</span><span style="font-size:0.65rem;color:#4a7fa5;font-family:'Nunito';">ml</span>
+          </div>
+          <div class="wm-pct-text" id="wm-pctText">0%</div>
+        </div>
+        <div class="wm-progress-bar">
+          <div class="wm-progress-fill" id="wm-progressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- ADD WATER -->
+      <div class="wm-divider"><span>Adicionar Água</span></div>
+      <div class="wm-cups-grid">
+        <button class="wm-cup-btn" onclick="addWater(200,this)">
+          <svg class="wm-cup-svg" width="38" height="40" viewBox="0 0 42 44">
+            <path d="M9 11 L11 38 Q11 41 15 41 L27 41 Q31 41 31 38 L33 11 Z" fill="#1e3d6b" stroke="rgba(56,189,248,0.5)" stroke-width="1.5"/>
+            <rect x="9" y="11" width="24" height="3" rx="1.5" fill="rgba(56,189,248,0.3)"/>
+            <path d="M12.5 26 L29.5 26 L28.5 38 Q28.5 40 27 40 L15 40 Q12 40 12.5 38 Z" fill="rgba(56,189,248,0.35)"/>
+            <path d="M10 13 L11 23 Q11.5 23 12 23 L11 13 Z" fill="rgba(255,255,255,0.12)"/>
+          </svg>
+          <span class="wm-cup-ml">200ml</span><span class="wm-cup-desc">Copo pequeno</span>
+        </button>
+        <button class="wm-cup-btn" onclick="addWater(300,this)">
+          <svg class="wm-cup-svg" width="40" height="40" viewBox="0 0 44 44">
+            <path d="M7 9 L10 38 Q10 41 14 41 L30 41 Q34 41 34 38 L37 9 Z" fill="#1e3d6b" stroke="rgba(56,189,248,0.5)" stroke-width="1.5"/>
+            <rect x="7" y="9" width="30" height="3.5" rx="1.75" fill="rgba(56,189,248,0.3)"/>
+            <path d="M11 25 L33 25 L31.5 38 Q31.5 40 30 40 L14 40 Q11 40 11.5 38 Z" fill="rgba(56,189,248,0.35)"/>
+            <path d="M8.5 11 L9.5 23 Q10 23 10.5 23 L9.5 11 Z" fill="rgba(255,255,255,0.12)"/>
+          </svg>
+          <span class="wm-cup-ml">300ml</span><span class="wm-cup-desc">Copo médio</span>
+        </button>
+        <button class="wm-cup-btn" onclick="addWater(473,this)">
+          <svg class="wm-cup-svg" width="40" height="48" viewBox="0 0 44 52">
+            <rect x="10" y="9"  width="24" height="38" rx="5" fill="#1a3a5c" stroke="rgba(56,189,248,0.45)" stroke-width="1.5"/>
+            <rect x="10" y="5"  width="24" height="6"  rx="3" fill="#253d5b" stroke="rgba(56,189,248,0.35)" stroke-width="1"/>
+            <rect x="10" y="9"  width="24" height="4"        fill="#1e3352" stroke="rgba(56,189,248,0.2)"  stroke-width="1"/>
+            <path d="M17 5 L17 2 Q22 0 27 2 L27 5" fill="none" stroke="rgba(56,189,248,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="11" y="28" width="22" height="17" fill="rgba(56,189,248,0.38)"/>
+            <rect x="11" y="13" width="3"  height="30" rx="1.5" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+          <span class="wm-cup-ml">473ml</span><span class="wm-cup-desc">Stanley</span>
+        </button>
+        <button class="wm-cup-btn" onclick="addWater(1000,this)">
+          <svg class="wm-cup-svg" width="38" height="50" viewBox="0 0 40 54">
+            <path d="M12 18 L11 48 Q11 52 16 52 L24 52 Q29 52 29 48 L28 18 Z" fill="#1a3a5c" stroke="rgba(56,189,248,0.45)" stroke-width="1.5"/>
+            <path d="M14 8 L13 18 L27 18 L26 8 Z" fill="#162e4a" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+            <rect x="15" y="3" width="10" height="6" rx="4" fill="#253d5b" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+            <rect x="18" y="1" width="4"  height="3" rx="2" fill="#38bdf8" opacity="0.75"/>
+            <path d="M12.5 30 L27.5 30 L27 48 Q27 51 24 51 L16 51 Q13 51 13 48 Z" fill="rgba(56,189,248,0.38)"/>
+            <path d="M28 22 Q35 22 35 31 Q35 38 28 38" fill="none" stroke="rgba(56,189,248,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span class="wm-cup-ml">1.000ml</span><span class="wm-cup-desc">Garrafa sport</span>
+        </button>
+      </div>
+
+      <!-- MANUAL ENTRY -->
+      <div class="wm-divider"><span>Entrada Manual</span></div>
+      <div class="wm-manual-row">
+        <input type="text" inputmode="decimal" id="wm-manualInput" class="wm-manual-input"
+          placeholder="Ex: 300ml ou 1,5L ou 1.250"
+          onkeydown="if(event.key==='Enter') addManual()">
+        <button class="wm-add-btn" onclick="addManual()">+ ADICIONAR</button>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="wm-action-row">
+        <button class="wm-undo-btn"  onclick="undoLast()">↩ DESFAZER ÚLTIMA</button>
+        <button class="wm-reset-btn" id="wm-reset-btn" onclick="resetDay()">🗑 ZERAR HOJE</button>
+      </div>
+
+      <!-- DAILY GOAL -->
+      <div class="wm-divider" style="margin-top:14px;"><span>Meta Diária</span></div>
+      <div class="wm-card" style="padding:16px 18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <span style="font-size:0.68rem;font-weight:900;color:#4a7fa5;text-transform:uppercase;letter-spacing:1.5px;">Meta atual</span>
+          <span id="wm-currentGoalDisplay" style="font-family:'Space Grotesk';font-weight:800;font-size:1.1rem;color:#38bdf8;">4.000ml</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input type="number" id="wm-goalInput" class="wm-manual-input"
+            placeholder="Ex: 4000" min="100" max="10000" style="text-align:left;"
+            onkeydown="if(event.key==='Enter') updateGoalFromMain()">
+          <button class="wm-add-btn" onclick="updateGoalFromMain()">SALVAR</button>
+        </div>
+      </div>
+
+      <!-- HISTORY LOG -->
+      <div class="wm-divider"><span>Registros de Hoje</span></div>
+      <div id="wm-historyLog" style="padding-bottom:100px;"></div>
+
+    </div><!-- /#water-module -->
   </div>
 
   <!-- ═══ TREINOS ═══ -->
@@ -1601,6 +1828,7 @@ select option{background:var(--card2)}
 <!-- ══════ NAV ══════ -->
 <nav class="nav" id="mainNav" style="display:none">
   <button class="nav-btn on" id="nb-diet" onclick="switchView('diet')"><span class="icon icon-utensils"></span><span class="nav-lbl">Home</span><div class="nav-dot"></div></button>
+  <button class="nav-btn" id="nb-water" onclick="switchView('water')" style="position:relative">💧<span class="nav-lbl">Água</span><div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-act" onclick="switchView('act')"><span class="icon icon-dumbbell"></span>Treino<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-evo" onclick="switchView('evo')"><span class="icon icon-chart-line"></span>Evolução<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-perfil" onclick="switchView('perfil')"><span class="icon icon-user"></span>Perfil<div class="nav-dot"></div></button>
@@ -1952,9 +2180,57 @@ const DB = {
     if(!db.missions) db.missions={lastDate:'',water:false,creatina:false,dieta:false,treino:false};
     if(db.settings.notifications===undefined) db.settings.notifications=false;
   },
-  /** Alias kept for backward compat; delegated to initWater() */
-  initWater(){ initWater(); },
+  /** Ensures db.water structure exists for the new water module */
+  initWater(){
+    if(!db.water) db.water={goal:4000,entries:[]};
+    if(!db.water.goal||db.water.goal<100) db.water.goal=4000;
+    if(!Array.isArray(db.water.entries)) db.water.entries=[];
+    // migrate old entries missing date field
+    const today=new Date().toLocaleDateString('pt-BR');
+    db.water.entries.forEach(e=>{if(!e.date)e.date=today;if(!e.id)e.id=Date.now()+Math.random();if(!e.timestamp)e.timestamp=Date.now();});
+    save();
+  },
 };
+
+
+// ══════════════════════════════════════════════════════════════════
+// WATER COMPATIBILITY FUNCTIONS
+// These read from waterState (= db.water) for renderDashboard, missions, stats
+// ══════════════════════════════════════════════════════════════════
+function getWaterToday(){
+  const today=new Date().toLocaleDateString('pt-BR');
+  const src=(typeof waterState!=='undefined'&&waterState)||db.water||{entries:[]};
+  return (src.entries||[]).filter(e=>e.date===today);
+}
+function getWaterTotal(){
+  return getWaterToday().reduce((s,e)=>s+e.ml,0);
+}
+function getWaterPct(){
+  const src=(typeof waterState!=='undefined'&&waterState)||db.water||{goal:4000};
+  const goal=src.goal||4000;
+  return Math.min(100,Math.round(getWaterTotal()/goal*100));
+}
+function getWaterStreak(){
+  const entries=waterState&&waterState.entries||[];
+  const goal=waterState&&waterState.goal||4000;
+  const byDate={};
+  entries.forEach(e=>{byDate[e.date]=(byDate[e.date]||0)+e.ml;});
+  const dates=Object.keys(byDate).sort((a,b)=>parseBR(b)-parseBR(a));
+  if(!dates.length) return 0;
+  let streak=0;
+  let exp=new Date();exp.setHours(0,0,0,0);
+  const todayKey=new Date().toLocaleDateString('pt-BR');
+  if((byDate[todayKey]||0)<goal) exp.setDate(exp.getDate()-1);
+  for(const ds of dates){
+    if((byDate[ds]||0)<goal) break;
+    const d=parseBR(ds);
+    const diff=exp.getTime()-d;
+    if(diff>=0&&diff<86400000){streak++;exp.setDate(exp.getDate()-1);}
+    else break;
+  }
+  return streak;
+}
+function fmtMl(ml){return ml>=1000?(ml/1000).toFixed(1).replace('.0','')+'L':ml+'ml';}
 
 /** Nav — dynamic navigation bar builder */
 const Nav = {
@@ -1969,11 +2245,16 @@ const Nav = {
     if(dietBtn){
       dietBtn.style.display = showDiet ? '' : '';  // always visible — tab repurposed
       const lbl = dietBtn.querySelector('.nav-lbl');
-      if(lbl) lbl.textContent = 'Dieta';
+      if(lbl) lbl.textContent = 'Home';
     }
     if(dietView) dietView.style.display = '';  // always keep view in DOM
-    // If diet is off, the v-diet view becomes the "Água" view (water card only)
-    // No need to switch away — renderDiet() will hide the diet-specific elements
+    // Water nav badge: show % if not done
+    const waterPct = getWaterPct();
+    const waterBtn = document.getElementById('nb-water');
+    if(waterBtn){
+      const lbl = waterBtn.querySelector('.nav-lbl');
+      if(lbl) lbl.textContent = waterPct >= 100 ? 'Água ✓' : 'Água';
+    }
   },
 };
 
@@ -2044,190 +2325,7 @@ function updateSettingsToggles(){
 }
 
 
-// ══════════════════════════════════════════════════
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║  MODULE: WATER — Hydration Tracking                             ║
-// ╚══════════════════════════════════════════════════════════════════╝
-//  WATER MODULE
-//  db.water = { goal: Number(ml), entries: [{id, ml, time, timestamp}] }
-//  — REMOVED: toggleWaterGoal(), renderWaterGoal(), db.waterGoalDate, db.waterGoalDone
-// ══════════════════════════════════════════════════
 
-/** Ensures db.water exists and migrates legacy binary fields */
-function initWater(){
-  if(!db.water) db.water={goal:3000,entries:[]};
-  if(!db.water.goal) db.water.goal=3000;
-  if(!db.water.entries) db.water.entries=[];
-  // Remove legacy binary fields if they exist (silent cleanup)
-  delete db.waterGoalDate;
-  delete db.waterGoalDone;
-  save();
-}
-
-/** Returns entries logged today */
-function getWaterToday(){
-  const today=todayStr();
-  return db.water.entries.filter(e=>e.date===today);
-}
-
-/** Returns total ml consumed today */
-function getWaterTotal(){
-  return getWaterToday().reduce((sum,e)=>sum+e.ml,0);
-}
-
-/** Returns progress % (capped at 100) */
-function getWaterPct(){
-  return Math.min(100,Math.round(getWaterTotal()/db.water.goal*100));
-}
-
-/** Returns number of consecutive days the water goal was reached */
-function getWaterStreak(){
-  // Group entries by date, compute total per date
-  const byDate={};
-  db.water.entries.forEach(e=>{
-    byDate[e.date]=(byDate[e.date]||0)+e.ml;
-  });
-  const dates=Object.keys(byDate).sort((a,b)=>parseBR(b)-parseBR(a));
-  if(!dates.length) return 0;
-  let streak=0;
-  let exp=new Date();exp.setHours(0,0,0,0);
-  // Allow today or yesterday as starting point
-  if(byDate[todayStr()]<db.water.goal) exp.setDate(exp.getDate()-1);
-  for(const ds of dates){
-    const total=byDate[ds];
-    if(total<db.water.goal) break;
-    const d=parseBR(ds);
-    const diff=exp.getTime()-d;
-    if(diff>=0&&diff<86400000){streak++;exp.setDate(exp.getDate()-1);}
-    else break;
-  }
-  return streak;
-}
-
-/**
- * Log a water entry.
- * @param {number} ml — milliliters to add
- */
-function logWater(ml){
-  ml=parseInt(ml);
-  if(!ml||ml<=0||ml>5000){toast('⚠️ Valor inválido (1–5000ml)');return;}
-  const entry={id:Date.now(),ml,time:nowTimeStr(),date:todayStr(),timestamp:Date.now()};
-  db.water.entries.push(entry);
-  save();
-  renderWater();
-  renderDashboard();
-  Haptic.water();
-  // Pulse animation on clicked button
-  const prevTotal=getWaterTotal()-ml;
-  const newTotal=getWaterTotal();
-  if(prevTotal<db.water.goal&&newTotal>=db.water.goal){
-    toast('🎉 Meta de hidratação atingida! Parabéns!',4000);
-  } else {
-    const remaining=Math.max(0,db.water.goal-newTotal);
-    if(remaining>0) toast('💧 +'+ml+'ml · faltam '+(remaining)+'ml');
-    else toast('💧 +'+ml+'ml · meta atingida!');
-  }
-}
-
-/** Remove a water entry by id */
-function removeWaterEntry(id){
-  db.water.entries=db.water.entries.filter(e=>e.id!==id);
-  save();
-  renderWater();
-  renderDashboard();
-}
-
-/** Update the daily goal */
-function setWaterGoal(newGoal){
-  newGoal=parseInt(newGoal);
-  if(!newGoal||newGoal<250||newGoal>10000){toast('⚠️ Meta inválida (250–10000ml)');return;}
-  db.water.goal=newGoal;
-  save();
-  renderWater();
-  toast('✅ Meta atualizada: '+newGoal+'ml');
-}
-
-/** Prompt user to change the water goal */
-function promptWaterGoal(){
-  const cur=db.water.goal;
-  const val=prompt('Meta diária de água (ml):', cur);
-  if(val!==null) setWaterGoal(val);
-}
-
-/** Add custom ml from input field */
-function logWaterCustom(){
-  const inp=document.getElementById('wcCustomInput');
-  if(!inp) return;
-  logWater(inp.value);
-  inp.value='';
-}
-
-function fmtMl(ml){return ml>=1000?(ml/1000).toFixed(1).replace('.0','')+'L':ml+'ml';}
-
-/**
- * Renders the entire water card into #waterGoalCard.
- */
-function renderWater(){
-  const container=document.getElementById('waterGoalCard');
-  if(!container) return;
-  container.style.display='block';
-  const total=getWaterTotal();
-  const goal=db.water.goal;
-  const pct=getWaterPct();
-  const reached=total>=goal;
-  const rem=Math.max(0,goal-total);
-  const todayEntries=getWaterToday().slice().reverse();
-
-  let entriesHtml='';
-  if(todayEntries.length===0){
-    entriesHtml='<div class="wc-log-empty">Nenhum registro hoje. Beba água! 💧</div>';
-  } else {
-    entriesHtml=todayEntries.map(e=>
-      '<div class="wc-entry">'
-      +'<div class="wc-entry-left">'
-      +'<div class="wc-entry-dot"></div>'
-      +'<div><span class="wc-entry-ml">'+e.ml+'</span><span class="wc-entry-unit">ml</span></div>'
-      +'<div class="wc-entry-time">'+e.time+'</div>'
-      +'</div>'
-      +'<button class="wc-entry-del" onclick="removeWaterEntry('+e.id+')" title="Remover">'
-      +'<span class="icon icon-times" style="width:12px;height:12px"></span>'
-      +'</button>'
-      +'</div>'
-    ).join('');
-  }
-
-  container.className='water-card'+(reached?' goal-reached':'');
-  container.innerHTML=
-    '<div class="wc-header">'
-    +'<span class="wc-title"><span class="wc-title-icon">💧</span> Hidratação</span>'
-    +'<button class="wc-goal-btn" onclick="promptWaterGoal()">Meta: '+fmtMl(goal)+' ✏️</button>'
-    +'</div>'
-    +'<div class="wc-numbers">'
-    +'<span class="wc-current'+(reached?' goal-reached':'')+'">'+fmtMl(total)+'</span>'
-    +'<span class="wc-goal-of">/ '+fmtMl(goal)+'</span>'
-    +'</div>'
-    +'<div class="wc-bar-wrap">'
-    +'<div class="wc-bar-track"><div class="wc-bar-fill'+(reached?' done':'')+'" style="width:'+pct+'%"></div></div>'
-    +'<div class="wc-pct" style="'+(reached?'color:#7ed3ff':'')+'">'+pct+'%'
-      +(reached?' · ✓ META ATINGIDA 🎉':rem>0?' · faltam '+fmtMl(rem):' · meta atingida!')+'</div>'
-    +'</div>'
-    +'<div class="wc-congrats'+(reached?' show':'')+'">🎉 Excelente! Meta de hidratação concluída!</div>'
-    +'<div class="wc-quick">'
-    +'<button class="wc-quick-btn" onclick="logWaterQuick(this,150)">+150ml</button>'
-    +'<button class="wc-quick-btn" onclick="logWaterQuick(this,300)" style="font-size:15px;font-weight:700">+300ml</button>'
-    +'<button class="wc-quick-btn" onclick="logWaterQuick(this,500)" style="font-size:15px;font-weight:700">+500ml</button>'
-    +'<button class="wc-quick-btn" onclick="logWaterQuick(this,750)">+750ml</button>'
-    +'</div>'
-    +'<div class="wc-custom">'
-    +'<input type="number" id="wcCustomInput" placeholder="Outro valor (ml)" min="1" max="5000" '
-    +'onkeydown="if(event.key===\'Enter\')logWaterCustom()">'
-    +'<button class="wc-custom-btn" onclick="logWaterCustom()">+ Adicionar</button>'
-    +'</div>'
-    +'<div class="wc-log">'+entriesHtml+'</div>';
-}
-
-/** Quick-add — delegates to Confetti module for burst animation */
-// logWaterQuick is defined in the MICRO-INTERACTIONS module above
 
 
 
@@ -2494,7 +2592,7 @@ function _finishSportsReview() {
 function initApp(){
   // ── Core modules (always run) ──
   DB.initSettings();   // ensure settings block exists
-  DB.initWater();      // ensure water block exists, migrate legacy
+  DB.initWater();      // ensure db.water structure exists
   initMissions();      // ensure missions block exists, reset if new day
 
   // ── Daily routines ──
@@ -2502,6 +2600,7 @@ function initApp(){
 
   // ── Render modules ──
   Nav.render();        // build nav dynamically based on settings
+  initWaterModule(db.water); // init water BEFORE renderDashboard so getWaterPct reads real data
   renderDashboard();   // missoes + streak geral (sempre primeiro)
   Diet.render();       // render diet view (or hide it if disabled)
   Acts.render();       // render activity slider
@@ -2849,7 +2948,7 @@ function renderDashboard() {
     {
       key:'water', icon:'💧', name:'Água', cls:'mission-water',
       done: status.water,
-      statusText: status.water ? 'Meta atingida!' : (waterPct+'% — faltam '+fmtMl(Math.max(0,db.water.goal-getWaterTotal()))),
+      statusText: status.water ? 'Meta atingida!' : (waterPct+'% — faltam '+fmtMl(Math.max(0,(waterState&&waterState.goal||db.water.goal||4000)-getWaterTotal()))),
       pct: waterPct,
       state: status.water ? 'done' : waterPct>0 ? 'in-progress' : 'not-started',
     },
@@ -2880,6 +2979,9 @@ function renderDashboard() {
   const missionsTotal = primaryMissions.length + secondaryMissions.length;
   const missionsPct = missionsTotal>0 ? Math.round(missionsDoneCount/missionsTotal*100) : 0;
 
+  // ── Nav targets for mission cards
+  const missionNav = { water: "switchView('water')", treino: "switchView('act')", dieta: "switchView('diet')" };
+
   // HTML: cards primários (grid 3 colunas)
   const missionsHtml = primaryMissions.map(m => {
     const isNa = m.state==='na';
@@ -2888,7 +2990,8 @@ function renderDashboard() {
       ? '<span class="mission-state-badge '+dietaStateCls[m.state]+'">'+dietaStateTxt[m.state]+'</span>'
       : '';
     const extra = m.key==='dieta' ? macroHtml : '';
-    return '<div class="'+cardCls+'">'
+    const tapHint = '<div class="mission-tap-hint">tocar →</div>';
+    return '<div class="'+cardCls+'" onclick="'+missionNav[m.key]+'" role="button" aria-label="Ir para '+m.name+'">'
       +'<div class="mission-check">✓</div>'
       +badge
       +'<span class="mission-icon">'+m.icon+'</span>'
@@ -2896,6 +2999,7 @@ function renderDashboard() {
       +'<div class="mission-status">'+m.statusText+'</div>'
       +'<div class="mission-bar"><div class="mission-bar-fill" style="width:'+Math.min(100,m.pct)+'%"></div></div>'
       +extra
+      +tapHint
       +'</div>';
   }).join('');
 
@@ -2952,19 +3056,12 @@ function renderDashboard() {
     + '<div class="dash-dot-legend-item"><div class="dash-dot-legend-dot" style="background:var(--border2)"></div>perdido</div>'
     + '</div>';
 
-  // ── Água inline: barra + botões rápidos
-  const waterInlineReached = status.water;
-  const waterMls = [150, 300, 500, 750];
-  const waterInlineHtml = '<div class="dash-water-inline">'
+  // ── Água inline: mini card linkando para v-water (sem controles duplicados)
+  const waterInlineHtml = '<div class="dash-water-inline" onclick="switchView(\'water\')" style="cursor:pointer;touch-action:manipulation">'
     + '<div class="dwi-bar-row">'
-    + '<span class="dwi-label">💧 ' + getWaterTotal() + 'ml</span>'
-    + '<div class="dwi-bar-wrap"><div class="dwi-bar-fill' + (waterInlineReached ? ' reached' : '') + '" style="width:' + Math.min(100,waterPct) + '%"></div></div>'
-    + '<span class="dwi-pct' + (waterInlineReached ? ' reached' : '') + '">' + waterPct + '%</span>'
-    + '</div>'
-    + '<div class="dwi-btns">'
-    + waterMls.map(ml =>
-        '<button class="dwi-btn' + (waterInlineReached ? ' reached' : '') + '" id="dwiBtn' + ml + '" onclick="dwiLog(' + ml + ',this)">+' + (ml>=1000?(ml/1000)+'L':ml+'ml') + '</button>'
-      ).join('')
+    + '<span class="dwi-label">💧 ' + fmtMl(getWaterTotal()) + ' · ' + waterPct + '%</span>'
+    + '<div class="dwi-bar-wrap"><div class="dwi-bar-fill' + (status.water ? ' reached' : '') + '" style="width:' + Math.min(100,waterPct) + '%"></div></div>'
+    + '<span class="dwi-pct' + (status.water ? ' reached' : '') + '" style="font-size:9px;white-space:nowrap">ver tudo →</span>'
     + '</div>'
     + '</div>';
 
@@ -3053,6 +3150,8 @@ function renderDashboard() {
   // Atualiza o streak pill no header
   const sn = document.getElementById('streakNum');
   if (sn) sn.textContent = count;
+  // Update water nav label badge
+  Nav.render();
 }
 
 // ╔══════════════════════════════════════════════════════════════════╗
@@ -3554,7 +3653,7 @@ function renderStats(period){
   gridCards+='<div class="stat-card s-time"><div class="stat-val">'+totHrs+'h</div><div class="stat-lbl">horas ativas</div><div class="stat-sub">'+filtered.length+' sessões</div></div>';
   // Water stat card
   const waterToday=getWaterTotal();
-  const waterGoal=db.water.goal;
+  const waterGoal=(waterState&&waterState.goal)||db.water.goal||4000;
   const waterPct=getWaterPct();
   gridCards+='<div class="stat-card s-water"><div class="stat-val">'+(waterToday>=1000?(waterToday/1000).toFixed(1)+'L':waterToday+'ml')+'</div><div class="stat-lbl">água hoje</div><div class="stat-sub">'+waterPct+'% da meta</div></div>';
   document.getElementById('statsGrid').innerHTML=gridCards;
@@ -3743,19 +3842,19 @@ function renderDiet(){
   renderLastWorkoutCard();
   renderPesoMetrica();
 
-  // Water: always visible
+  // Water: now in standalone v-water — keep home clean
   const wc=document.getElementById('waterGoalCard');
-  if(wc){ wc.style.display='block'; renderWater(); }
+  if(wc) wc.style.display='none';
 
-  // Creatina: controlled by settings
-  renderCreatina();
+  // Creatina: kept in missions pill only, not on home screen
+  // (renderCreatina hidden from home but state tracked via missions)
 
   // Smart insights
   renderInsights();
 
-  // Nav label — sempre "Dieta"
+  // Nav label — "Home"
   const dietBtn=document.getElementById('nb-diet');
-  if(dietBtn){const lbl=dietBtn.querySelector('.nav-lbl');if(lbl)lbl.textContent='Dieta';}
+  if(dietBtn){const lbl=dietBtn.querySelector('.nav-lbl');if(lbl)lbl.textContent='Home';}
 
   // Dieta sempre visivel — showDiet so afeta missoes
 
@@ -4041,6 +4140,7 @@ function switchView(v){
   }
   if(v === 'perfil') setTimeout(renderPerfil, 50);
   if(v === 'stats') renderStats(currentPeriod);
+  if(v === 'water') initWaterModule(db.water);
 }
 function switchAppTab(name,btn){
   document.querySelectorAll('.app-tab-panel').forEach(el=>el.classList.remove('on'));
@@ -4561,20 +4661,14 @@ function maybeCelebrate(dayComplete, count, prevCount) {
 }
 
 // ── Water burst animation ─────────────────────────────────────────────
-function logWaterQuick(btn, ml) {
-  logWater(ml);
-  btn.classList.remove('burst');
-  void btn.offsetWidth;
-  btn.classList.add('burst');
-  setTimeout(() => btn.classList.remove('burst'), 500);
-}
+// logWaterQuick → now calls addWater() directly (defined in water module)
 
 // ╔══════════════════════════════════════════════════════════════════╗
 // ║  MODULE: SWIPE NAV — Horizontal gesture navigation              ║
 // ╚══════════════════════════════════════════════════════════════════╝
 
-const VIEW_ORDER = ['diet','act','evo','perfil','partner'];
-let _currentViewIdx = 0;
+var VIEW_ORDER = ['diet','water','act','evo','perfil']; // var = hoisted, avoids TDZ
+var _currentViewIdx = 0;
 let _swipeTouchStartX = 0;
 let _swipeTouchStartY = 0;
 let _swipeActive = false;
@@ -4631,11 +4725,17 @@ function swipeToView(idx) {
   _currentViewIdx = idx;
   const viewName = VIEW_ORDER[idx];
   _applySliderTransform(idx);
+  // Sync active class on views
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  const vEl = document.getElementById('v-' + viewName);
+  if (vEl) vEl.classList.add('active');
   // Sync navbar highlight without re-applying transform
   document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('on'));
   const nb = document.getElementById('nb-' + viewName);
   if (nb) nb.classList.add('on');
-  // Trigger partner render on swipe
+  // Trigger module renders on swipe
+  if (viewName === 'water') initWaterModule(db.water);
+  if (viewName === 'perfil') setTimeout(renderPerfil, 50);
 }
 
 // switchView is defined earlier and already includes slider sync + perfil/stats hooks
@@ -4651,7 +4751,7 @@ function renderQuickShortcuts() {
   const shortcuts = [
     {
       icon: '💧', label: 'Água', cls: 'water',
-      action: () => scrollToSection('diet', 'waterGoalCard'),
+      action: () => switchView('water'),
     },
     {
       icon: '🏋️', label: 'Treino', cls: 'treino',
@@ -5226,8 +5326,8 @@ function getNextActionHint() {
       urgency: h>=18?'urgente':'normal', onclick:"switchView('act')" };
 
   if (!status.water)
-    return { icon:'💧', action:'Água: '+wp+'% da meta — faltam '+fmtMl(Math.max(0,db.water.goal-getWaterTotal())),
-      urgency: wp<30&&h>=15?'urgente':'normal', onclick:"scrollToSection('diet','waterGoalCard')" };
+    return { icon:'💧', action:'Água: '+wp+'% da meta — faltam '+fmtMl(Math.max(0,(waterState&&waterState.goal||db.water.goal||4000)-getWaterTotal())),
+      urgency: wp<30&&h>=15?'urgente':'normal', onclick:"switchView('water')" };
 
   if (!status.dieta && db.settings?.showDietTab!==false && db.meals.length>0) {
     const t = db.meals.reduce((a,m)=>a+m.items.filter(i=>!i.optional).length,0);
@@ -5239,7 +5339,7 @@ function getNextActionHint() {
 
   if (!status.creatina && db.settings?.showCreatina!==false)
     return { icon:'💊', action:'Tomar creatina hoje',
-      urgency:'normal', onclick:"scrollToSection('diet','creatinaCard')" };
+      urgency:'normal', onclick:"openSheet('sheetBackup')" };
 
   return { icon:'✅', action:'Dia completo! Continue amanhã.', urgency:'ok', onclick:'' };
 }
@@ -5396,14 +5496,7 @@ function renderPesoMetrica() {
 // ╚══════════════════════════════════════════════════════════════════╝
 
 function dwiLog(ml, btn) {
-  logWater(ml);
-  // Burst animation on the inline button
-  if (btn) {
-    btn.classList.remove('burst');
-    void btn.offsetWidth;
-    btn.classList.add('burst');
-    setTimeout(() => btn.classList.remove('burst'), 400);
-  }
+  addWater(ml, btn);
 }
 
 // ╔══════════════════════════════════════════════════════════════════╗
@@ -6051,11 +6144,441 @@ function scheduleMidnightReset(){
     dailyReset();
     initMissions(); // reset missions for new day
     Notif.schedule(); // re-agenda notificações para o novo dia
-    // Water: no reset needed — getWaterToday() filters by date dynamically
+    // Water: entries filtered by date, but module needs re-render + flag reset
+    wm_goalNotified = false;
+    wm_superNotified = false;
+    wm_render();
+    wm_renderHistory();
     Diet.render();Stats.render(currentPeriod);renderDashboard();
     toast('🌅 Novo dia! Dieta resetada.');
     scheduleMidnightReset();
   },ms);
+}
+
+
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  NEW WATER MODULE — Integrated with Controle Total              ║
+// ║  State lives in waterState = db.water (shared reference)        ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+var waterState = { goal: 4000, entries: [] }; // var = hoisted, avoids TDZ
+let wm_goalNotified = false, wm_superNotified = false;
+let wm_waveTimer = null, wm_resetPending = false, wm_resetTimer = null;
+
+// ── Helpers ──────────────────────────────────────────────────────
+function wm_today() {
+  return new Date().toLocaleDateString('pt-BR');
+}
+function wm_todayEntries() {
+  const t = wm_today();
+  return (waterState.entries || []).filter(e => e.date === t);
+}
+function wm_totalToday() {
+  return wm_todayEntries().reduce((s, e) => s + e.ml, 0);
+}
+
+// ── Audio ─────────────────────────────────────────────────────────
+function wm_playDrop() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.15);
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.25);
+  } catch(e) {}
+}
+function wm_playSuccess() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [523,659,784,1047].forEach((freq,i) => {
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = freq; osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime + i*0.12);
+      gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + i*0.12 + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.12 + 0.3);
+      osc.start(ctx.currentTime + i*0.12);
+      osc.stop(ctx.currentTime + i*0.12 + 0.35);
+    });
+  } catch(e) {}
+}
+
+// ── Celebration ───────────────────────────────────────────────────
+function wm_celebrate(title, sub) {
+  const o = document.getElementById('wm-overlay');
+  if (!o) return;
+  document.getElementById('wm-celeb-title').textContent = title;
+  document.getElementById('wm-celeb-sub').textContent   = sub;
+  o.classList.add('wm-show');
+  setTimeout(() => o.classList.remove('wm-show'), 3500);
+}
+function wm_confetti() {
+  const cols = ['#38bdf8','#7dd3fc','#fcd34d','#4ade80','#f472b6'];
+  for (let i = 0; i < 55; i++) {
+    const c = document.createElement('div');
+    c.className = 'wm-confetti-dot';
+    c.style.cssText =
+      'width:'+(5+Math.random()*7)+'px;height:'+(5+Math.random()*7)+'px;' +
+      'left:'+(10+Math.random()*80)+'%;top:'+(20+Math.random()*30)+'%;' +
+      'background:'+cols[i%cols.length]+';' +
+      'animation-delay:'+(Math.random()*0.5)+'s;' +
+      'animation-duration:'+(1.2+Math.random()*0.8)+'s;' +
+      'border-radius:'+(Math.random()>0.5?'50%':'2px')+';';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2800);
+  }
+}
+
+// ── Ripple & Splash ───────────────────────────────────────────────
+function wm_ripple(btn) {
+  const r = document.createElement('div');
+  r.className = 'wm-ripple';
+  const s = Math.max(btn.offsetWidth, btn.offsetHeight);
+  r.style.cssText = 'width:'+s+'px;height:'+s+'px;left:50%;top:50%;margin-left:'+(-s/2)+'px;margin-top:'+(-s/2)+'px;';
+  btn.appendChild(r);
+  setTimeout(() => r.remove(), 600);
+}
+function wm_splash() {
+  const wrap = document.querySelector('.wm-bottle-wrap');
+  if (!wrap || !wrap.offsetParent) return;
+  const splash = document.createElement('div');
+  splash.className = 'wm-splash';
+  splash.style.cssText = 'top:'+(wrap.offsetHeight*0.38)+'px;left:50%;transform:translateX(-50%);';
+  for (let i = 0; i < 7; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'wm-splash-dot';
+    const angle = (i/7)*360, dist = 16+Math.random()*18;
+    dot.style.cssText =
+      '--dx:'+(Math.cos(angle*Math.PI/180)*dist)+'px;' +
+      '--dy:'+(Math.sin(angle*Math.PI/180)*dist-12)+'px;' +
+      'animation-delay:'+(i*0.04)+'s;';
+    splash.appendChild(dot);
+  }
+  wrap.appendChild(splash);
+  setTimeout(() => splash.remove(), 900);
+}
+
+// ── Wave Animation ────────────────────────────────────────────────
+function wm_wave() {
+  const wg = document.getElementById('wm-waveGroup');
+  const wr = document.getElementById('wm-waterRect');
+  if (!wg || !wr) return;
+  const fh = parseFloat(wr.getAttribute('height') || '0');
+  if (fh < 5) return;
+  const y = parseFloat(wr.getAttribute('y') || '230');
+  wg.style.display = 'block';
+  const wp = document.getElementById('wm-wavePath');
+  cancelAnimationFrame(wm_waveTimer);
+  let phase = 0, frames = 0;
+  function tick() {
+    if (frames >= 60) { wg.style.display = 'none'; return; }
+    phase += 0.25;
+    const amp = Math.max(0, 5*(1-frames/60));
+    wp.setAttribute('d',
+      'M18 '+y+' Q37 '+(y-amp*Math.sin(phase))+' 56 '+y+' Q75 '+(y+amp*Math.sin(phase))+' 84 '+y+
+      ' L84 '+(y+12)+' Q65 '+(y+12-amp*0.5)+' 46 '+(y+12)+' Q27 '+(y+12+amp*0.5)+' 18 '+(y+12)+' Z'
+    );
+    frames++;
+    wm_waveTimer = requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+// ── Render ────────────────────────────────────────────────────────
+function wm_render() {
+  const total = wm_totalToday();
+  const goal  = waterState.goal || 4000;
+  const pct   = Math.min(Math.round((total / goal) * 100), 100);
+  const reached = total >= goal;
+
+  const pe = document.getElementById('wm-pctText');
+  const pf = document.getElementById('wm-progressFill');
+  const td = document.getElementById('wm-totalDisplay');
+  const gl = document.getElementById('wm-goalLabel');
+  if (pe) pe.textContent = pct + '%';
+  if (pf) pf.style.width = pct + '%';
+  if (td) td.textContent = total.toLocaleString('pt-BR');
+  if (gl) gl.textContent = goal.toLocaleString('pt-BR');
+
+  // Bottle fill (84→230 = 146px range)
+  const fillH = Math.round((Math.min(total, 4000) / 4000) * 146);
+  const rect  = document.getElementById('wm-waterRect');
+  if (rect) {
+    rect.setAttribute('height', fillH);
+    rect.setAttribute('y', 230 - fillH);
+  }
+  const svgMl = document.getElementById('wm-svgMl');
+  if (svgMl) {
+    svgMl.setAttribute('y', Math.max(162, 230 - fillH - 8));
+    svgMl.textContent = total.toLocaleString('pt-BR') + 'ml';
+  }
+  const glow = document.getElementById('bottleGlow');
+  if (glow) glow.style.opacity = 0.3 + (pct / 100) * 0.7;
+
+  const badge = document.getElementById('wm-remainingBadge');
+  if (badge) {
+    if (reached) {
+      badge.textContent = '🎉 Meta Concluída! Incrível!';
+      badge.style.color = '#4ade80';
+    } else {
+      badge.textContent = 'Faltam ' + (goal - total).toLocaleString('pt-BR') + 'ml para a meta';
+      badge.style.color = '#38bdf8';
+    }
+  }
+}
+
+function wm_renderHistory() {
+  const el = document.getElementById('wm-historyLog');
+  if (!el) return;
+  const entries = wm_todayEntries().slice().reverse();
+  if (!entries.length) {
+    el.innerHTML = '<div class="wm-history-empty">Nenhum registro ainda hoje 💧</div>';
+    return;
+  }
+  el.innerHTML = entries.map((e, i) =>
+    '<div class="wm-history-item" style="animation-delay:'+(i*0.04)+'s">' +
+    '<div style="display:flex;align-items:center;gap:10px;">' +
+    '<span style="font-size:.75rem;">💧</span>' +
+    '<span class="wm-history-ml">+' + e.ml.toLocaleString('pt-BR') + 'ml</span>' +
+    '</div>' +
+    '<span class="wm-history-time">' + e.time + '</span>' +
+    '</div>'
+  ).join('');
+}
+
+// ── Feedback message ──────────────────────────────────────────────
+function wm_feedback(total, added) {
+  const pct = total / (waterState.goal || 4000);
+  if (pct >= 1)      return '🏆 Meta batida! Você é incrível!';
+  if (pct >= 0.75)   return '🔥 Quase lá! Só mais um pouco!';
+  if (pct >= 0.5)    return '💪 Você está na metade do caminho!';
+  if (pct >= 0.25)   return '👍 Continue assim!';
+  if (added >= 1000) return '🚀 Garrafa inteira de uma vez!';
+  if (added >= 473)  return '⚡ Stanley na veia!';
+  if (added >= 300)  return '😎 Hidratação em dia!';
+  return '💧 +' + added.toLocaleString('pt-BR') + 'ml registrados';
+}
+
+// ── ADD WATER (main public function) ─────────────────────────────
+function addWater(ml, btn) {
+  if (!ml || ml <= 0 || isNaN(ml)) return;
+  ml = parseInt(ml);
+  const prevTotal = wm_totalToday();
+  const now = new Date();
+  const entry = {
+    id:        Date.now(),
+    ml:        ml,
+    time:      now.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' }),
+    date:      wm_today(),
+    timestamp: Date.now()
+  };
+  if (!Array.isArray(waterState.entries)) waterState.entries = [];
+  waterState.entries.push(entry);
+  const newTotal = wm_totalToday();
+
+  // Persist & update BeneControl
+  if (typeof save === 'function') save();
+  if (typeof renderDashboard === 'function') renderDashboard();
+
+  wm_render();
+  wm_renderHistory();
+  wm_wave();
+  if (typeof Haptic !== 'undefined' && Haptic.water) Haptic.water();
+  wm_playDrop();
+  if (navigator.vibrate) navigator.vibrate([30]);
+
+  if (btn) { wm_ripple(btn); wm_splash(); }
+
+  // Update nav badge (Água / Água ✓)
+  if (typeof Nav !== 'undefined' && Nav.render) Nav.render();
+
+  // Toast via BeneControl
+  const goal = waterState.goal || 4000;
+  if (prevTotal < goal && newTotal >= goal) {
+    if (typeof toast === 'function') toast('🎉 Meta de hidratação atingida! Parabéns!', 4000);
+  } else {
+    const rem = Math.max(0, goal - newTotal);
+    if (typeof toast === 'function') {
+      toast(rem > 0 ? '💧 +'+ml+'ml · faltam '+fmtMl(rem) : '💧 +'+ml+'ml · meta atingida!');
+    }
+  }
+
+  if (!wm_goalNotified && prevTotal < goal && newTotal >= goal) {
+    wm_goalNotified = true;
+    setTimeout(() => {
+      wm_celebrate('META BATIDA! 🏆', 'Você atingiu ' + goal.toLocaleString('pt-BR') + 'ml hoje!');
+      wm_confetti();
+      wm_playSuccess();
+      if (navigator.vibrate) navigator.vibrate([100,50,100,50,200]);
+    }, 400);
+  }
+  if (!wm_superNotified && prevTotal < 4000 && newTotal >= 4000) {
+    wm_superNotified = true;
+    setTimeout(() => {
+      wm_celebrate('SUPER META! 👑', '4 litros! Você é uma máquina de hidratação!');
+      wm_confetti();
+      wm_playSuccess();
+    }, 800);
+  }
+}
+
+// ── addManual ─────────────────────────────────────────────────────
+// ── parseWaterInput — entende ml e litros no formato BR ────────────────────────
+// Aceita: "300" → 300ml | "1,250" → 1250ml | "1.250" → 1250ml
+//         "1,5" → 1500ml | "0,250" → 250ml | "1.5" → 1500ml | "2000" → 2000ml
+function parseWaterInput(raw) {
+  if (!raw) return NaN;
+  let val = String(raw).trim().toLowerCase().replace(/\s/g, '');
+
+  // Remove unidade se digitou "ml" ou "l" no final
+  val = val.replace(/ml$/, '').replace(/l$/, function(match, offset) {
+    // só remove o 'l' se não for parte de um número (ex: "1.5l" → "1.5", "300ml" → "300")
+    return '';
+  });
+  val = val.trim();
+
+  // Tem vírgula → vírgula é separador decimal (formato BR: 1,250 = 1.25 | 0,250 = 0.25)
+  if (val.includes(',')) {
+    const normalized = val.replace(/\./g, '').replace(',', '.'); // remove pontos de milhar, troca vírgula por ponto
+    const num = parseFloat(normalized);
+    if (isNaN(num) || num <= 0) return NaN;
+    // Se < 10 → interpretar como Litros
+    const ml = num < 10 ? Math.round(num * 1000) : Math.round(num);
+    return ml;
+  }
+
+  // Tem ponto
+  if (val.includes('.')) {
+    const parts = val.split('.');
+    const decimais = parts[1] || '';
+    // 3 dígitos após o ponto → ponto é separador de milhar (1.250 = 1250ml)
+    if (decimais.length === 3) {
+      return parseInt(val.replace('.', ''), 10);
+    }
+    // 1 ou 2 dígitos → ponto decimal (1.5 = 1.5L = 1500ml | 1.50 = 1.5L)
+    const num = parseFloat(val);
+    if (isNaN(num) || num <= 0) return NaN;
+    const ml = num < 10 ? Math.round(num * 1000) : Math.round(num);
+    return ml;
+  }
+
+  // Número inteiro → ml direto
+  const ml = parseInt(val, 10);
+  return isNaN(ml) ? NaN : ml;
+}
+
+function addManual() {
+  const input = document.getElementById('wm-manualInput');
+  if (!input) return;
+  const ml = parseWaterInput(input.value);
+  if (!ml || isNaN(ml) || ml < 1 || ml > 10000) {
+    input.style.borderColor = 'rgba(252,165,165,0.5)';
+    const ph = input.placeholder;
+    input.placeholder = 'Valor inválido!';
+    setTimeout(() => { input.style.borderColor = ''; input.placeholder = ph; }, 1600);
+    return;
+  }
+  addWater(ml, null);
+  input.value = '';
+  input.blur();
+}
+
+// ── undoLast ──────────────────────────────────────────────────────
+function undoLast() {
+  const today   = wm_today();
+  const entries = waterState.entries || [];
+  // Find last entry for today (entries are pushed in order, last = most recent)
+  let lastIdx = -1;
+  for (let i = entries.length - 1; i >= 0; i--) {
+    if (entries[i].date === today) { lastIdx = i; break; }
+  }
+  if (lastIdx === -1) return;
+  entries.splice(lastIdx, 1);
+  wm_goalNotified  = wm_totalToday() >= (waterState.goal || 4000);
+  wm_superNotified = wm_totalToday() >= 4000;
+  if (typeof save === 'function') save();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  wm_render();
+  wm_renderHistory();
+  if (typeof toast === 'function') toast('↩ Última entrada removida');
+}
+
+// ── resetDay ──────────────────────────────────────────────────────
+function resetDay() {
+  const btn = document.getElementById('wm-reset-btn');
+  if (!wm_resetPending) {
+    wm_resetPending = true;
+    if (btn) { btn.textContent = '⚠️ CONFIRMAR?'; btn.style.borderColor = 'rgba(252,165,165,0.6)'; btn.style.background = 'rgba(252,165,165,0.08)'; }
+    if (typeof toast === 'function') toast('⚠️ Toque novamente para confirmar');
+    wm_resetTimer = setTimeout(() => {
+      wm_resetPending = false;
+      if (btn) { btn.textContent = '🗑 ZERAR HOJE'; btn.style.borderColor = ''; btn.style.background = ''; }
+    }, 3000);
+    return;
+  }
+  clearTimeout(wm_resetTimer);
+  wm_resetPending = false;
+  if (btn) { btn.textContent = '🗑 ZERAR HOJE'; btn.style.borderColor = ''; btn.style.background = ''; }
+  const today = wm_today();
+  waterState.entries = (waterState.entries || []).filter(e => e.date !== today);
+  wm_goalNotified = false; wm_superNotified = false;
+  if (typeof save === 'function') save();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  wm_render();
+  wm_renderHistory();
+  if (typeof toast === 'function') toast('🗑 Registros de hoje removidos');
+}
+
+// ── Goal management ───────────────────────────────────────────────
+function applyGoal(newGoal) {
+  newGoal = parseInt(newGoal);
+  if (!newGoal || newGoal < 100 || newGoal > 20000) return;
+  waterState.goal = newGoal;
+  wm_goalNotified = wm_totalToday() >= newGoal;
+  if (typeof save === 'function') save();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  wm_render();
+  const disp = document.getElementById('wm-currentGoalDisplay');
+  const inp  = document.getElementById('wm-goalInput');
+  if (disp) disp.textContent = newGoal.toLocaleString('pt-BR') + 'ml';
+  if (inp)  inp.value = newGoal;
+}
+function updateGoalFromMain() {
+  const v = parseInt((document.getElementById('wm-goalInput') || {}).value);
+  if (v >= 100 && v <= 20000) {
+    applyGoal(v);
+    if (typeof toast === 'function') toast('🎯 Meta atualizada: ' + v.toLocaleString('pt-BR') + 'ml/dia');
+  }
+}
+
+// ── Public init — called by BeneControl's initApp() ───────────────
+function initWaterModule(externalState) {
+  if (externalState) {
+    waterState = externalState;
+    // Guard structure
+    if (!Array.isArray(waterState.entries)) waterState.entries = [];
+    if (!waterState.goal || waterState.goal < 100) waterState.goal = 4000;
+  }
+  wm_goalNotified  = wm_totalToday() >= waterState.goal;
+  wm_superNotified = wm_totalToday() >= 4000;
+  wm_render();
+  wm_renderHistory();
+  const disp = document.getElementById('wm-currentGoalDisplay');
+  const inp  = document.getElementById('wm-goalInput');
+  if (disp) disp.textContent = (waterState.goal || 4000).toLocaleString('pt-BR') + 'ml';
+  if (inp)  inp.value = waterState.goal || 4000;
+  // Keyboard shortcut inside water view
+  // Keyboard: handled via onkeydown inline attrs in HTML — no extra listener needed
+}
+
+// logWaterQuick kept for any inline dashboard calls
+function logWaterQuick(btn, ml) {
+  addWater(ml, btn);
 }
 
 </script>
