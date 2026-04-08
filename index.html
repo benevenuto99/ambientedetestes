@@ -2316,9 +2316,9 @@ select option{background:var(--card2)}
           <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">🏋️</div><div class="ob-feat-body"><div class="ob-feat-name">Treino</div><div class="ob-feat-sub">Registre cada sessão</div></div></div>
           <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">💧</div><div class="ob-feat-body"><div class="ob-feat-name">Água</div><div class="ob-feat-sub">Meta diária</div></div></div>
           <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">🥗</div><div class="ob-feat-body"><div class="ob-feat-name">Dieta</div><div class="ob-feat-sub">Plano alimentar</div></div></div>
-          <div class="ob-feat-card"><div class="ob-feat-icon">🔥</div><div class="ob-feat-body"><div class="ob-feat-name">Círculo</div><div class="ob-feat-sub">Accountability privada</div></div></div>
-          <div class="ob-feat-card"><div class="ob-feat-icon">📊</div><div class="ob-feat-body"><div class="ob-feat-name">Evolução</div><div class="ob-feat-sub">Gráficos e streak</div></div></div>
-          <div class="ob-feat-card"><div class="ob-feat-icon">☁️</div><div class="ob-feat-body"><div class="ob-feat-name">Nuvem</div><div class="ob-feat-sub">Sync em qualquer device</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">👥</div><div class="ob-feat-body"><div class="ob-feat-name">Círculo</div><div class="ob-feat-sub">Evolua com quem você confia</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">📊</div><div class="ob-feat-body"><div class="ob-feat-name">Evolução</div><div class="ob-feat-sub">Gráficos e sequência</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">☁️</div><div class="ob-feat-body"><div class="ob-feat-name">Nuvem</div><div class="ob-feat-sub">Sincronizado em qualquer dispositivo</div></div></div>
         </div>
 
         <!-- Botão Começar -->
@@ -2892,7 +2892,7 @@ select option{background:var(--card2)}
   <button class="nav-btn" id="nb-act" onclick="switchView('act')"><span class="icon icon-dumbbell"></span>Treino<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-evo" onclick="switchView('evo')"><span class="icon icon-chart-line"></span>Evolução<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-perfil" onclick="switchView('perfil')"><span class="icon icon-weight"></span>Peso<div class="nav-dot"></div></button>
-  <button class="nav-btn" id="nb-circulo" onclick="switchView('circulo')">🔥<span class="nav-lbl">Círculo</span><div class="nav-dot"></div></button>
+  <button class="nav-btn" id="nb-circulo" onclick="switchView('circulo')"><svg width="20" height="18" viewBox="0 0 24 20" fill="none" stroke="#d4ff00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="5" r="3"/><path d="M2 19c0-3.866 3.134-7 7-7s7 3.134 7 7"/><circle cx="19" cy="6" r="2.5" opacity=".7"/><path d="M22 19c0-3-2-5.5-5-5.5" opacity=".7"/></svg><span class="nav-lbl" style="font-size:7.5px;letter-spacing:0;line-height:1.1;text-align:center">Círculo de<br>Confiança</span><div class="nav-dot"></div></button>
 </nav>
 
 <div class="toast" id="toast"></div>
@@ -4264,7 +4264,60 @@ function _showOnboardingDirect() {
 
 // _welcomeNext removida — unificada no step 1 do onboarding
 
-function _showApp() {
+async function _showApp() {
+  // Verifica sessão Supabase ANTES de revelar o app
+  try {
+    const sb = await _getSupabase();
+    const { data } = await sb.auth.getSession();
+    const session = data?.session;
+    const skipped = localStorage.getItem('ct_auth_skipped');
+
+    if (!session && !skipped) {
+      // Sem sessão e não optou por pular — mostrar tela de login
+      _showAuthScreen();
+      // Ouvir quando fizer login para revelar o app
+      Auth.onAuthChange(async (event, sess) => {
+        if (event === 'SIGNED_IN' && sess) {
+          db._userId = sess.user.id;
+          save();
+          _hideAuthScreen();
+          _revealApp();
+          await _checkMigration(sess.user);
+          if (sess.user.email === ADMIN_EMAIL) {
+            toast('✅ Bem-vindo, Admin!', 2000);
+            setTimeout(function(){ openAdminPanel(); }, 1500);
+          } else {
+            toast('✅ Bem-vindo, ' + (db.profile?.name || sess.user.email.split('@')[0]) + '!', 3000);
+          }
+        }
+        if (event === 'SIGNED_OUT') { _showAuthScreen(); }
+      });
+      return;
+    }
+
+    // Tem sessão ou optou por pular
+    if (session) {
+      db._userId = session.user.id;
+      save();
+      // Escutar mudanças de sessão em background
+      Auth.onAuthChange(async (event, sess) => {
+        if (event === 'SIGNED_OUT') { _showAuthScreen(); }
+        if (event === 'SIGNED_IN' && sess) {
+          db._userId = sess.user.id;
+          save();
+          _hideAuthScreen();
+        }
+      });
+      setTimeout(() => Sync.download().then(() => renderApp()), 1200);
+    }
+  } catch(e) {
+    // Supabase não disponível (sem HTTPS) — mostrar app direto
+    console.log('[Auth] Offline mode:', e.message);
+  }
+  _revealApp();
+}
+
+function _revealApp() {
   // Revela a interface principal
   document.getElementById('mainHdr').style.display = '';
   document.getElementById('mainWrap').style.display = '';
@@ -4409,13 +4462,16 @@ function _finishSportsReview() {
 
 // ── Inicializa o sistema de auth ao carregar o app ────────────────
 async function initAuth() {
-  // Ouvir mudanças de sessão (ex: usuário clica no magic link)
+  // Mantido para compatibilidade — a verificação principal está no _showApp
+  // Apenas escuta mudanças de sessão em segundo plano
   await Auth.onAuthChange(async (event, session) => {
     if (event === 'SIGNED_IN' && session) {
-      console.log('[Auth] Usuário logado:', session.user.email);
       db._userId = session.user.id;
       save();
       _hideAuthScreen();
+      if (!document.getElementById('mainHdr').style.display || document.getElementById('mainHdr').style.display === 'none') {
+        _revealApp();
+      }
       await _checkMigration(session.user);
       if (session.user.email === ADMIN_EMAIL) {
         toast('✅ Bem-vindo, Admin!', 2000);
@@ -4424,24 +4480,8 @@ async function initAuth() {
         toast('✅ Bem-vindo, ' + (db.profile?.name || session.user.email.split('@')[0]) + '!', 3000);
       }
     }
-    if (event === 'SIGNED_OUT') {
-      _showAuthScreen();
-    }
+    if (event === 'SIGNED_OUT') { _showAuthScreen(); }
   });
-
-  // Verificar se já tem sessão ativa
-  const session = await Auth.getSession();
-  if (session) {
-    db._userId = session.user.id;
-    save();
-    _hideAuthScreen();
-    // Sincronizar dados em background
-    setTimeout(() => Sync.download().then(() => renderApp()), 1000);
-  } else {
-    // Verificar se o usuário optou por usar sem conta
-    const skipped = localStorage.getItem('ct_auth_skipped');
-    if (!skipped) _showAuthScreen();
-  }
 }
 
 function _showAuthScreen() {
@@ -5133,8 +5173,7 @@ function initApp(){
   checkBetaOnboarding(_betaName);
   // Descompressão assíncrona se dados estiverem em LZ1:
   _loadDbAsync();
-  // Inicializar auth em background — não bloqueia o app
-  setTimeout(() => initAuth(), 800);
+  // Auth inicializado antes de _showApp (ver fluxo de boot)
 }
 
 function dailyReset(){
