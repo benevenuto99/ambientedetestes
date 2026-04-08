@@ -409,6 +409,35 @@ body{padding-bottom:0}
 .ob-btn:hover{box-shadow:0 6px 28px rgba(212,255,0,.35)}
 .ob-btn:active{transform:scale(.97)}
 
+/* ══ ONBOARDING STEP 1 — Welcome ══ */
+.ob-welcome{display:flex;flex-direction:column;align-items:center;height:100%;padding:32px 22px 0}
+/* raio animado via canvas — ver boltCanvas JS */
+/* CT maior */
+.ob-ct{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:-2px;line-height:1;display:flex;align-items:center;gap:2px}
+.ob-ct .c{color:var(--text)}.ob-ct .t{color:var(--acid)}
+.ob-fullname{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:4px;margin-bottom:4px;text-align:center}
+.ob-fullname .w{color:var(--text)}.ob-fullname .g{color:var(--acid)}
+.ob-tagline{text-align:center;margin-bottom:20px}
+.ob-tagline-top{font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;font-family:'Space Mono',monospace}
+.ob-tagline-bot{font-size:12px;color:var(--text);letter-spacing:2px;text-transform:uppercase;font-family:'Space Mono',monospace;margin-top:3px;font-weight:500}
+.ob-tagline-bot span{color:var(--acid)}
+.ob-feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;margin-bottom:auto}
+.ob-feat-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;padding:13px 14px;display:flex;align-items:center;gap:12px}
+.ob-feat-card.ob-feat-hi{border-color:rgba(212,255,0,.22);background:rgba(212,255,0,.05)}
+.ob-feat-icon{font-size:28px;flex-shrink:0;line-height:1}
+.ob-feat-body{display:flex;flex-direction:column;min-width:0}
+.ob-feat-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:.3px;line-height:1.2}
+.ob-feat-sub{font-size:9px;color:var(--muted2);line-height:1.4;margin-top:2px}
+/* Botão Começar — fundo ácido, texto e raio preto, active fica verde */
+.ob-start-btn{width:100%;max-width:360px;height:50px;border-radius:12px;border:none;background:var(--acid);color:#000;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;transition:transform .12s,background .15s,color .15s;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ob-start-btn:active{transform:scale(.97);background:var(--acid2);color:var(--acid)}
+.ob-start-btn:active .ob-bolt-btn{fill:var(--acid)}
+/* BeneApps footer */
+.ob-beneapps{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 0 0;margin-top:10px;border-top:1px solid var(--border)}
+.ob-beneapps-left{display:flex;align-items:center;gap:6px}
+.ob-beneapps-name{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--acid);letter-spacing:2px;text-transform:uppercase;line-height:1}
+.ob-beneapps-sub{font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'Space Mono',monospace;margin-top:1px}
+
 /* ══ ICON CONTEXT FILTERS ══ */
 .nav-btn .icon{filter:brightness(0) saturate(100%) invert(35%) sepia(0%) hue-rotate(0deg);}
 .nav-btn.on .icon{filter:brightness(0) saturate(100%) invert(87%) sepia(60%) saturate(500%) hue-rotate(20deg);}
@@ -1379,6 +1408,346 @@ select option{background:var(--card2)}
 .btn-ghost:active{transform:scale(.97)}
 .btn-danger:active{transform:scale(.97)}
 .panel:active,.backup-card:active{transform:scale(.99);transition:transform .1s}
+
+/* ══ CÍRCULO DE CONFIANÇA ══ */
+.circulo-header{
+  background:linear-gradient(160deg,#0f0007 0%,#110010 60%,#0a000a 100%);
+  border-bottom:1px solid rgba(212,255,0,.08);
+  padding:16px 16px 0;
+  position:sticky;top:0;z-index:10;
+}
+.circulo-header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.circulo-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--text)}
+.circulo-subtitle{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted2);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.circulo-invite-btn{background:rgba(212,255,0,.1);border:1px solid rgba(212,255,0,.25);color:var(--acid);border-radius:8px;padding:7px 14px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer;white-space:nowrap;flex-shrink:0;touch-action:manipulation;transition:all .2s}
+.circulo-invite-btn:active{transform:scale(.94)}
+
+/* Linha de status global */
+.circulo-status-row{display:flex;gap:6px;flex-wrap:wrap;padding:10px 0;overflow-x:auto}
+.circulo-status-pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;border:1px solid var(--border2);background:var(--card2);font-size:10px;white-space:nowrap;flex-shrink:0}
+.circulo-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.csd-green{background:var(--green)}
+.csd-yellow{background:#ffd700}
+.csd-red{background:var(--red)}
+.csd-gray{background:var(--muted)}
+
+/* Streak bar do grupo */
+.circulo-streak-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(90deg,rgba(212,255,0,.06),transparent);border-bottom:1px solid rgba(212,255,0,.08)}
+.circulo-streak-fire{font-size:24px;animation:streakPulse 3s ease-in-out infinite}
+.circulo-streak-count{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acid);line-height:1}
+.circulo-streak-lbl{font-family:'Space Mono',monospace;font-size:9px;color:var(--acid2);text-transform:uppercase;letter-spacing:1px}
+
+/* Corpo */
+.circulo-body{padding:14px 14px 120px}
+.circulo-empty{text-align:center;padding:60px 24px 24px}
+
+/* Card do membro */
+.circulo-member-card{
+  background:var(--card);
+  border:1px solid var(--border2);
+  border-radius:16px;
+  margin-bottom:12px;
+  overflow:hidden;
+  transition:border-color .3s;
+}
+.circulo-member-card.status-green{border-color:rgba(0,230,118,.25);background:linear-gradient(135deg,rgba(0,230,118,.04),var(--card))}
+.circulo-member-card.status-yellow{border-color:rgba(255,215,0,.2);background:linear-gradient(135deg,rgba(255,215,0,.04),var(--card))}
+.circulo-member-card.status-red{border-color:rgba(255,61,61,.15)}
+
+/* Header do card */
+.cm-head{display:flex;align-items:center;gap:12px;padding:14px 16px 10px}
+.cm-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acid);flex-shrink:0}
+.cm-info{flex:1;min-width:0}
+.cm-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm-last{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted2);margin-top:1px}
+.cm-score{text-align:right;flex-shrink:0}
+.cm-score-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1}
+.cm-score-lbl{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted2);text-transform:uppercase;letter-spacing:1px}
+
+/* Stats do card */
+.cm-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.cm-stat{background:var(--card);padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.cm-stat-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted2);text-transform:uppercase;letter-spacing:1px}
+.cm-stat-value{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px}
+.cm-bar{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;margin-top:2px}
+.cm-bar-fill{height:100%;border-radius:2px;transition:width .6s ease}
+.cm-bar-water{background:linear-gradient(90deg,#1a6bcc,var(--blue))}
+.cm-bar-diet{background:linear-gradient(90deg,var(--acid2),var(--acid))}
+
+/* Semana mini (7 bolinhas) */
+.cm-week{display:flex;gap:4px;padding:8px 16px 10px;align-items:center}
+.cm-week-dot{width:8px;height:8px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background .3s}
+.cm-week-dot.done{background:var(--acid)}
+.cm-week-dot.today-empty{background:var(--border2);border:1px dashed var(--muted)}
+.cm-week-sep{flex:1}
+.cm-week-score{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted2)}
+
+/* Reações */
+.cm-reactions{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--border);overflow-x:auto}
+.cm-react-btn{background:var(--card2);border:1px solid var(--border2);border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;touch-action:manipulation;transition:all .2s;display:flex;align-items:center;gap:5px}
+.cm-react-btn:active{transform:scale(.92)}
+.cm-react-btn.sent{background:rgba(212,255,0,.1);border-color:rgba(212,255,0,.3);color:var(--acid)}
+.cm-react-btn .react-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px}
+.cm-react-btn.sent .react-label{color:var(--acid2)}
+
+/* ══ GYM ROUTINES (FICHAS) ══ */
+
+/* ── Background temático da ficha ── */
+#sheetViewRoutine .sheet{
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(255,140,0,.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 90%, rgba(212,255,0,.05) 0%, transparent 50%),
+    linear-gradient(160deg, #0d0d0d 0%, #111008 60%, #0a0a0a 100%);
+}
+/* Padrão sutil de grade no background */
+#sheetViewRoutine .sheet::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,140,0,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,140,0,.03) 1px, transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;
+  z-index:0;
+}
+#sheetViewRoutine .sheet > *{position:relative;z-index:1}
+
+/* Overlay da ficha — tela cheia */
+#sheetViewRoutine .sheet{
+  max-height:100vh;
+  height:100vh;
+  border-radius:0;
+  display:flex;
+  flex-direction:column;
+  padding:0;
+}
+/* Header fixo da ficha */
+.ficha-header{
+  flex-shrink:0;
+  padding:env(safe-area-inset-top,16px) 16px 0;
+  padding-top:max(env(safe-area-inset-top,0px),16px);
+  background:var(--card2);
+  border-bottom:1px solid var(--border);
+}
+.ficha-header-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:12px;
+}
+.ficha-title-block{flex:1;min-width:0}
+.ficha-main-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;
+  letter-spacing:2px;
+  color:var(--text);
+  line-height:1;
+}
+.ficha-subtitle{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--muted2);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-top:3px;
+}
+.ficha-actions{display:flex;gap:7px;flex-shrink:0}
+
+/* Corpo scrollável da ficha */
+.ficha-body{
+  flex:1;
+  overflow-y:auto;
+  padding:14px 14px calc(100px + env(safe-area-inset-bottom,0px));
+}
+
+/* Card de exercício na ficha */
+.ficha-ex-card{
+  background:var(--card);
+  border:1px solid var(--border2);
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  transition:all .2s;
+}
+.ficha-ex-card.done{
+  border-color:rgba(212,255,0,.3);
+  background:rgba(212,255,0,.04);
+}
+.ficha-ex-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;
+  color:var(--muted);
+  width:24px;
+  text-align:center;
+  flex-shrink:0;
+  line-height:1;
+}
+.ficha-ex-card.done .ficha-ex-num{color:var(--acid)}
+.ficha-ex-body{flex:1;min-width:0}
+.ficha-ex-name{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:5px;
+  line-height:1.2;
+}
+.ficha-ex-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ficha-ex-tag{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:16px;
+  letter-spacing:.5px;
+  color:var(--gym);
+  background:rgba(255,140,0,.08);
+  border:1px solid rgba(255,140,0,.2);
+  border-radius:7px;
+  padding:2px 9px;
+  line-height:1.3;
+}
+.ficha-ex-tag.tag-kg{
+  color:var(--muted2);
+  background:var(--border);
+  border-color:var(--border2);
+  font-size:13px;
+}
+.ficha-ex-obs{
+  font-size:10px;
+  color:var(--muted2);
+  font-family:'Space Mono',monospace;
+  margin-top:5px;
+}
+/* Check circle */
+.ficha-ex-check{
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid var(--border2);
+  background:transparent;
+  flex-shrink:0;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+  touch-action:manipulation;
+}
+.ficha-ex-check:active{transform:scale(.88)}
+.ficha-ex-card.done .ficha-ex-check{
+  background:var(--acid);
+  border-color:var(--acid);
+}
+.ficha-ex-check-icon{
+  width:14px;height:14px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23000' d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-size:contain;background-position:center;
+  opacity:0;transition:opacity .15s;
+}
+.ficha-ex-card.done .ficha-ex-check-icon{opacity:1}
+
+/* Botão flutuante "Usar treino" */
+.ficha-use-fab{
+  position:absolute;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  left:16px;right:16px;
+  height:52px;
+  border-radius:14px;
+  border:none;
+  background:var(--acid);
+  color:#000;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  letter-spacing:2px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  touch-action:manipulation;
+  transition:transform .12s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(212,255,0,.3);
+}
+.ficha-use-fab:active{transform:scale(.97)}
+
+/* Campo de carga do dia */
+.ficha-carga-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--border);
+}
+.ficha-carga-label{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--muted2);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  flex-shrink:0;
+}
+.ficha-carga-input{
+  width:72px!important;
+  font-family:'Bebas Neue',sans-serif!important;
+  font-size:18px!important;
+  color:var(--gym)!important;
+  background:rgba(255,140,0,.06)!important;
+  border-color:rgba(255,140,0,.2)!important;
+  padding:5px 9px!important;
+  text-align:center;
+}
+.ficha-carga-input:focus{
+  border-color:var(--gym)!important;
+  box-shadow:0 0 0 3px rgba(255,140,0,.1)!important;
+}
+.ficha-carga-unit{
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  color:var(--muted2);
+  flex-shrink:0;
+}
+/* Badge de referência (última carga) */
+.ficha-ref-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  background:rgba(212,255,0,.07);
+  border:1px solid rgba(212,255,0,.15);
+  border-radius:20px;
+  padding:3px 9px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--acid2);
+  white-space:nowrap;
+  margin-left:auto;
+}
+/* Card mais sofisticado */
+.ficha-ex-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,rgba(0,0,0,.2) 100%);
+  border:1px solid rgba(255,255,255,.06);
+  backdrop-filter:blur(4px);
+}
+.ficha-ex-card:hover{border-color:rgba(255,140,0,.2)}
+/* Header da ficha com acento */
+.ficha-header{
+  background:linear-gradient(180deg,rgba(255,140,0,.06) 0%,transparent 100%);
+  border-bottom:1px solid rgba(255,140,0,.12);
+}
+.ficha-main-title{
+  color:var(--gym);
+  text-shadow:0 0 20px rgba(255,140,0,.3);
+}
+.routine-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.routine-row:last-child{border-bottom:none}
+.routine-row-name{flex:1;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;touch-action:manipulation}
+.routine-row-name:active{opacity:.7}
+.routine-use-btn{background:var(--acid);color:#000;border:none;border-radius:8px;padding:7px 13px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;cursor:pointer;white-space:nowrap;flex-shrink:0;touch-action:manipulation;transition:transform .12s}
+.routine-use-btn:active{transform:scale(.94)}
+.routine-empty{text-align:center;padding:28px 0;color:var(--muted2);font-size:12px;font-family:'Space Mono',monospace;letter-spacing:.5px}
+.routine-ex-row{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)}
+.routine-ex-row:last-child{border-bottom:none}
+.routine-ex-name{flex:1;font-size:13px;color:var(--text)}
+.routine-ex-tags{display:flex;gap:5px;flex-shrink:0}
+.routine-ex-tag{font-family:'Space Mono',monospace;font-size:9px;padding:2px 7px;border-radius:6px;background:var(--border2);color:var(--muted2)}
+.routine-ex-del{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:0 4px;line-height:1;touch-action:manipulation}
+.routine-ex-del:hover{color:var(--red)}
+.routine-add-ex-row{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;align-items:end;margin-top:8px}
+.routine-add-ex-row input{width:100%}
 .home-ov-card:active{transform:scale(.97);transition:transform .1s}
 .mission-card:active{transform:scale(.98);transition:transform .1s}
 .act-card-wrap:active{transform:scale(.99);transition:transform .1s}
@@ -1714,32 +2083,7 @@ select option{background:var(--card2)}
 /* ══════════════════════════════════════════════════
    WELCOME SCREEN — tela de boas-vindas independente
    ══════════════════════════════════════════════════ */
-#welcomeScreen {
-  position:fixed;inset:0;z-index:9998;
-  background:var(--dark);
-  display:flex;flex-direction:column;
-  align-items:center;overflow:hidden;
-}
-#welcomeScreen.hidden { display:none !important; }
 
-/* Conteúdo entra com fade+slide vindos de baixo */
-#welcomeScreen .ob-step {
-  animation: welcomeEnter .55s cubic-bezier(.22,1,.36,1) both;
-  animation-delay:.1s;
-}
-@keyframes welcomeEnter {
-  from { opacity:0; transform:translateY(30px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* Botão aparece com delay — garante que user vê a tela */
-#welcomeNextBtn {
-  transition: opacity .4s ease, transform .4s ease;
-}
-#welcomeNextBtn.visible {
-  opacity:1 !important;
-  pointer-events:auto !important;
-}
 
 /* ══════════════════════════════════════════════════════════════════
    WATER MODULE — scoped CSS (#water-module prefix on all rules)
@@ -1897,55 +2241,43 @@ select option{background:var(--card2)}
 <!-- ══════════════ WELCOME SCREEN (tela de boas-vindas) ══════════════ -->
 <!-- Tela independente, exibida após o splash para usuários novos.    -->
 <!-- Não faz parte do slider do onboarding.                           -->
-<div id="welcomeScreen" class="hidden">
 
-  <div class="ob-progress" style="visibility:hidden">
-    <div class="ob-dot on"></div><div class="ob-dot"></div>
+<!-- ══ SHEET: CONVIDAR PARA O CÍRCULO ══ -->
+<div class="sheet-overlay" id="sheetCirculoInvite" onclick="bgClose(event,'sheetCirculoInvite')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-back-btn" onclick="closeSheet('sheetCirculoInvite')"><span class="icon icon-arrow-left"></span> Voltar</button>
+  <div class="sheet-title">🔥 Convidar para o Círculo</div>
+  <div style="font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:18px">
+    Digite o email de quem você quer convidar.<br>
+    A pessoa precisa já ter uma conta no app.
   </div>
-
-  <div class="ob-steps" style="transform:none;width:100%;max-width:520px">
-    <div class="ob-step" style="width:100%">
-      <div class="ob-logo" style="margin-bottom:8px"><span class="ob-logo-icon">⚡</span>CONTROLE <em>TOTAL</em></div>
-      <div class="ob-sub" style="margin-bottom:32px">Performance · Dieta · Evolução</div>
-      <img class="welcome-brand-logo" src="data:image/png;base64,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" alt="BeneApps" aria-hidden="true">
-      <div style="font-size:64px;margin-bottom:20px">🏆</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;text-align:center;margin-bottom:12px;color:var(--text)">Seu sistema diário<br>de evolução fitness</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted2);text-align:center;line-height:1.6;max-width:280px">
-        Missões diárias, streak, controle de água, treinos e evolução de peso — tudo integrado num só lugar.
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-top:28px;width:100%;max-width:320px">
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border2)">
-          <span style="font-size:22px">🎯</span>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Missões diárias</div>
-            <div style="font-size:10px;color:var(--muted2)">Água, treino e dieta no mesmo painel</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border2)">
-          <span style="font-size:22px">🔥</span>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Streak infinita</div>
-            <div style="font-size:10px;color:var(--muted2)">Mantenha sua sequência de dias ativos</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border2)">
-          <span style="font-size:22px">📈</span>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Evolução real</div>
-            <div style="font-size:10px;color:var(--muted2)">Gráficos de peso e histórico de treinos</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="field-grp">
+    <label class="field-label">Email do amigo</label>
+    <input type="email" id="circulo-invite-email" placeholder="amigo@email.com"
+      onkeydown="if(event.key==='Enter')circuloInvite()">
   </div>
+  <button class="btn" style="margin-top:8px" onclick="circuloInvite()" id="circulo-invite-btn">
+    Enviar convite
+  </button>
+  <div id="circulo-invite-result" style="margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;text-align:center"></div>
 
-  <div class="ob-nav" style="max-width:520px;width:100%;justify-content:center">
-    <button class="ob-nav-next" id="welcomeNextBtn" onclick="_welcomeNext()" style="opacity:0;pointer-events:none;max-width:320px">
-      Começar <span style="font-size:18px">›</span>
-    </button>
+  <!-- Convites pendentes recebidos -->
+  <div id="circulo-pending-section" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:16px">
+    <div class="sec-label" style="margin-bottom:10px">Convites recebidos</div>
+    <div id="circulo-pending-list"></div>
   </div>
+</div></div>
 
-</div>
+<!-- ══ SHEET: DIA FECHADO — celebração efêmera ══ -->
+<div class="sheet-overlay" id="sheetCirculoCelebration" onclick="bgClose(event,'sheetCirculoCelebration')"><div class="sheet" style="text-align:center;padding:40px 24px">
+  <div class="sheet-handle"></div>
+  <div style="font-size:64px;margin-bottom:12px;animation:missionPop .7s cubic-bezier(.34,1.56,.64,1)">🔥</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--acid);margin-bottom:8px">CÍRCULO FECHADO!</div>
+  <div style="font-size:14px;color:var(--muted2);margin-bottom:6px">Todos completaram o dia.</div>
+  <div id="celebration-streak" style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--acid);margin:16px 0"></div>
+  <div id="celebration-names" style="font-size:12px;color:var(--muted2);font-family:'Space Mono',monospace;margin-bottom:24px"></div>
+  <div style="font-size:10px;color:var(--muted);font-family:'Space Mono',monospace">Este momento é só de vocês. 🔒</div>
+</div></div>
 
 <!-- ══════════════ ONBOARDING ══════════════ -->
 <div id="onboarding">
@@ -1954,10 +2286,68 @@ select option{background:var(--card2)}
   <div class="ob-progress">
     <div class="ob-dot on" id="obDot0"></div>
     <div class="ob-dot" id="obDot1"></div>
+    <div class="ob-dot" id="obDot2"></div>
   </div>
 
   <!-- Steps container -->
   <div class="ob-steps" id="obSteps">
+
+    <!-- STEP 1: Welcome — apresentação do app -->
+    <div class="ob-step">
+      <div class="ob-welcome">
+
+        <!-- Logo: raio centralizado acima do CT -->
+        <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:6px">
+          <div style="position:relative;width:120px;height:120px">
+            <canvas id="boltCanvas" width="240" height="240" style="position:absolute;top:0;left:0;width:120px;height:120px"></canvas>
+          </div>
+          <div class="ob-ct" style="margin-top:-8px"><span class="c">C</span><span class="t">T</span></div>
+          <div class="ob-fullname" style="margin-top:4px;margin-bottom:0"><span class="w">CONTROLE </span><span class="g">TOTAL</span></div>
+        </div>
+
+        <!-- Frase -->
+        <div class="ob-tagline">
+          <div class="ob-tagline-top">Seu sistema diário de</div>
+          <div class="ob-tagline-bot">Evolução <span>Fitness</span></div>
+        </div>
+
+        <!-- Feature grid: 2 colunas x 3 linhas -->
+        <div class="ob-feat-grid">
+          <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">🏋️</div><div class="ob-feat-body"><div class="ob-feat-name">Treino</div><div class="ob-feat-sub">Registre cada sessão</div></div></div>
+          <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">💧</div><div class="ob-feat-body"><div class="ob-feat-name">Água</div><div class="ob-feat-sub">Meta diária</div></div></div>
+          <div class="ob-feat-card ob-feat-hi"><div class="ob-feat-icon">🥗</div><div class="ob-feat-body"><div class="ob-feat-name">Dieta</div><div class="ob-feat-sub">Plano alimentar</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">🔥</div><div class="ob-feat-body"><div class="ob-feat-name">Círculo</div><div class="ob-feat-sub">Accountability privada</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">📊</div><div class="ob-feat-body"><div class="ob-feat-name">Evolução</div><div class="ob-feat-sub">Gráficos e streak</div></div></div>
+          <div class="ob-feat-card"><div class="ob-feat-icon">☁️</div><div class="ob-feat-body"><div class="ob-feat-name">Nuvem</div><div class="ob-feat-sub">Sync em qualquer device</div></div></div>
+        </div>
+
+        <!-- Botão Começar -->
+        <button class="ob-start-btn" onclick="obGoNext()">
+          <svg width="14" height="18" viewBox="0 0 24 32" fill="none">
+            <polygon class="ob-bolt-btn" points="14,0 4,18 12,18 10,32 20,14 12,14" fill="#000"/>
+          </svg>
+          Começar
+        </button>
+
+        <!-- BeneApps -->
+        <div class="ob-beneapps">
+          <div class="ob-beneapps-left">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <rect x="1" y="1" width="8" height="8" rx="2" fill="#d4ff00"/>
+              <rect x="11" y="1" width="8" height="8" rx="2" fill="#d4ff00" opacity=".5"/>
+              <rect x="1" y="11" width="8" height="8" rx="2" fill="#d4ff00" opacity=".5"/>
+              <rect x="11" y="11" width="8" height="8" rx="2" fill="#d4ff00" opacity=".25"/>
+            </svg>
+            <div>
+              <div class="ob-beneapps-name">BeneApps</div>
+              <div class="ob-beneapps-sub">Desenvolvimento</div>
+            </div>
+          </div>
+          <div style="font-size:8px;color:var(--muted);font-family:'Space Mono',monospace;text-align:right;line-height:1.5">Beta<br/>v1.0</div>
+        </div>
+
+      </div>
+    </div>
 
     <!-- STEP 2: Esportes -->
     <div class="ob-step">
@@ -2451,8 +2841,45 @@ select option{background:var(--card2)}
       </div>
     </div>
 
+    <!-- Acesso admin (só aparece para o admin) -->
+    <div id="adminAccessBtn" style="display:none;padding:12px 16px">
+      <button onclick="openAdminPanel()" style="width:100%;height:44px;border-radius:10px;border:1px solid rgba(212,255,0,.15);background:rgba(212,255,0,.04);color:var(--acid);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer">⚡ Painel Admin</button>
+    </div>
     <div id="perfilFooter"></div>
       </div>
+
+  <!-- ══ CÍRCULO DE CONFIANÇA ══ -->
+  <div id="v-circulo" class="view" style="padding:0">
+    <!-- Header fixo -->
+    <div class="circulo-header">
+      <div class="circulo-header-top">
+        <div>
+          <div class="circulo-title">🔥 Círculo de Confiança</div>
+          <div class="circulo-subtitle" id="circulo-subtitle">Carregando...</div>
+        </div>
+        <button class="circulo-invite-btn" onclick="openSheet('sheetCirculoInvite')">+ Convidar</button>
+      </div>
+      <!-- Linha de status global do grupo -->
+      <div class="circulo-status-row" id="circulo-status-row"></div>
+    </div>
+    <!-- Streak do grupo -->
+    <div class="circulo-streak-bar" id="circulo-streak-bar" style="display:none">
+      <span class="circulo-streak-fire">🔥</span>
+      <span class="circulo-streak-count" id="circulo-streak-count">0</span>
+      <span class="circulo-streak-lbl">dias em chamas juntos</span>
+    </div>
+    <!-- Cards dos membros -->
+    <div class="circulo-body" id="circulo-body">
+      <div class="circulo-empty" id="circulo-empty">
+        <div style="font-size:48px;margin-bottom:16px">🔒</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;margin-bottom:8px">Seu círculo está vazio</div>
+        <div style="font-size:12px;color:var(--muted2);line-height:1.7;margin-bottom:20px">
+          Convide até 5 pessoas de confiança.<br>Só elas veem sua rotina.
+        </div>
+        <button class="btn" style="max-width:240px" onclick="openSheet('sheetCirculoInvite')">+ Convidar alguém</button>
+      </div>
+    </div>
+  </div>
 
 </div><!-- /views-slider -->
 </div><!-- /mainWrap -->
@@ -2465,6 +2892,7 @@ select option{background:var(--card2)}
   <button class="nav-btn" id="nb-act" onclick="switchView('act')"><span class="icon icon-dumbbell"></span>Treino<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-evo" onclick="switchView('evo')"><span class="icon icon-chart-line"></span>Evolução<div class="nav-dot"></div></button>
   <button class="nav-btn" id="nb-perfil" onclick="switchView('perfil')"><span class="icon icon-weight"></span>Peso<div class="nav-dot"></div></button>
+  <button class="nav-btn" id="nb-circulo" onclick="switchView('circulo')">🔥<span class="nav-lbl">Círculo</span><div class="nav-dot"></div></button>
 </nav>
 
 <div class="toast" id="toast"></div>
@@ -2534,6 +2962,91 @@ select option{background:var(--card2)}
       <div class="sact-action-row one">
         <button class="sact-action share-copy" onclick="sactCopyText()">📋 Copiar Texto</button>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  TELA DE LOGIN — Magic Link (sem senha)                         ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
+<div id="auth-screen" style="display:none;position:fixed;inset:0;z-index:19999;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;padding:32px 24px">
+
+  <!-- Logo -->
+  <div style="text-align:center;margin-bottom:40px">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:var(--text)">
+      CONTROLE <span style="color:var(--acid)">TOTAL</span>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:3px;text-transform:uppercase;margin-top:4px">
+      Performance · Dieta · Evolução
+    </div>
+  </div>
+
+  <!-- Card de login -->
+  <div id="auth-login-card" style="width:100%;max-width:380px">
+    <div style="background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:28px 24px">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;margin-bottom:6px">Entrar na sua conta</div>
+      <div style="font-size:12px;color:var(--muted2);margin-bottom:24px;line-height:1.6">
+        Seus dados sincronizados em qualquer dispositivo.<br>Sem senha — só o seu email.
+      </div>
+      <div class="field-grp">
+        <label class="field-label">Email</label>
+        <input type="email" id="auth-email" placeholder="seu@email.com"
+          style="font-size:16px"
+          onkeydown="if(event.key==='Enter')authSendMagicLink()">
+      </div>
+      <button class="btn" style="margin-top:8px;font-size:18px" onclick="authSendMagicLink()" id="auth-send-btn">
+        Enviar link de acesso
+      </button>
+      <div style="margin-top:20px;border-top:1px solid var(--border);padding-top:16px">
+        <div style="font-size:11px;color:var(--muted2);text-align:center;margin-bottom:12px">
+          Prefere continuar sem conta?
+        </div>
+        <button class="btn btn-ghost" style="font-size:13px" onclick="authSkip()">
+          Usar sem sincronização →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card de confirmação (após enviar email) -->
+  <div id="auth-sent-card" style="display:none;width:100%;max-width:380px">
+    <div style="background:var(--card);border:1px solid rgba(212,255,0,.2);border-radius:16px;padding:28px 24px;text-align:center">
+      <div style="font-size:48px;margin-bottom:16px">📬</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;margin-bottom:8px">Verifique seu email</div>
+      <div style="font-size:12px;color:var(--muted2);line-height:1.7;margin-bottom:24px">
+        Enviamos um link de acesso para<br>
+        <strong id="auth-email-sent" style="color:var(--text)"></strong><br><br>
+        Clique no link para entrar. O link expira em 1 hora.
+      </div>
+      <button class="btn btn-ghost" style="font-size:12px" onclick="authBackToLogin()">
+        ← Usar outro email
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  TELA DE MIGRAÇÃO — Dados locais → Nuvem                        ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
+<div id="migration-screen" style="display:none;position:fixed;inset:0;z-index:19998;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);flex-direction:column;align-items:center;justify-content:center;padding:32px 24px">
+  <div style="width:100%;max-width:380px;background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:28px 24px">
+    <div style="font-size:36px;text-align:center;margin-bottom:16px">☁️</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;margin-bottom:8px;text-align:center">
+      Dados encontrados!
+    </div>
+    <div style="font-size:12px;color:var(--muted2);line-height:1.7;margin-bottom:8px;text-align:center">
+      Encontramos dados salvos neste dispositivo.<br>Quer enviá-los para sua conta na nuvem?
+    </div>
+    <div id="migration-summary" style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin:16px 0;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);line-height:2"></div>
+    <div class="btns-stack">
+      <button class="btn" onclick="migrationUpload()" id="migration-upload-btn">
+        ☁️ Enviar para a nuvem
+      </button>
+      <button class="btn btn-ghost" style="font-size:12px" onclick="migrationSkip()">
+        Não, manter só no dispositivo
+      </button>
     </div>
   </div>
 </div>
@@ -2666,6 +3179,97 @@ select option{background:var(--card2)}
   </div>
   <div class="row2"><div class="field-grp"><label class="field-label">Data</label><input type="date" id="qlDate" aria-label="Data do treino"></div><div class="field-grp"><label class="field-label">Hora</label><input type="time" id="qlTime" aria-label="Hora do treino"></div></div>
   <button class="btn" id="qlSaveBtn" onclick="qlSave()"><span class="icon icon-check"></span> Salvar Treino</button>
+</div></div>
+
+<!-- ══ FICHAS DE ACADEMIA ══ -->
+
+<!-- Sheet: Lista de Fichas -->
+<div class="sheet-overlay" id="sheetGymRoutines" onclick="bgClose(event,'sheetGymRoutines')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-back-btn" onclick="closeSheet('sheetGymRoutines')"><span class="icon icon-arrow-left"></span> Voltar</button>
+  <div class="sheet-title">📋 Minhas Fichas</div>
+  <div id="routineListArea"></div>
+  <button class="btn btn-ghost" style="margin-top:10px" onclick="openNewRoutineSheet()">
+    <span class="icon icon-plus" style="width:13px;height:13px;vertical-align:middle;margin-right:5px"></span> Nova Ficha
+  </button>
+</div></div>
+
+<!-- Sheet: Ver Ficha — tela cheia, estilo ficha de academia -->
+<div class="sheet-overlay" id="sheetViewRoutine"><div class="sheet" style="position:relative">
+  <!-- Header fixo -->
+  <div class="ficha-header">
+    <div class="ficha-header-top">
+      <button class="sheet-back-btn" style="margin-bottom:0" onclick="closeSheet('sheetViewRoutine');openSheet('sheetGymRoutines')">
+        <span class="icon icon-arrow-left"></span> Fichas
+      </button>
+      <div class="ficha-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openEditRoutineSheet(currentViewRoutineId)">✏️ Editar</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteRoutine(currentViewRoutineId)">🗑</button>
+      </div>
+    </div>
+    <div class="ficha-title-block" style="padding-bottom:14px">
+      <div class="ficha-main-title" id="viewRoutineTitle">Ficha</div>
+      <div class="ficha-subtitle" id="viewRoutineSubtitle">Academia · Musculação</div>
+    </div>
+  </div>
+  <!-- Decoração SVG — haltere no canto superior direito -->
+  <svg style="position:absolute;top:0;right:0;width:140px;height:140px;opacity:.045;pointer-events:none;z-index:0" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Barra -->
+    <rect x="30" y="95" width="140" height="10" rx="5" fill="#ff8c00"/>
+    <!-- Disco esquerdo grande -->
+    <rect x="18" y="70" width="22" height="60" rx="6" fill="#ff8c00"/>
+    <!-- Disco esquerdo pequeno -->
+    <rect x="8" y="80" width="12" height="40" rx="4" fill="#ff8c00"/>
+    <!-- Disco direito grande -->
+    <rect x="160" y="70" width="22" height="60" rx="6" fill="#ff8c00"/>
+    <!-- Disco direito pequeno -->
+    <rect x="180" y="80" width="12" height="40" rx="4" fill="#ff8c00"/>
+  </svg>
+  <!-- Corpo scrollável -->
+  <div class="ficha-body" id="viewRoutineExercises"></div>
+  <!-- Botão flutuante -->
+  <button class="ficha-use-fab" onclick="useRoutine(currentViewRoutineId)">
+    <span class="icon icon-bolt" style="width:16px;height:16px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23000' d='M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z'/%3E%3C/svg%3E")"></span>
+    Usar este treino hoje
+  </button>
+</div></div>
+
+<!-- Sheet: Criar / Editar Ficha -->
+<div class="sheet-overlay" id="sheetEditRoutine" onclick="bgClose(event,'sheetEditRoutine')"><div class="sheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-back-btn" onclick="closeSheet('sheetEditRoutine')"><span class="icon icon-arrow-left"></span> Voltar sem salvar</button>
+  <div class="sheet-title" id="editRoutineTitle">Nova Ficha</div>
+  <div class="field-grp">
+    <label class="field-label">Nome da ficha</label>
+    <input type="text" id="editRoutineName" placeholder="Ex: Peito e Bíceps" maxlength="40">
+  </div>
+  <div class="sec-label" style="margin-top:12px;margin-bottom:8px">Exercícios</div>
+  <div id="editRoutineExList"></div>
+  <!-- Linha de adicionar exercício — 2 linhas para caber no mobile -->
+  <div style="margin-top:10px">
+    <div class="field-grp" style="margin-bottom:6px">
+      <label class="field-label">Exercício</label>
+      <input type="text" id="newExName" placeholder="Ex: Supino reto" maxlength="40">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;align-items:flex-end">
+      <div class="field-grp" style="margin-bottom:0">
+        <label class="field-label">Séries</label>
+        <input type="number" id="newExSets" placeholder="4" min="1" max="20">
+      </div>
+      <div class="field-grp" style="margin-bottom:0">
+        <label class="field-label">Reps</label>
+        <input type="number" id="newExReps" placeholder="10" min="1" max="100">
+      </div>
+      <div class="field-grp" style="margin-bottom:0">
+        <label class="field-label">Kg</label>
+        <input type="number" id="newExWeight" placeholder="80" min="0" max="999" step="0.5">
+      </div>
+      <button class="btn btn-sm" style="height:42px;white-space:nowrap;padding:0 14px;align-self:flex-end" onclick="addExToEdit()">+ Add</button>
+    </div>
+  </div>
+  <div class="btns-stack" style="margin-top:16px">
+    <button class="btn" onclick="saveRoutine()"><span class="icon icon-check" style="width:13px;height:13px;vertical-align:middle;margin-right:5px"></span> Salvar Ficha</button>
+  </div>
 </div></div>
 
 <!-- Log Run -->
@@ -2857,7 +3461,7 @@ const JSPDF_SRC   = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.um
 
 function _loadScript(src){
   return new Promise((resolve,reject)=>{
-    if(document.querySelector(`script[src="${src}"]`)){resolve();return;}
+    if(document.querySelector('script[src="'+src+'"]')){resolve();return;}
     const s=document.createElement('script');
     s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error('Falha ao carregar: '+src));
     document.head.appendChild(s);
@@ -2899,39 +3503,110 @@ function calcKcal(type,p,bw){
 // ╚══════════════════════════════════════════════════════════════════╝
 //  DATABASE
 const KEY='ct_v1';
-// ── Estado padrão — usado em primeiro acesso e como fallback de recovery ──
-const DB_DEFAULT = {meals:[],weight:[],sessions:[],lastComplete:'',lastReset:'',activities:['gym','cross'],profile:{name:'',weight:0},water:{goal:3000,entries:[]},settings:{showDietTab:true,showCreatina:true},creatina:{streak:0,lastDate:'',startDate:''},insights:{lastShown:0,dismissed:[]}};
 
-let db=(()=>{
-  try{
-    const r=localStorage.getItem(KEY);
-    if(r) return JSON.parse(r);
-    // Legacy migration
-    const old=localStorage.getItem('wod_diet_v5')||localStorage.getItem('wod_diet_v4')||localStorage.getItem('wod_diet_v3');
-    if(old){
-      const p=JSON.parse(old);
-      return{meals:p.meals||[],weight:p.weight||[],sessions:p.sessions||[],streak:p.streak||0,lastComplete:p.lastComplete||'',lastReset:p.lastReset||'',activities:p.activities||[],profile:{name:'',weight:0},water:{goal:3000,entries:[]},settings:{showDietTab:true}};
-    }
-  }catch(e){
-    // db corrompido — tenta backup antes de resetar
-    console.warn('[CT] db corrompido, tentando recuperar do backup...',e);
-    try{
-      const bk=localStorage.getItem('ct_autobackup');
-      if(bk){
-        const payload=JSON.parse(bk);
-        if(payload&&payload.db) return payload.db;
-      }
-    }catch(e2){}
-    console.warn('[CT] Sem backup válido. Iniciando com estado padrão.');
+// ── UUID: gerador de ID único resistente a colisão multi-device ──
+function uuid() {
+  // Usa crypto.randomUUID se disponível (navegadores modernos)
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
   }
-  return Object.assign({},DB_DEFAULT);
+  // Fallback: v4 manual
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0;
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+}
+
+// ── Estado padrão — usado em primeiro acesso e como fallback de recovery ──
+const SCHEMA_VERSION = 2; // incrementar a cada migração estrutural
+
+const DB_DEFAULT = {
+  // ── Meta ─────────────────────────────────────────────
+  _schemaVersion: SCHEMA_VERSION,
+  _userId: null,          // preenchido após login (Fase 3)
+  _createdAt: Date.now(), // quando o perfil foi criado
+  // ── Dados ────────────────────────────────────────────
+  meals:[],weight:[],sessions:[],
+  lastComplete:'',lastReset:'',
+  activities:[],          // usuário escolhe o que quer ativar
+  profile:{name:'',weight:0},
+  water:{goal:3000,entries:[]},
+  settings:{showDietTab:false,showCreatina:false}, // tudo desligado por padrão
+  creatina:{streak:0,lastDate:'',startDate:''},
+  insights:{lastShown:0,dismissed:[]},
+  gymRoutines:[],
+  syncQueue:[],   // fila de operações pendentes para o backend (Fase 3)
+};
+
+// ── Descomprime dado LZ1: se necessário (compatível com save() da Fase 1) ──
+function _decompressRaw(raw) {
+  if (!raw) return null;
+  // Dado comprimido: precisa descomprimir via DecompressionStream
+  if (raw.startsWith('LZ1:')) {
+    // Descompressão síncrona não é possível — retorna null para usar fallback síncrono
+    // A descompressão real acontece via Storage.load() que é assíncrona
+    // Aqui fazemos uma tentativa de extrair o JSON do cache não-comprimido
+    return null; // força o path assíncrono abaixo
+  }
+  try { return JSON.parse(raw); } catch(e) { return null; }
+}
+
+// ── Carregamento do db — suporta JSON puro e formato LZ1: comprimido ──
+let db = (()=>{
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) {
+      // Dado não comprimido (versões anteriores) — carrega direto
+      if (!r.startsWith('LZ1:')) {
+        const parsed = JSON.parse(r);
+        if (parsed) return parsed;
+      }
+      // Dado comprimido — usa versão descomprimida do autobackup como ponte
+      // O db real será carregado via Storage.load() assíncrono após o init
+      const bk = localStorage.getItem('ct_autobackup');
+      if (bk) {
+        const payload = JSON.parse(bk);
+        if (payload && payload.db) {
+          console.log('[CT] Carregando do autobackup enquanto descomprime...');
+          return typeof payload.db === 'string' ? JSON.parse(payload.db) : payload.db;
+        }
+      }
+    }
+    // Legacy migration
+    const old = localStorage.getItem('wod_diet_v5')||localStorage.getItem('wod_diet_v4')||localStorage.getItem('wod_diet_v3');
+    if (old) {
+      const p = JSON.parse(old);
+      return {meals:p.meals||[],weight:p.weight||[],sessions:p.sessions||[],lastComplete:p.lastComplete||'',lastReset:p.lastReset||'',activities:p.activities||[],profile:{name:'',weight:0},water:{goal:3000,entries:[]},settings:{showDietTab:false,showCreatina:false}};
+    }
+  } catch(e) {
+    console.warn('[CT] Erro no carregamento inicial, usando padrão:', e.message);
+  }
+  return Object.assign({}, DB_DEFAULT);
 })();
 
+// ── Carregamento assíncrono: descomprime e atualiza o db se necessário ──
+async function _loadDbAsync() {
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r && r.startsWith('LZ1:')) {
+      const loaded = await Storage.load(KEY);
+      if (loaded && typeof loaded === 'object') {
+        // Mescla dados descomprimidos sem perder o estado atual
+        Object.assign(db, loaded);
+        console.log('[CT] Db descomprimido e carregado com sucesso');
+        renderApp();
+      }
+    }
+  } catch(e) {
+    console.warn('[CT] _loadDbAsync error:', e.message);
+  }
+}
+
 // ── Guards: ensure all blocks exist (migration for old saves) ──
-if(!db.settings) db.settings={showDietTab:true,showCreatina:true};
-if(!db.activities||!db.activities.length) db.activities=['gym','cross']; // garante app abre direto
-if(!db.settings.showDietTab) db.settings.showDietTab=true;
-if(db.settings.showCreatina===undefined) db.settings.showCreatina=true;
+if(!db.settings) db.settings={showDietTab:false,showCreatina:false};
+if(!db.activities) db.activities=[]; // usuário ativa o que quiser nas configurações
+if(db.settings.showDietTab === undefined) db.settings.showDietTab=false;
+if(db.settings.showCreatina===undefined) db.settings.showCreatina=false;
 if(!db.creatina) db.creatina={streak:0,lastDate:'',startDate:'',takenAt:''};
     if(db.creatina.takenAt===undefined) db.creatina.takenAt='';
 if(!db.insights) db.insights={lastShown:0,dismissed:[]};
@@ -2945,32 +3620,156 @@ if(!db.missions) db.missions={lastDate:'',water:false,creatina:false,dieta:false
     if(!db.freeMeal) db.freeMeal={date:'',calories:0};
 if(db.settings&&db.settings.notifications===undefined) db.settings.notifications=false;
 if(!db.profile) db.profile={name:'',weight:0};
+if(!db.gymRoutines) db.gymRoutines=[];
+if(!db.syncQueue)   db.syncQueue=[];
+if(!db._schemaVersion) db._schemaVersion=1;
+if(!db._userId)     db._userId=null;
 
-// ── save: persiste db com detecção de erro de quota ──────────────────
-function save(){
-  try{
-    localStorage.setItem(KEY,JSON.stringify(db));
-  }catch(e){
-    if(e&&(e.name==='QuotaExceededError'||e.code===22)){
-      setTimeout(()=>toast('⚠️ Armazenamento cheio — faça um backup agora!'),100);
-      console.warn('[CT] localStorage cheio:',e);
-    }else{
-      console.warn('[CT] Erro ao salvar:',e);
-    }
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: RECORDS — Inserção centralizada com auditoria          ║
+// ║  Toda inserção de dado novo passa por aqui.                     ║
+// ║  Garante: id (uuid), createdAt, updatedAt, userId               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const Records = {
+
+  // ── Campo de auditoria padrão ─────────────────────────────────
+  _audit() {
+    return {
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      userId: db._userId || null,
+    };
+  },
+
+  // ── Sessão de treino ──────────────────────────────────────────
+  addSession(data) {
+    const record = Object.assign({ id: uuid() }, data, this._audit());
+    if (!db.sessions) db.sessions = [];
+    db.sessions.push(record);
+    db.sessions.sort((a,b) => b.ts - a.ts);
+    Storage.enqueue('upsert', 'sessions', record); // para sync futuro
+    return record;
+  },
+
+  // ── Peso ─────────────────────────────────────────────────────
+  addWeight(data) {
+    const record = Object.assign({ id: uuid() }, data, this._audit());
+    if (!db.weight) db.weight = [];
+    db.weight.push(record);
+    Storage.enqueue('upsert', 'weight', record);
+    return record;
+  },
+
+  // ── Refeição ─────────────────────────────────────────────────
+  addMeal(data) {
+    const record = Object.assign({ id: uuid() }, data, this._audit());
+    if (!db.meals) db.meals = [];
+    db.meals.push(record);
+    Storage.enqueue('upsert', 'meals', record);
+    return record;
+  },
+
+  // ── Ficha de academia ─────────────────────────────────────────
+  addRoutine(data) {
+    const record = Object.assign({ id: uuid() }, data, this._audit());
+    if (!db.gymRoutines) db.gymRoutines = [];
+    db.gymRoutines.push(record);
+    Storage.enqueue('upsert', 'gym_routines', record);
+    return record;
+  },
+
+  // ── Atualizar qualquer registro ───────────────────────────────
+  update(collection, id, changes) {
+    const arr = db[collection];
+    if (!arr) return null;
+    const idx = arr.findIndex(r => r.id === id);
+    if (idx < 0) return null;
+    arr[idx] = Object.assign({}, arr[idx], changes, { updatedAt: Date.now() });
+    Storage.enqueue('upsert', collection, arr[idx]);
+    return arr[idx];
+  },
+
+  // ── Remover ──────────────────────────────────────────────────
+  remove(collection, id) {
+    if (!db[collection]) return;
+    db[collection] = db[collection].filter(r => r.id !== id);
+    Storage.enqueue('delete', collection, { id });
+  },
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: SCHEMA — Migrações versionadas                         ║
+// ║  Adicionar nova migração: Schema.migrations[N] = (db) => {...}  ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const Schema = {
+  // Cada chave é um número de versão — roda em ordem crescente
+  migrations: {
+    // v1 → v2: garantir gymRoutines e syncQueue existem
+    2: (db) => {
+      if (!db.gymRoutines)  db.gymRoutines  = [];
+      if (!db.syncQueue)    db.syncQueue    = [];
+      if (!db._createdAt)   db._createdAt   = Date.now();
+      if (!db._userId)      db._userId      = null;
+      // Garantir que todas as sessões tenham createdAt
+      (db.sessions||[]).forEach(s => {
+        if (!s.createdAt) s.createdAt = s.ts || Date.now();
+        if (!s.updatedAt) s.updatedAt = s.ts || Date.now();
+      });
+      // Garantir que todos os pesos tenham id como string uuid-like
+      (db.weight||[]).forEach(w => {
+        if (typeof w.id === 'number') w.id = String(w.id);
+      });
+      return db;
+    },
+    // v3: reservado para próxima migração (ex: multi-dieta)
+    // 3: (db) => { ... return db; }
+  },
+
+  // Roda todas as migrações pendentes em ordem
+  run(db) {
+    const current = db._schemaVersion || 1;
+    if (current >= SCHEMA_VERSION) return db;
+    const versions = Object.keys(this.migrations)
+      .map(Number)
+      .filter(v => v > current)
+      .sort((a,b) => a - b);
+    versions.forEach(v => {
+      try {
+        console.log('[Schema] Rodando migração v'+v+'...');
+        db = this.migrations[v](db) || db;
+        db._schemaVersion = v;
+        console.log('[Schema] Migração v'+v+' OK');
+      } catch(e) {
+        console.error('[Schema] Falha na migração v'+v+':', e);
+      }
+    });
+    db._schemaVersion = SCHEMA_VERSION;
+    return db;
   }
+};
+
+// Rodar migrações logo após o carregamento do db
+if (db._schemaVersion < SCHEMA_VERSION) {
+  db = Schema.run(db);
+  // Salvar imediatamente após migrar
+  try { localStorage.setItem(KEY, JSON.stringify(db)); } catch(e) {}
+}
+
+// ── save: persiste db via Storage (compressão automática) ────────────
+function save(){
+  // Dispara compressão assíncrona — não bloqueia UI
+  Storage.save(KEY, db).catch(e => console.warn('[CT] save error:', e));
 }
 
 // ── checkStorageHealth: roda 1x no init, avisa se >80% cheio ─────────
 function checkStorageHealth(){
-  try{
-    let total=0;
-    for(const k in localStorage){
-      if(!localStorage.hasOwnProperty(k))continue;
-      total+=((localStorage[k]||'').length+(k||'').length)*2;
-    }
-    const kb=total/1024;
-    if(kb>4096) setTimeout(()=>toast('⚠️ Armazenamento quase cheio — exporte um backup!'),200);
-  }catch(e){}
+  const pct = Storage.usagePct();
+  const kb  = Storage.usageKB();
+  if (pct >= 80) {
+    setTimeout(() => toast('⚠️ Armazenamento '+pct+'% cheio — exporte um backup!'), 200);
+  }
+  console.log('[CT] Storage: '+kb+'KB / ~5120KB ('+pct+'%)');
 }
 function todayStr(){return new Date().toLocaleDateString('pt-BR');}
 function todayISO(){return new Date().toISOString().slice(0,10);}
@@ -3008,9 +3807,9 @@ function nowTimeStr(){return new Date().toTimeString().slice(0,5);}
 const DB = {
   /** Ensure settings block always exists (runs before everything) */
   initSettings(){
-    if(!db.settings) db.settings={showDietTab:true,showCreatina:true};
-    if(!db.settings.showDietTab) db.settings.showDietTab=true;
-    if(db.settings.showCreatina===undefined) db.settings.showCreatina=true;
+    if(!db.settings) db.settings={showDietTab:false,showCreatina:false};
+    if(db.settings.showDietTab===undefined) db.settings.showDietTab=false;
+    if(db.settings.showCreatina===undefined) db.settings.showCreatina=false;
     if(!db.creatina) db.creatina={streak:0,lastDate:'',startDate:''};
     if(!db.insights) db.insights={lastShown:0,dismissed:[]};
     if(!db.dailyStreak) db.dailyStreak={count:0,lastDate:'',totalDays:0,history:[],bestStreak:0};
@@ -3236,6 +4035,149 @@ function toggleOb(el){
   if(a==='_diet') return; // diet handled separately in finishOnboarding
   el.classList.contains('selected')?selActs.add(a):selActs.delete(a);
 }
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  BOLT CANVAS — Raio animado realista na tela de boas-vindas     ║
+// ╚══════════════════════════════════════════════════════════════════╝
+function initBoltCanvas() {
+  const canvas = document.getElementById('boltCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = 240, H = 240, cx = W/2, cy = H/2;
+
+  // Desenha um segmento de raio com desvios aleatórios (algoritmo midpoint displacement)
+  function drawBoltSegment(x1, y1, x2, y2, displacement, alpha, width) {
+    if (displacement < 1.5) {
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.strokeStyle = 'rgba(212,255,0,' + alpha + ')';
+      ctx.lineWidth = width;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#d4ff00';
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      return;
+    }
+    const mx = (x1+x2)/2 + (Math.random()-.5)*displacement;
+    const my = (y1+y2)/2 + (Math.random()-.5)*displacement;
+    drawBoltSegment(x1, y1, mx, my, displacement*.55, alpha, width);
+    drawBoltSegment(mx, my, x2, y2, displacement*.55, alpha, width);
+    // Branch aleatório
+    if (displacement > 8 && Math.random() > .65) {
+      const bx = mx + (Math.random()-.5)*displacement*1.2;
+      const by = my + (Math.random()-.5)*displacement*1.2;
+      drawBoltSegment(mx, my, bx, by, displacement*.35, alpha*.5, width*.5);
+    }
+  }
+
+  // Desenha o raio principal (shape) no centro
+  function drawMainBolt(alpha) {
+    ctx.beginPath();
+    ctx.moveTo(cx+7, cy-44);
+    ctx.lineTo(cx-14, cy-2);
+    ctx.lineTo(cx+4, cy-2);
+    ctx.lineTo(cx-7, cy+44);
+    ctx.lineTo(cx+17, cy+2);
+    ctx.lineTo(cx+1, cy+2);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(212,255,0,' + alpha + ')';
+    ctx.shadowBlur = 32;
+    ctx.shadowColor = '#d4ff00';
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  // Desenha glow de fundo
+  function drawGlow(alpha) {
+    const grad = ctx.createRadialGradient(cx, cy, 4, cx, cy, 90);
+    grad.addColorStop(0, 'rgba(212,255,0,' + (alpha*.5) + ')');
+    grad.addColorStop(0.4, 'rgba(212,255,0,' + (alpha*.15) + ')');
+    grad.addColorStop(1, 'rgba(212,255,0,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 55, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  // Estado da animação
+  let phase = 'idle';  // idle | flash | hold | fadeout
+  let timer = 0;
+  let flashAlpha = 0;
+  let boltSeed = 0;
+  let idleTime = 0;
+
+  // Intervalo entre descargas (ms)
+  const IDLE_MIN = 1200, IDLE_MAX = 2800;
+  const FLASH_DUR = 80, HOLD_DUR = 160, FADE_DUR = 200;
+
+  let lastT = performance.now();
+
+  function frame(t) {
+    const dt = t - lastT; lastT = t;
+
+    ctx.clearRect(0, 0, W, H);
+
+    if (phase === 'idle') {
+      // Glow fraco pulsando enquanto espera
+      const pulse = .12 + .06*Math.sin(t/800);
+      drawGlow(pulse);
+      drawMainBolt(pulse*.7);
+      idleTime += dt;
+      if (idleTime > IDLE_MIN + Math.random()*(IDLE_MAX-IDLE_MIN)) {
+        idleTime = 0;
+        boltSeed = Math.random();
+        phase = 'flash'; timer = 0;
+      }
+    } else if (phase === 'flash') {
+      timer += dt;
+      flashAlpha = Math.min(1, timer/FLASH_DUR);
+      // Flash branco + glow forte
+      drawGlow(flashAlpha*.9);
+      drawMainBolt(flashAlpha);
+      // Raios irradiando para fora
+      const dirs = [0, 45, 90, 135, 180, 225, 270, 315];
+      dirs.forEach((deg, i) => {
+        if (boltSeed + i*.1 > .3) {
+          const rad = deg * Math.PI/180;
+          const len = 25 + Math.random()*20;
+          drawBoltSegment(
+            cx + Math.cos(rad)*26, cy + Math.sin(rad)*26,
+            cx + Math.cos(rad)*(26+len), cy + Math.sin(rad)*(26+len),
+            12, flashAlpha*.8, 1.2
+          );
+        }
+      });
+      if (timer >= FLASH_DUR) { phase = 'hold'; timer = 0; }
+    } else if (phase === 'hold') {
+      timer += dt;
+      drawGlow(.7);
+      drawMainBolt(1);
+      // Raios estáticos
+      for (let i=0; i<6; i++) {
+        const rad = (i*60 + boltSeed*180) * Math.PI/180;
+        const len = 32 + i*5;
+        drawBoltSegment(
+          cx + Math.cos(rad)*26, cy + Math.sin(rad)*26,
+          cx + Math.cos(rad)*(26+len), cy + Math.sin(rad)*(26+len),
+          10, .7, 1
+        );
+      }
+      if (timer >= HOLD_DUR) { phase = 'fadeout'; timer = 0; }
+    } else if (phase === 'fadeout') {
+      timer += dt;
+      const a = Math.max(0, 1 - timer/FADE_DUR);
+      drawGlow(a*.5);
+      drawMainBolt(a*.3 + .1);
+      if (timer >= FADE_DUR) { phase = 'idle'; idleTime = 0; }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}
+
 function finishOnboarding(){
   // If nothing selected, default to all sports (but not diet)
   if(selActs.size===0) selActs=new Set(['gym','cross','run','beach','volei']);
@@ -3248,12 +4190,12 @@ function finishOnboarding(){
   if(bday) db.profile.birthday=bday;
   if(wt>0){
     db.profile.weight=wt;
-    db.weight.push({id:Date.now(),kg:wt,date:todayStr(),time:new Date().toTimeString().slice(0,5),ts:Date.now(),source:'manual'});
+    db.weight.push({id:uuid(),kg:wt,date:todayStr(),time:new Date().toTimeString().slice(0,5),ts:Date.now(),createdAt:Date.now(),updatedAt:Date.now(),userId:db._userId||null,source:'manual'});
   }
   // Save diet tab preference from onboarding card selection
   if(!db.settings)db.settings={};
   // Dieta sempre ativa — nao desativar via onboarding
-  if(db.settings.showDietTab === undefined) db.settings.showDietTab = true;
+  if(db.settings.showDietTab === undefined) db.settings.showDietTab = false;
   db.onboardingVersion = 2;
   save();
   _showApp();
@@ -3296,15 +4238,20 @@ function _hideSplash(callback) {
 }
 
 function _showOnboarding() {
-  // Exibe a welcome screen independente (não o slider do onboarding)
-  const ws = document.getElementById('welcomeScreen');
-  if (!ws) { _showOnboardingDirect(); return; }
-  ws.classList.remove('hidden');
-  // Libera o botão após 1.8s — garante que o user vê a tela completa
-  setTimeout(() => {
-    const btn = document.getElementById('welcomeNextBtn');
-    if (btn) btn.classList.add('visible');
-  }, 1800);
+  // Vai para o step 1 (welcome com raio)
+  const ob = document.getElementById('onboarding');
+  if (ob) ob.classList.remove('hidden');
+  obGoTo(0);
+  setTimeout(initBoltCanvas, 150);
+}
+
+// Se usuário já tem dados, após o welcome vai direto ao app
+// (sem precisar refazer escolha de esportes)
+function _isReturningUser() {
+  return !!(localStorage.getItem('ct_v1') ||
+            localStorage.getItem('wod_diet_v5') ||
+            localStorage.getItem('wod_diet_v4') ||
+            localStorage.getItem('wod_diet_v3'));
 }
 
 function _showOnboardingDirect() {
@@ -3312,20 +4259,10 @@ function _showOnboardingDirect() {
   const ob = document.getElementById('onboarding');
   if (ob) ob.classList.remove('hidden');
   obGoTo(0);
+  setTimeout(initBoltCanvas, 200);
 }
 
-function _welcomeNext() {
-  const ws = document.getElementById('welcomeScreen');
-  const ob = document.getElementById('onboarding');
-  if (ws) ws.classList.add('hidden');
-  // Se for usuário existente revisando, pré-seleciona os cards de esportes
-  if (db.activities && db.activities.length > 0) {
-    selActs = new Set(db.activities);
-    _preSelectObCards();
-  }
-  if (ob) ob.classList.remove('hidden');
-  obGoTo(0);
-}
+// _welcomeNext removida — unificada no step 1 do onboarding
 
 function _showApp() {
   // Revela a interface principal
@@ -3341,7 +4278,7 @@ function _showApp() {
 // Roda assim que o script é parseado (antes do window.load)
 (function _lockUIBeforeBoot() {
   // Mantém tudo oculto — o splash cobre tudo até o boot decidir o fluxo
-  ['onboarding','welcomeScreen'].forEach(id => {
+  ['onboarding'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add('hidden');
   });
@@ -3385,7 +4322,13 @@ window.addEventListener('load', () => {
   const waitLeft = Math.max(0, SPLASH_VISIBLE_MS - elapsed);
 
   setTimeout(() => {
-    if (isReturningUser) {
+    // Verifica se já viu o novo welcome (step 1 com raio)
+    const hasSeenWelcomeV2 = !!(db.settings && db.settings._seenWelcomeV2);
+
+    if (!hasSeenWelcomeV2) {
+      // Todos os usuários veem o step 1 pelo menos uma vez
+      _hideSplash(_showOnboarding);
+    } else if (isReturningUser) {
       const hasSeenV2 = db.onboardingVersion >= 2;
       if (!hasSeenV2) { _hideSplash(_showReviewModal); }
       else { _hideSplash(_showApp); }
@@ -3401,16 +4344,10 @@ function _showReviewModal() {
   // Pré-preenche esportes já selecionados
   selActs = new Set(db.activities || []);
   // Mostra welcome screen primeiro (mesmo fluxo de novo usuário)
-  var ws = document.getElementById('welcomeScreen');
-  if (ws) {
-    ws.classList.remove('hidden');
-    setTimeout(function() {
-      var btn = document.getElementById('welcomeNextBtn');
-      if (btn) btn.classList.add('visible');
-    }, 1800);
-  } else {
-    _showOnboardingDirect();
-  }
+  // Ir direto para o step de esportes (welcomeScreen removido)
+  const ob = document.getElementById('onboarding');
+  if (ob) ob.classList.remove('hidden');
+  obGoTo(1); // step 1 = Esportes
 }
 function skipReview() {
   db.onboardingVersion = 2;
@@ -3456,13 +4393,710 @@ function _finishSportsReview() {
   db.activities = Array.from(selActs);
   var dietCard = document.querySelector('[data-act="_diet"]');
   if (!db.settings) db.settings = {};
-  if(db.settings.showDietTab === undefined) db.settings.showDietTab = true;
+  if(db.settings.showDietTab === undefined) db.settings.showDietTab = false;
   db.onboardingVersion = 2;
   save();
   window._reviewMode = false;
   var steps = document.querySelectorAll('#obSteps .ob-step');
   if (steps[1]) steps[1].style.display = '';
   _showApp();
+}
+
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: AUTH UI — Login, migração e sessão                     ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+// ── Inicializa o sistema de auth ao carregar o app ────────────────
+async function initAuth() {
+  // Ouvir mudanças de sessão (ex: usuário clica no magic link)
+  await Auth.onAuthChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      console.log('[Auth] Usuário logado:', session.user.email);
+      db._userId = session.user.id;
+      save();
+      _hideAuthScreen();
+      await _checkMigration(session.user);
+      if (session.user.email === ADMIN_EMAIL) {
+        toast('✅ Bem-vindo, Admin!', 2000);
+        setTimeout(function(){ openAdminPanel(); }, 1500);
+      } else {
+        toast('✅ Bem-vindo, ' + (db.profile?.name || session.user.email.split('@')[0]) + '!', 3000);
+      }
+    }
+    if (event === 'SIGNED_OUT') {
+      _showAuthScreen();
+    }
+  });
+
+  // Verificar se já tem sessão ativa
+  const session = await Auth.getSession();
+  if (session) {
+    db._userId = session.user.id;
+    save();
+    _hideAuthScreen();
+    // Sincronizar dados em background
+    setTimeout(() => Sync.download().then(() => renderApp()), 1000);
+  } else {
+    // Verificar se o usuário optou por usar sem conta
+    const skipped = localStorage.getItem('ct_auth_skipped');
+    if (!skipped) _showAuthScreen();
+  }
+}
+
+function _showAuthScreen() {
+  const el = document.getElementById('auth-screen');
+  if (el) el.style.display = 'flex';
+}
+
+function _hideAuthScreen() {
+  const el = document.getElementById('auth-screen');
+  if (el) el.style.display = 'none';
+  const migration = document.getElementById('migration-screen');
+  if (migration) migration.style.display = 'none';
+}
+
+// ── Enviar magic link ─────────────────────────────────────────────
+async function authSendMagicLink() {
+  const email = document.getElementById('auth-email')?.value.trim();
+  if (!email || !email.includes('@')) {
+    toast('⚠️ Digite um email válido'); return;
+  }
+  // Verificar acesso beta
+  if (!Auth._isAllowed(email)) {
+    const card = document.getElementById('auth-login-card');
+    if (card) card.innerHTML =
+      '<div style="text-align:center;padding:20px 0">'
+      + '<div style="font-size:40px;margin-bottom:16px">🔒</div>'
+      + '<div style="font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:1.5px;margin-bottom:8px">Acesso restrito</div>'
+      + '<div style="font-size:12px;color:var(--muted2);line-height:1.7;margin-bottom:20px">'
+      + 'O Controle Total está em fase beta fechada.<br>Entre em contato para solicitar acesso.</div>'
+      + '<button class="btn btn-ghost" style="font-size:12px" onclick="authBackToLogin()">← Tentar outro email</button>'
+      + '</div>';
+    return;
+  }
+  const btn = document.getElementById('auth-send-btn');
+  if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true; }
+
+  const result = await Auth.sendMagicLink(email);
+
+  if (result.ok) {
+    document.getElementById('auth-login-card').style.display = 'none';
+    document.getElementById('auth-sent-card').style.display = 'block';
+    const emailEl = document.getElementById('auth-email-sent');
+    if (emailEl) emailEl.textContent = email;
+  } else {
+    toast('❌ Erro ao enviar email. Tente novamente.');
+    if (btn) { btn.textContent = 'Enviar link de acesso'; btn.disabled = false; }
+  }
+}
+
+function authBackToLogin() {
+  document.getElementById('auth-login-card').style.display = 'block';
+  document.getElementById('auth-sent-card').style.display = 'none';
+  const btn = document.getElementById('auth-send-btn');
+  if (btn) { btn.textContent = 'Enviar link de acesso'; btn.disabled = false; }
+}
+
+// ── Usar sem conta ────────────────────────────────────────────────
+function authSkip() {
+  localStorage.setItem('ct_auth_skipped', '1');
+  _hideAuthScreen();
+  toast('Usando sem sincronização. Você pode entrar depois nas configurações.', 4000);
+}
+
+// ── Migração: dados locais → nuvem ────────────────────────────────
+async function _checkMigration(user) {
+  // Só mostra se tiver dados locais relevantes
+  const hasData = (db.sessions?.length > 0) ||
+                  (db.weight?.length > 0)   ||
+                  (db.gymRoutines?.length > 0);
+  if (!hasData) return;
+
+  // Verifica se já migrou antes
+  const migrated = localStorage.getItem('ct_migrated_' + user.id);
+  if (migrated) return;
+
+  // Monta resumo dos dados
+  const summary = document.getElementById('migration-summary');
+  if (summary) {
+    summary.innerHTML =
+      '🏋️ ' + (db.sessions?.length || 0) + ' treinos registrados<br>' +
+      '⚖️ ' + (db.weight?.length || 0) + ' pesagens<br>' +
+      '📋 ' + (db.gymRoutines?.length || 0) + ' fichas de academia<br>' +
+      '💧 ' + (db.water?.entries?.length || 0) + ' entradas de água';
+  }
+
+  const screen = document.getElementById('migration-screen');
+  if (screen) screen.style.display = 'flex';
+}
+
+async function migrationUpload() {
+  const btn = document.getElementById('migration-upload-btn');
+  if (btn) { btn.textContent = '⏳ Enviando...'; btn.disabled = true; }
+
+  const result = await Sync.upload();
+
+  if (result.ok) {
+    const user = await Auth.getUser();
+    if (user) localStorage.setItem('ct_migrated_' + user.id, '1');
+    document.getElementById('migration-screen').style.display = 'none';
+    toast('✅ ' + result.uploaded + ' registros enviados para a nuvem!', 4000);
+    Haptic.success();
+  } else {
+    toast('❌ Erro ao enviar dados. Tente novamente.');
+    if (btn) { btn.textContent = '☁️ Enviar para a nuvem'; btn.disabled = false; }
+  }
+}
+
+function migrationSkip() {
+  const screen = document.getElementById('migration-screen');
+  if (screen) screen.style.display = 'none';
+}
+
+// ── Botão de conta no perfil (sync manual) ────────────────────────
+async function syncNow() {
+  const user = await Auth.getUser();
+  if (!user) { toast('⚠️ Faça login primeiro'); _showAuthScreen(); return; }
+  toast('⏳ Sincronizando...', 60000);
+  const result = await Sync.upload();
+  if (result.ok) toast('✅ Sincronizado — ' + result.uploaded + ' registros', 3000);
+  else toast('❌ Erro na sincronização');
+}
+
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: CÍRCULO DE CONFIANÇA                                   ║
+// ║  Accountability privada entre até 5 pessoas                     ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+let _circuloData   = null; // cache dos dados do círculo
+let _circuloId     = null; // ID do círculo atual
+let _circuloLoaded = false;
+
+// ── Calcula score do dia (0-100) ─────────────────────────────────
+function calcDayScore() {
+  let score = 0;
+  // Água: 25 pts
+  const waterPct = getWaterPct();
+  score += Math.round(waterPct * 0.25);
+  // Dieta: 35 pts
+  let totalMeals = 0, doneMeals = 0;
+  db.meals.forEach(m => {
+    const req = m.items.filter(i => !i.optional);
+    totalMeals += req.length;
+    doneMeals  += req.filter(i => i.done).length;
+  });
+  if (totalMeals > 0) score += Math.round((doneMeals / totalMeals) * 35);
+  // Treino: 30 pts
+  const treinouHoje = (db.sessions||[]).some(s => s.dateStr === todayStr());
+  if (treinouHoje) score += 30;
+  // Creatina: 10 pts
+  if (db.creatina?.lastDate === todayStr()) score += 10;
+  return Math.min(100, score);
+}
+
+// ── Monta snapshot do usuário atual para publicar ─────────────────
+function buildMySnapshot(circleId) {
+  const waterPct   = getWaterPct();
+  const waterTotal = getWaterTotal ? getWaterTotal() : 0;
+  const waterGoal  = (db.water?.goal) || 3000;
+  let doneMeals = 0, totalMeals = 0;
+  db.meals.forEach(m => {
+    const req = m.items.filter(i => !i.optional);
+    totalMeals += req.length;
+    doneMeals  += req.filter(i => i.done).length;
+  });
+  const todaySessions = (db.sessions||[]).filter(s => s.dateStr === todayStr());
+  const treinouHoje   = todaySessions.length > 0;
+  const trainedAt     = treinouHoje
+    ? (todaySessions[0].time || todaySessions[0].dateStr || '')
+    : null;
+
+  return {
+    circle_id:       circleId,
+    user_id:         db._userId,
+    date:            todayStr(),
+    score:           calcDayScore(),
+    water_pct:       waterPct,
+    water_ml:        waterTotal,
+    water_goal_ml:   waterGoal,
+    meals_done:      doneMeals,
+    meals_total:     totalMeals,
+    trained:         treinouHoje,
+    creatina:        db.creatina?.lastDate === todayStr(),
+    last_activity_ts: Date.now(),
+    trained_at:      trainedAt,
+    updated_at:      new Date().toISOString(),
+  };
+}
+
+// ── Publicar snapshot no Supabase ────────────────────────────────
+async function circuloPublishSnapshot() {
+  if (!db._userId || !_circuloId) return;
+  try {
+    const sb = await _getSupabase();
+    const snap = buildMySnapshot(_circuloId);
+    await sb.from('circle_snapshots').upsert(snap, {
+      onConflict: 'circle_id,user_id,date'
+    });
+  } catch(e) { console.warn('[Circulo] publish snapshot:', e.message); }
+}
+
+// ── Carregar dados do círculo ─────────────────────────────────────
+async function circuloLoad() {
+  if (!db._userId) {
+    _showCirculoEmpty('Faça login para usar o Círculo de Confiança.');
+    return;
+  }
+  try {
+    const sb = await _getSupabase();
+    const uid = db._userId;
+
+    // Buscar círculo do usuário
+    const { data: memberships } = await sb
+      .from('circle_members')
+      .select('circle_id, status')
+      .eq('user_id', uid)
+      .eq('status', 'active');
+
+    if (!memberships?.length) {
+      // Verificar se há convites pendentes
+      const { data: pending } = await sb
+        .from('circle_members')
+        .select('circle_id, status')
+        .eq('user_id', uid)
+        .eq('status', 'pending');
+      _showCirculoEmpty(null, pending);
+      return;
+    }
+
+    _circuloId = memberships[0].circle_id;
+
+    // Publicar snapshot próprio
+    await circuloPublishSnapshot();
+
+    // Buscar todos os membros ativos
+    const { data: members } = await sb
+      .from('circle_members')
+      .select('user_id, status')
+      .eq('circle_id', _circuloId)
+      .eq('status', 'active');
+
+    // Buscar perfis dos membros
+    const memberIds = (members||[]).map(m => m.user_id);
+    const { data: profiles } = await sb
+      .from('profiles')
+      .select('id, name')
+      .in('id', memberIds);
+
+    // Buscar snapshots de hoje de todos
+    const { data: snapshots } = await sb
+      .from('circle_snapshots')
+      .select('*')
+      .eq('circle_id', _circuloId)
+      .eq('date', todayStr());
+
+    // Buscar reações de hoje
+    const { data: reactions } = await sb
+      .from('circle_reactions')
+      .select('*')
+      .eq('circle_id', _circuloId)
+      .eq('date', todayStr());
+
+    // Buscar streak do grupo (dias em que TODOS fecharam)
+    const { data: allSnaps } = await sb
+      .from('circle_snapshots')
+      .select('user_id, date, score')
+      .eq('circle_id', _circuloId)
+      .order('date', { ascending: false })
+      .limit(memberIds.length * 30);
+
+    _circuloData = {
+      members: members || [],
+      profiles: profiles || [],
+      snapshots: snapshots || [],
+      reactions: reactions || [],
+      allSnaps: allSnaps || [],
+      memberIds,
+    };
+
+    _circuloLoaded = true;
+    _renderCirculo();
+
+  } catch(e) {
+    console.error('[Circulo] load error:', e);
+    _showCirculoEmpty('Erro ao carregar o círculo. Tente novamente.');
+  }
+}
+
+// ── Calcular streak do grupo ──────────────────────────────────────
+function _calcGroupStreak(allSnaps, memberIds) {
+  if (!memberIds.length) return 0;
+  // Agrupar por data
+  const byDate = {};
+  allSnaps.forEach(s => {
+    if (!byDate[s.date]) byDate[s.date] = new Set();
+    byDate[s.date].add(s.user_id);
+  });
+  // Contar dias consecutivos onde TODOS fecharam (score >= 70)
+  const snapsByDate = {};
+  allSnaps.forEach(s => {
+    if (!snapsByDate[s.date]) snapsByDate[s.date] = {};
+    snapsByDate[s.date][s.user_id] = s.score;
+  });
+  let streak = 0;
+  const today = new Date();
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toLocaleDateString('pt-BR');
+    const dayScores = snapsByDate[dateStr] || {};
+    const allDone = memberIds.every(id => (dayScores[id] || 0) >= 70);
+    if (allDone) streak++;
+    else if (i > 0) break; // quebrou o streak
+  }
+  return streak;
+}
+
+// ── Renderizar o círculo ──────────────────────────────────────────
+function _renderCirculo() {
+  const d = _circuloData;
+  if (!d) return;
+
+  const body    = document.getElementById('circulo-body');
+  const emptyEl = document.getElementById('circulo-empty');
+  const subEl   = document.getElementById('circulo-subtitle');
+
+  if (emptyEl) emptyEl.style.display = 'none';
+
+  // Subtítulo
+  if (subEl) subEl.textContent = d.memberIds.length + ' pessoas no círculo';
+
+  // Streak do grupo
+  const groupStreak = _calcGroupStreak(d.allSnaps, d.memberIds);
+  const streakBar = document.getElementById('circulo-streak-bar');
+  if (streakBar && groupStreak > 0) {
+    streakBar.style.display = 'flex';
+    const countEl = document.getElementById('circulo-streak-count');
+    if (countEl) countEl.textContent = groupStreak;
+  }
+
+  // Status global no header
+  _renderStatusRow(d);
+
+  // Cards dos membros (ordenar: eu primeiro, depois por score desc)
+  const uid = db._userId;
+  const sorted = [...d.memberIds].sort((a, b) => {
+    if (a === uid) return -1;
+    if (b === uid) return 1;
+    const sa = (d.snapshots.find(s => s.user_id === a)?.score) || 0;
+    const sb2 = (d.snapshots.find(s => s.user_id === b)?.score) || 0;
+    return sb2 - sa;
+  });
+
+  const cards = sorted.map(userId => _buildMemberCard(userId, d)).join('');
+  if (body) body.innerHTML = cards;
+
+  // Verificar celebração (todos fecharam hoje)
+  _checkGroupCelebration(d, groupStreak);
+}
+
+// ── Status row global ─────────────────────────────────────────────
+function _renderStatusRow(d) {
+  const row = document.getElementById('circulo-status-row');
+  if (!row) return;
+  row.innerHTML = d.memberIds.map(userId => {
+    const profile = d.profiles.find(p => p.id === userId);
+    const snap    = d.snapshots.find(s => s.user_id === userId);
+    const name    = profile?.name?.split(' ')[0] || 'Você';
+    const score   = snap?.score || 0;
+    const cls     = score >= 80 ? 'csd-green' : score >= 40 ? 'csd-yellow' : 'csd-red';
+    const label   = score >= 80 ? 'Fechou' : score >= 40 ? 'Em progresso' : 'Zerado';
+    return '<div class="circulo-status-pill">'
+      + '<div class="circulo-status-dot ' + cls + '"></div>'
+      + '<span>' + escHtml(name) + ' — ' + label + '</span>'
+      + '</div>';
+  }).join('');
+}
+
+// ── Construir card de membro ──────────────────────────────────────
+function _buildMemberCard(userId, d) {
+  const profile  = d.profiles.find(p => p.id === userId);
+  const snap     = d.snapshots.find(s => s.user_id === userId);
+  const isMe     = userId === db._userId;
+  const name     = profile?.name || (isMe ? (db.profile?.name || 'Você') : 'Membro');
+  const firstName = name.split(' ')[0];
+  const initial  = firstName[0]?.toUpperCase() || '?';
+  const score    = snap?.score || 0;
+  const scoreColor = score >= 80 ? 'var(--green)' : score >= 40 ? '#ffd700' : 'var(--muted2)';
+  const statusCls  = score >= 80 ? 'status-green' : score >= 40 ? 'status-yellow' : 'status-red';
+
+  // Última atividade
+  let lastLabel = '—';
+  if (snap?.last_activity_ts) {
+    const diffMin = Math.floor((Date.now() - snap.last_activity_ts) / 60000);
+    if (diffMin < 60) lastLabel = 'há ' + diffMin + ' min';
+    else if (diffMin < 1440) lastLabel = 'há ' + Math.floor(diffMin/60) + 'h';
+    else lastLabel = 'ontem';
+  }
+
+  // Água
+  const waterPct  = snap?.water_pct || 0;
+  const waterMl   = ((snap?.water_ml || 0) / 1000).toFixed(1);
+  const waterGoal = ((snap?.water_goal_ml || 3000) / 1000).toFixed(1);
+
+  // Dieta
+  const mealsDone  = snap?.meals_done || 0;
+  const mealsTotal = snap?.meals_total || 0;
+
+  // Treino
+  const trained   = snap?.trained || false;
+  const trainedAt = snap?.trained_at || null;
+  const trainedLabel = trained
+    ? ('✔ Treinou' + (trainedAt ? ' às ' + trainedAt.slice(0,5) : ''))
+    : '❌ Não treinou';
+
+  // Creatina
+  const creatina = snap?.creatina || false;
+
+  // Semana mini (7 últimos dias)
+  const weekDots = _buildWeekDots(userId, d.allSnaps);
+
+  // Reações enviadas por mim para esta pessoa hoje
+  const myReaction = d.reactions.find(r => r.from_user === db._userId && r.to_user === userId);
+  // Reações recebidas por esta pessoa de qualquer um
+  const reactionsReceived = d.reactions.filter(r => r.to_user === userId);
+
+  // Botões de reação
+  const reactBtns = isMe ? '' : _buildReactionBtns(userId, myReaction, snap);
+
+  return '<div class="circulo-member-card ' + statusCls + '" id="cm-' + userId + '">'
+    // Header
+    + '<div class="cm-head">'
+    + '<div class="cm-avatar">' + initial + '</div>'
+    + '<div class="cm-info">'
+    + '<div class="cm-name">' + escHtml(firstName) + (isMe ? ' (você)' : '') + '</div>'
+    + '<div class="cm-last">' + lastLabel + '</div>'
+    + '</div>'
+    + '<div class="cm-score">'
+    + '<div class="cm-score-num" style="color:' + scoreColor + '">' + score + '</div>'
+    + '<div class="cm-score-lbl">pts hoje</div>'
+    + '</div>'
+    + '</div>'
+    // Semana mini
+    + '<div class="cm-week">' + weekDots + '<span class="cm-week-sep"></span>'
+    + '<span class="cm-week-score">7 dias</span></div>'
+    // Stats
+    + '<div class="cm-stats">'
+    // Água
+    + '<div class="cm-stat">'
+    + '<div class="cm-stat-label">💧 Água</div>'
+    + '<div class="cm-stat-value">' + waterMl + 'L / ' + waterGoal + 'L</div>'
+    + '<div class="cm-bar"><div class="cm-bar-fill cm-bar-water" style="width:' + waterPct + '%"></div></div>'
+    + '</div>'
+    // Dieta
+    + '<div class="cm-stat">'
+    + '<div class="cm-stat-label">🥗 Dieta</div>'
+    + '<div class="cm-stat-value">' + (mealsTotal > 0 ? mealsDone + '/' + mealsTotal + ' ref.' : '—') + '</div>'
+    + (mealsTotal > 0 ? '<div class="cm-bar"><div class="cm-bar-fill cm-bar-diet" style="width:' + Math.round(mealsDone/mealsTotal*100) + '%"></div></div>' : '')
+    + '</div>'
+    // Treino
+    + '<div class="cm-stat">'
+    + '<div class="cm-stat-label">🏋️ Treino</div>'
+    + '<div class="cm-stat-value" style="font-size:12px">' + trainedLabel + '</div>'
+    + '</div>'
+    // Creatina
+    + '<div class="cm-stat">'
+    + '<div class="cm-stat-label">💊 Creatina</div>'
+    + '<div class="cm-stat-value">' + (creatina ? '✔ Tomada' : '❌ Não') + '</div>'
+    + '</div>'
+    + '</div>'
+    // Reações
+    + (reactBtns ? '<div class="cm-reactions">' + reactBtns + '</div>' : '')
+    + '</div>';
+}
+
+// ── Semana mini (7 bolinhas) ──────────────────────────────────────
+function _buildWeekDots(userId, allSnaps) {
+  const byDate = {};
+  allSnaps.forEach(s => { if (s.user_id === userId) byDate[s.date] = s.score; });
+  let dots = '';
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toLocaleDateString('pt-BR');
+    const score   = byDate[dateStr];
+    let cls = 'cm-week-dot';
+    if (i === 0) cls += score >= 70 ? ' done' : ' today-empty';
+    else cls += score >= 70 ? ' done' : '';
+    dots += '<div class="' + cls + '" title="' + dateStr + '"></div>';
+  }
+  return dots;
+}
+
+// ── Botões de reação ──────────────────────────────────────────────
+function _buildReactionBtns(toUser, myReaction, snap) {
+  const score   = snap?.score || 0;
+  const trained = snap?.trained || false;
+  const waterPct = snap?.water_pct || 0;
+
+  // Botões contextuais baseados no estado
+  const btns = [];
+  if (myReaction) {
+    // Já reagiu hoje — mostra o que enviou
+    const labels = {fist:'👊 Boa',fire:'🔥 Brabo',check:'✔ Consistente',
+                    water:'💧 Bora beber água',train:'🏋️ Treina hoje',close:'🔥 Fecha o dia'};
+    btns.push('<button class="cm-react-btn sent" disabled>'
+      + (labels[myReaction.type] || '✔') + '<span class="react-label">enviado</span></button>');
+  } else {
+    // Botões contextuais
+    if (trained) btns.push(_reactBtn(toUser, 'fire', '🔥 Brabo'));
+    if (!trained) btns.push(_reactBtn(toUser, 'train', '🏋️ Treina hoje'));
+    if (waterPct < 50) btns.push(_reactBtn(toUser, 'water', '💧 Beba água'));
+    if (score >= 60 && score < 90) btns.push(_reactBtn(toUser, 'close', '🔥 Fecha o dia'));
+    if (score >= 90) btns.push(_reactBtn(toUser, 'check', '✔ Consistente'));
+    if (!btns.length) btns.push(_reactBtn(toUser, 'fist', '👊 Boa'));
+  }
+  return btns.join('');
+}
+
+function _reactBtn(toUser, type, label) {
+  return '<button class="cm-react-btn" onclick="circuloReact(\'' + toUser + '\',\'' + type + '\')">'
+    + label + '</button>';
+}
+
+// ── Enviar reação ─────────────────────────────────────────────────
+async function circuloReact(toUser, type) {
+  if (!db._userId || !_circuloId) return;
+  try {
+    const sb = await _getSupabase();
+    await sb.from('circle_reactions').upsert({
+      circle_id:  _circuloId,
+      from_user:  db._userId,
+      to_user:    toUser,
+      date:       todayStr(),
+      type,
+      created_at: new Date().toISOString(),
+    }, { onConflict: 'circle_id,from_user,to_user,date' });
+    Haptic.medium();
+    toast('✅ Reação enviada!', 2000);
+    // Atualizar dados
+    await circuloLoad();
+  } catch(e) { toast('❌ Erro ao enviar reação'); }
+}
+
+// ── Verificar celebração do grupo ─────────────────────────────────
+function _checkGroupCelebration(d, streak) {
+  const allClosed = d.memberIds.every(uid => {
+    const snap = d.snapshots.find(s => s.user_id === uid);
+    return (snap?.score || 0) >= 80;
+  });
+  if (!allClosed || d.memberIds.length < 2) return;
+  const celebKey = 'ct_circulo_celeb_' + todayStr();
+  if (localStorage.getItem(celebKey)) return;
+  localStorage.setItem(celebKey, '1');
+  // Mostrar celebração após 1s
+  setTimeout(() => {
+    const countEl = document.getElementById('celebration-streak');
+    const namesEl = document.getElementById('celebration-names');
+    if (countEl) countEl.textContent = streak + ' dias 🔥';
+    if (namesEl) {
+      const names = d.memberIds.map(uid => {
+        const p = d.profiles.find(x => x.id === uid);
+        return p?.name?.split(' ')[0] || 'Membro';
+      }).join(' · ');
+      namesEl.textContent = names;
+    }
+    openSheet('sheetCirculoCelebration');
+    Haptic.dayDone();
+    if (typeof Confetti !== 'undefined') Confetti.launch(80);
+    // Auto-fechar em 30s
+    setTimeout(() => closeSheet('sheetCirculoCelebration'), 30000);
+  }, 1000);
+}
+
+// ── Estado vazio ──────────────────────────────────────────────────
+function _showCirculoEmpty(msg, pendingInvites) {
+  const emptyEl = document.getElementById('circulo-empty');
+  if (!emptyEl) return;
+  if (pendingInvites?.length) {
+    emptyEl.innerHTML =
+      '<div style="font-size:40px;margin-bottom:16px">📬</div>'
+      + '<div style="font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:1.5px;margin-bottom:8px">Convite recebido!</div>'
+      + '<div style="font-size:12px;color:var(--muted2);margin-bottom:20px">Alguém te adicionou ao Círculo de Confiança.</div>'
+      + '<button class="btn" onclick="circuloAcceptInvite(\'' + pendingInvites[0].circle_id + '\')">✔ Aceitar convite</button>';
+  } else if (msg) {
+    emptyEl.innerHTML = '<div style="font-size:12px;color:var(--muted2);padding:40px 0">' + msg + '</div>';
+  }
+  emptyEl.style.display = 'block';
+}
+
+// ── Aceitar convite ───────────────────────────────────────────────
+async function circuloAcceptInvite(circleId) {
+  try {
+    const sb = await _getSupabase();
+    await sb.from('circle_members')
+      .update({ status: 'active', joined_at: new Date().toISOString() })
+      .eq('circle_id', circleId)
+      .eq('user_id', db._userId);
+    toast('✅ Você entrou no círculo!', 3000);
+    Haptic.success();
+    circuloLoad();
+  } catch(e) { toast('❌ Erro ao aceitar convite'); }
+}
+
+// ── Convidar por email ────────────────────────────────────────────
+async function circuloInvite() {
+  const email = document.getElementById('circulo-invite-email')?.value.trim();
+  if (!email || !email.includes('@')) { toast('⚠️ Email inválido'); return; }
+  if (!db._userId) { toast('⚠️ Faça login primeiro'); return; }
+
+  const btn    = document.getElementById('circulo-invite-btn');
+  const result = document.getElementById('circulo-invite-result');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+
+  try {
+    const sb = await _getSupabase();
+
+    // Criar círculo se não existe ainda
+    if (!_circuloId) {
+      const { data: circle, error: ceErr } = await sb.from('circles').insert({
+        created_by: db._userId,
+        name: 'Círculo de Confiança',
+      }).select().single();
+      if (ceErr) throw ceErr;
+      _circuloId = circle.id;
+      // Adicionar criador como membro ativo
+      await sb.from('circle_members').insert({
+        circle_id: _circuloId,
+        user_id:   db._userId,
+        status:    'active',
+        joined_at: new Date().toISOString(),
+      });
+    }
+
+    // Chamar função do Supabase para convidar
+    const { data, error } = await sb.rpc('invite_to_circle', {
+      p_circle_id: _circuloId,
+      p_email:     email,
+    });
+    if (error) throw error;
+
+    const res = data;
+    if (res.ok) {
+      if (result) { result.textContent = '✅ Convite enviado!'; result.style.color = 'var(--green)'; }
+      if (btn) { btn.textContent = 'Enviar outro convite'; btn.disabled = false; }
+      document.getElementById('circulo-invite-email').value = '';
+      setTimeout(() => circuloLoad(), 1000);
+    } else {
+      if (result) { result.textContent = '⚠️ ' + (res.error || 'Erro desconhecido'); result.style.color = 'var(--orange)'; }
+      if (btn) { btn.textContent = 'Enviar convite'; btn.disabled = false; }
+    }
+  } catch(e) {
+    if (result) { result.textContent = '❌ Erro: ' + e.message; result.style.color = 'var(--red)'; }
+    if (btn) { btn.textContent = 'Enviar convite'; btn.disabled = false; }
+  }
 }
 
 function initApp(){
@@ -3497,6 +5131,10 @@ function initApp(){
   // Beta onboarding — runs only for registered beta users, once
   const _betaName = db.profile?.name ? db.profile.name.split(' ')[0] : '';
   checkBetaOnboarding(_betaName);
+  // Descompressão assíncrona se dados estiverem em LZ1:
+  _loadDbAsync();
+  // Inicializar auth em background — não bloqueia o app
+  setTimeout(() => initAuth(), 800);
 }
 
 function dailyReset(){
@@ -4761,7 +6399,7 @@ function qlSave(){
   const titleBase=qlType==='cross'&&wodLabel&&wodType!=='wod'
     ? m.label+' — '+wodLabel+' · '+intLabel+' '+qlDur+'min'
     : m.label+' — '+intLabel+' '+qlDur+'min';
-  const s={id:Date.now(),type:qlType,ts:Date.now(),source:'manual',
+  const s={id:uuid(),type:qlType,ts:Date.now(),createdAt:Date.now(),updatedAt:Date.now(),userId:db._userId||null,source:'manual',
     title:titleBase,
     dur:qlDur,intensity:qlIntensity,kcal,kcalAdjusted:adjusted,
     wodType:wodType||undefined,
@@ -5060,6 +6698,20 @@ function buildActCard(type){
     }
   }
 
+  // Ficha de academia usada hoje — pega o nome da 1ª linha do exercises
+  let gymRoutineInline = '';
+  if (type === 'gym' && treinouHoje) {
+    const todayGym = todayS[0];
+    if (todayGym && todayGym.exercises) {
+      const routineName = todayGym.exercises.split('\n')[0];
+      if (routineName) {
+        gymRoutineInline = '<span class="act-hero-label-sep">–</span>'
+          + '<span class="act-hero-label-type" style="color:var(--gym);font-size:14px">'
+          + escHtml(routineName) + '</span>';
+      }
+    }
+  }
+
   // Monta label inline: 🔥 CROSSFIT [– Tipo] [· hoje]
   const todayInline = todayBadge
     ? '<span class="act-hero-label-sep">–</span><span class="act-hero-label-today">'+todayBadge+'</span>'
@@ -5067,6 +6719,7 @@ function buildActCard(type){
 
   const titleLabel = '<div class="act-hero-label">'
     + '<span class="act-hero-label-name">'+m.label+'</span>'
+    + gymRoutineInline
     + wodTypeInline
     + todayInline
     + '</div>';
@@ -5092,6 +6745,9 @@ function buildActCard(type){
     +'<button class="log-btn btn-'+type+'" style="flex:1" onclick="openLogSheet(\''+ type +'\');event.stopPropagation()">'
     +'<span class="icon icon-plus" style="width:14px;height:14px;vertical-align:middle;margin-right:5px"></span>'
     +' Registrar '+m.label+'</button>'
+    +(type==='gym'
+      ? '<button class="btn btn-ghost btn-sm" style="white-space:nowrap;gap:5px;padding:0 14px;height:40px;font-size:12px" onclick="openGymRoutines();event.stopPropagation()" title="Fichas de treino">📋 Fichas</button>'
+      : '')
     +(treinouHoje
       ? '<button class="btn btn-ghost btn-sm" style="white-space:nowrap;gap:5px;padding:0 14px;height:40px;font-size:12px" onclick="shareActivity(\''+type+'\');event.stopPropagation()" title="Compartilhar treino de hoje">↑ Compartilhar</button>'
       : '')
@@ -5429,7 +7085,7 @@ const QTY_PATTERN = /(\d+[\/.,]?\d*)\s*(g|kg|ml|l|unidade[s]?|colher[es]*(?:\s+d
 /**
  * CALORIE patterns: "180kcal", "180 kcal", "180 cal"
  */
-const KCAL_PATTERN = /(\d+)\s*(?:kcal|cal)/i;
+const KCAL_PATTERN = /(\d+)\s*(?:kcal|cal)/i;
 
 /**
  * SUBSTITUTION markers: lines/parts starting with "ou " / "OU:"
@@ -6241,7 +7897,7 @@ function saveWeight(){
   const time=document.getElementById('inTime').value||'00:00';
   if(!kg||!date){toast('⚠️ Preencha peso e data');return;}
   const ts=new Date(date+'T'+time).getTime();
-  db.weight.push({id:Date.now(),kg,date:new Date(date+'T12:00:00').toLocaleDateString('pt-BR'),time,ts,source:'manual'});
+  db.weight.push({id:uuid(),kg,date:new Date(date+'T12:00:00').toLocaleDateString('pt-BR'),time,ts,createdAt:Date.now(),updatedAt:Date.now(),userId:db._userId||null,source:'manual'});
   db.weight.sort((a,b)=>b.ts-a.ts);
   db.profile.weight=kg;
   document.getElementById('inKg').value='';
@@ -6372,6 +8028,11 @@ function switchView(v){
   if(v === 'stats') renderStats(currentPeriod);
   if(v === 'meals') renderMealsView();
   if(v === 'home') renderHomeView();
+  if(v === 'circulo') { circuloLoad(); }
+  if(v === 'perfil') {
+    const adminBtn = document.getElementById('adminAccessBtn');
+    if (adminBtn) adminBtn.style.display = (db._userId && isAdmin()) ? 'block' : 'none';
+  }
 }
 function switchAppTab(name,btn){
   document.querySelectorAll('.app-tab-panel').forEach(el=>el.classList.remove('on'));
@@ -6398,7 +8059,9 @@ function toast(msg, dur=3200) {
 }
 function confirmReset(){
   if(!confirm('⚠️ Isso vai LIMPAR TODA A DIETA (refeições e progresso).\nHistórico de treinos e peso é mantido.\n\nContinuar?'))return;
-  db.meals=[];if(db.structuredDiet)db.structuredDiet.meals=[];db.lastReset='';db.streak=0;db.lastComplete='';
+  db.meals=[];if(db.structuredDiet)db.structuredDiet.meals=[];db.lastReset='';db.lastComplete='';
+  // Não escrever db.streak diretamente — é um getter. Zerar via dailyStreak:
+  if(db.dailyStreak){db.dailyStreak.count=0;db.dailyStreak.lastDate='';}
   save();renderDiet();refreshToday('diet');toast('Dieta removida');
 }
 function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -6477,7 +8140,7 @@ function restoreBackup(){
     if(!confirm('Restaurar backup? Os dados atuais serão substituídos.'))return;
     // Ensure required blocks exist after restore
     if(!parsed.water)parsed.water={goal:3000,entries:[]};
-    if(!parsed.settings)parsed.settings={showDietTab:true};
+    if(!parsed.settings)parsed.settings={showDietTab:false};
     if(!parsed.profile)parsed.profile={name:'',weight:0};
     if(!parsed.dailyStreak)parsed.dailyStreak={count:0,lastDate:'',totalDays:0,history:[],bestStreak:0};
     if(!parsed.missions)parsed.missions={lastDate:'',water:false,creatina:false,dieta:false,treino:false};
@@ -7109,6 +8772,45 @@ function autoBackupCheck() {
   const nextIn = BACKUP_INTERVAL_MS - (now - last);
   setTimeout(() => { autoBackupSave(); setInterval(autoBackupSave, BACKUP_INTERVAL_MS); },
     Math.max(0, nextIn));
+
+  // Export semanal: oferece download do JSON a cada 7 dias
+  const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+  const lastExport = db.settings?._lastExportOffer || 0;
+  if (now - lastExport >= WEEK_MS) {
+    // Aguarda 3s após init para não sobrecarregar a abertura
+    setTimeout(() => {
+      if (!db.settings) db.settings = {};
+      db.settings._lastExportOffer = now;
+      save();
+      _showExportBanner();
+    }, 3000);
+  }
+}
+
+function _showExportBanner() {
+  // Banner não-intrusivo no topo do app
+  if (document.getElementById('export-banner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'export-banner';
+  banner.style.cssText = [
+    'position:fixed','top:54px','left:0','right:0','z-index:8000',
+    'background:linear-gradient(90deg,rgba(212,255,0,.12),rgba(212,255,0,.06))',
+    'border-bottom:1px solid rgba(212,255,0,.2)',
+    'padding:10px 16px','display:flex','align-items:center','gap:12px',
+    'animation:slideUp .3s ease'
+  ].join(';');
+  banner.innerHTML =
+    '<div style="flex:1;min-width:0">'
+    + '<div style="font-family:Space Mono,monospace;font-size:9px;color:var(--acid2);text-transform:uppercase;letter-spacing:1px">Seus dados estão seguros</div>'
+    + '<div style="font-size:12px;color:var(--text);margin-top:2px">Faça um backup semanal para não perder nada 🔒</div>'
+    + '</div>'
+    + '<button onclick="exportBackupJSON();document.getElementById(\'export-banner\').remove()" '
+    + 'style="background:var(--acid);color:#000;border:none;border-radius:8px;padding:8px 14px;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer;white-space:nowrap;flex-shrink:0">💾 Exportar</button>'
+    + '<button onclick="document.getElementById(\'export-banner\').remove()" '
+    + 'style="background:none;border:none;color:var(--muted2);font-size:18px;cursor:pointer;padding:0 4px;line-height:1;flex-shrink:0">×</button>';
+  document.body.appendChild(banner);
+  // Auto-remove após 12s se não interagir
+  setTimeout(() => banner.remove(), 12000);
 }
 
 function autoBackupRestore() {
@@ -7212,6 +8914,1004 @@ function _generateAppIcon(size) {
   ctx.fillText('CONTROLE TOTAL', size/2, size * 0.84);
   return c.toDataURL('image/png');
 }
+
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: GYM ROUTINES — Fichas de treino de academia            ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+let currentViewRoutineId = null;
+let editingRoutineId     = null;   // null = nova ficha
+let editRoutineExercises = [];     // cópia local enquanto edita
+
+// ── Guard de migration ───────────────────────────────────────────
+function _ensureRoutines() {
+  if (!db.gymRoutines) db.gymRoutines = [];
+}
+
+// ── Abrir lista de fichas ────────────────────────────────────────
+function openGymRoutines() {
+  _ensureRoutines();
+  renderRoutineList();
+  openSheet('sheetGymRoutines');
+}
+
+function renderRoutineList() {
+  const area = document.getElementById('routineListArea');
+  if (!area) return;
+  _ensureRoutines();
+  if (!db.gymRoutines.length) {
+    area.innerHTML = '<div class="routine-empty">Nenhuma ficha ainda.<br>Crie sua primeira ficha abaixo.</div>';
+    return;
+  }
+  // Ordenar por uso mais recente (lastUsed desc), depois por criação
+  const sorted = [...db.gymRoutines].sort((a,b) => (b.lastUsed||0) - (a.lastUsed||0));
+
+  area.innerHTML = sorted.map(r => {
+    const exSub = r.exercises && r.exercises.length
+      ? '<div style="font-size:10px;color:var(--muted2);font-family:Space Mono,monospace;margin-top:2px">'
+        + r.exercises.slice(0,3).map(e=>e.name).join(' · ')
+        + (r.exercises.length > 3 ? ' +' + (r.exercises.length-3) : '')
+        + '</div>'
+      : '';
+    // Última vez usada
+    let lastUsedLabel = '';
+    if (r.lastUsed) {
+      const diffDays = Math.floor((Date.now() - r.lastUsed) / 86400000);
+      lastUsedLabel = diffDays === 0 ? '· hoje'
+        : diffDays === 1 ? '· ontem'
+        : '· há '+diffDays+'d';
+    }
+    const lastUsedHtml = r.lastUsed
+      ? '<span style="font-size:9px;color:var(--acid2);font-family:Space Mono,monospace;margin-left:6px">'+lastUsedLabel+'</span>'
+      : '';
+    return '<div class="routine-row">'
+      + '<div class="routine-row-name" onclick="openViewRoutine('+r.id+')">'
+      + '<div style="font-weight:600;display:flex;align-items:center">🏋️ '+escHtml(r.name)+lastUsedHtml+'</div>'
+      + exSub
+      + '</div>'
+      + '<button class="routine-use-btn" onclick="useRoutine('+r.id+')">✓ Usar</button>'
+      + '</div>';
+  }).join('');
+}
+
+// ── Ver ficha completa ───────────────────────────────────────────
+// Estado de checks e cargas da ficha durante visualização
+let _fichaChecks = {};
+let _fichaCargaHoje = {}; // { index: kg digitado hoje }
+
+function openViewRoutine(id) {
+  _ensureRoutines();
+  const r = db.gymRoutines.find(x => x.id === id);
+  if (!r) return;
+  currentViewRoutineId = id;
+  _fichaChecks = {};
+  _fichaCargaHoje = {};
+
+  // Header
+  document.getElementById('viewRoutineTitle').textContent = r.name;
+
+  // Histórico de uso desta ficha nas sessões
+  const past = (db.sessions||[])
+    .filter(s => s.type==='gym' && s.exercises && s.exercises.split('\n')[0]===r.name)
+    .sort((a,b)=>b.ts-a.ts);
+
+  let subtitle = '🏋️ Academia · Musculação';
+  if (past.length > 0) {
+    const diffDays = Math.floor((Date.now() - past[0].ts) / 86400000);
+    const lastStr = diffDays === 0 ? 'hoje' : diffDays === 1 ? 'ontem' : 'há '+diffDays+'d';
+    subtitle = '🏋️ '+past.length+'x usada &nbsp;·&nbsp; última: '+lastStr;
+  }
+  const subtitleEl = document.getElementById('viewRoutineSubtitle');
+  if (subtitleEl) subtitleEl.innerHTML = subtitle;
+
+  // Última carga salva por exercício (índice)
+  const lastWeights = r.lastWeights || {}; // { "0": {kg:80, date:"01/01/2025"}, ... }
+
+  // Corpo da ficha
+  const area = document.getElementById('viewRoutineExercises');
+  if (!r.exercises || !r.exercises.length) {
+    area.innerHTML = '<div class="routine-empty" style="padding:40px 0;text-align:center">Nenhum exercício cadastrado.<br><span style="font-size:10px;color:var(--muted)">Toque em Editar para adicionar.</span></div>';
+  } else {
+    area.innerHTML = r.exercises.map((e, i) => {
+      const setsReps = (e.sets && e.reps) ? e.sets+'x'+e.reps
+        : e.sets ? e.sets+' séries'
+        : e.reps ? e.reps+' reps' : '';
+      const obsHtml = e.obs
+        ? '<div class="ficha-ex-obs">💬 '+escHtml(e.obs)+'</div>'
+        : '';
+
+      // Referência da última carga — chave = nome do exercício (resistente a reordenação)
+      const ref = lastWeights[e.name];
+      const refHtml = ref
+        ? '<span class="ficha-ref-badge">⟳ '+ref.kg+'kg em '+ref.date+'</span>'
+        : '';
+
+      // Input de carga do dia — pré-preenche com última carga salva
+      const cargaInput = '<div class="ficha-carga-row">'
+        + '<span class="ficha-carga-label">Carga hoje</span>'
+        + '<input type="number" class="ficha-carga-input" id="carga-'+i+'"'
+        + ' placeholder="'+(ref ? ref.kg : (e.weight||'0'))+'"'
+        + ' min="0" max="999" step="0.5"'
+        + ' oninput="saveCargaHoje('+i+',this.value)"'
+        + ' onclick="event.stopPropagation()">'
+        + '<span class="ficha-carga-unit">kg</span>'
+        + refHtml
+        + '</div>';
+
+      return '<div class="ficha-ex-card" id="fichaex-'+i+'">'
+        + '<div class="ficha-ex-num">'+(i+1)+'</div>'
+        + '<div class="ficha-ex-body" style="flex:1">'
+        + '<div class="ficha-ex-name">'+escHtml(e.name)+'</div>'
+        + '<div class="ficha-ex-tags">'
+        + (setsReps ? '<span class="ficha-ex-tag">'+setsReps+'</span>' : '')
+        + '</div>'
+        + obsHtml
+        + cargaInput
+        + '</div>'
+        + '<button class="ficha-ex-check" onclick="toggleFichaCheck('+i+')" title="Marcar como feito">'
+        + '<div class="ficha-ex-check-icon"></div>'
+        + '</button>'
+        + '</div>';
+    }).join('');
+  }
+
+  closeSheet('sheetGymRoutines');
+  openSheet('sheetViewRoutine');
+}
+
+function saveCargaHoje(i, val) {
+  _fichaCargaHoje[i] = parseFloat(val) || null;
+}
+
+function toggleFichaCheck(i) {
+  _fichaChecks[i] = !_fichaChecks[i];
+  const card = document.getElementById('fichaex-'+i);
+  if (card) {
+    card.classList.toggle('done', !!_fichaChecks[i]);
+    Haptic.light();
+  }
+}
+
+// ── Usar ficha: preenche o log de academia e abre sheet ──────────
+function useRoutine(id) {
+  _ensureRoutines();
+  const r = db.gymRoutines.find(x => x.id === id);
+  if (!r) return;
+
+  // Salva cargas do dia digitadas na ficha
+  if (Object.keys(_fichaCargaHoje).length > 0) {
+    if (!r.lastWeights) r.lastWeights = {};
+    const today = todayStr();
+    // Chave = nome do exercício para resistir a reordenação
+    const exercises = r.exercises || [];
+    Object.keys(_fichaCargaHoje).forEach(i => {
+      const kg = _fichaCargaHoje[i];
+      const exName = exercises[i] ? exercises[i].name : null;
+      if (kg && kg > 0 && exName) r.lastWeights[exName] = { kg, date: today };
+    });
+  }
+
+  r.lastUsed = Date.now();
+  save();
+
+  closeSheet('sheetGymRoutines');
+  closeSheet('sheetViewRoutine');
+  openLogSheet('gym');
+
+  // Monta detalhes com cargas do dia (se digitadas) ou última referência
+  const detail = document.getElementById('qlDetail');
+  if (detail) {
+    const lines = [r.name];
+    if (r.exercises && r.exercises.length) {
+      r.exercises.forEach((e, i) => {
+        let line = e.name;
+        if (e.sets && e.reps) line += ' ' + e.sets + 'x' + e.reps;
+        // Prioriza carga digitada hoje, depois última salva
+        const kg = _fichaCargaHoje[i] || (r.lastWeights && r.lastWeights[e.name] ? r.lastWeights[e.name].kg : e.weight);
+        if (kg) line += ' — ' + kg + 'kg';
+        lines.push(line);
+      });
+    }
+    detail.value = lines.join('\n');
+  }
+
+  const title = document.getElementById('qlTitle');
+  if (title) title.textContent = '🏋️ Academia — ' + r.name;
+  toast('✅ Ficha carregada: ' + r.name, 2000);
+}
+
+// ── Nova ficha ───────────────────────────────────────────────────
+function openNewRoutineSheet() {
+  editingRoutineId = null;
+  editRoutineExercises = [];
+  document.getElementById('editRoutineTitle').textContent = 'Nova Ficha';
+  document.getElementById('editRoutineName').value = '';
+  document.getElementById('newExName').value   = '';
+  document.getElementById('newExSets').value   = '';
+  document.getElementById('newExReps').value   = '';
+  document.getElementById('newExWeight').value = '';
+  renderEditExList();
+  closeSheet('sheetGymRoutines');
+  openSheet('sheetEditRoutine');
+}
+
+// ── Editar ficha existente ───────────────────────────────────────
+function openEditRoutineSheet(id) {
+  _ensureRoutines();
+  const r = db.gymRoutines.find(x => x.id === id);
+  if (!r) return;
+  editingRoutineId = id;
+  editRoutineExercises = (r.exercises || []).map(e => Object.assign({}, e));
+  document.getElementById('editRoutineTitle').textContent = 'Editar Ficha';
+  document.getElementById('editRoutineName').value = r.name;
+  document.getElementById('newExName').value   = '';
+  document.getElementById('newExSets').value   = '';
+  document.getElementById('newExReps').value   = '';
+  document.getElementById('newExWeight').value = '';
+  renderEditExList();
+  closeSheet('sheetViewRoutine');
+  openSheet('sheetEditRoutine');
+}
+
+// ── Renderizar lista de exercícios no editor ─────────────────────
+function renderEditExList() {
+  const area = document.getElementById('editRoutineExList');
+  if (!area) return;
+  if (!editRoutineExercises.length) {
+    area.innerHTML = '<div class="routine-empty" style="padding:12px 0">Nenhum exercício ainda.</div>';
+    return;
+  }
+  area.innerHTML = editRoutineExercises.map((e, i) => {
+    const label = e.name
+      + (e.sets && e.reps ? ' · '+e.sets+'x'+e.reps : '')
+      + (e.weight ? ' · '+e.weight+'kg' : '');
+    const obsHtml = e.obs
+      ? '<div style="font-size:10px;color:var(--muted2);font-family:Space Mono,monospace;margin-top:1px">💬 '+escHtml(e.obs)+'</div>'
+      : '';
+    return '<div class="routine-ex-row" style="flex-wrap:wrap">'
+      + '<div class="routine-ex-name" style="flex:1;min-width:0">'
+      + '<div>'+escHtml(label)+'</div>'
+      + obsHtml
+      + '</div>'
+      + '<button class="routine-ex-del" style="font-size:11px;color:var(--muted2);margin-right:4px" '
+      + 'onclick="toggleExObs('+i+')" title="Anotação">💬</button>'
+      + '<button class="routine-ex-del" onclick="removeExFromEdit('+i+')" title="Remover">×</button>'
+      + '<div id="obs-input-'+i+'" style="display:none;width:100%;margin-top:6px">'
+      + '<input type="text" placeholder="Anotação (ex: aumentar carga)" maxlength="60" '
+      + 'value="'+escHtml(e.obs||'')+'" '
+      + 'onchange="setExObs('+i+', this.value)" '
+      + 'style="font-size:11px;padding:6px 9px">'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+// ── Adicionar exercício ao editor ────────────────────────────────
+function addExToEdit() {
+  const name = document.getElementById('newExName').value.trim();
+  if (!name) { toast('⚠️ Digite o nome do exercício'); return; }
+  const sets   = parseInt(document.getElementById('newExSets').value)   || null;
+  const reps   = parseInt(document.getElementById('newExReps').value)   || null;
+  const weight = parseFloat(document.getElementById('newExWeight').value) || null;
+  editRoutineExercises.push({ name, sets, reps, weight });
+  document.getElementById('newExName').value   = '';
+  document.getElementById('newExSets').value   = '';
+  document.getElementById('newExReps').value   = '';
+  document.getElementById('newExWeight').value = '';
+  document.getElementById('newExName').focus();
+  renderEditExList();
+}
+
+function removeExFromEdit(i) {
+  editRoutineExercises.splice(i, 1);
+  renderEditExList();
+}
+
+function toggleExObs(i) {
+  const row = document.getElementById('obs-input-'+i);
+  if (!row) return;
+  const isVisible = row.style.display !== 'none';
+  row.style.display = isVisible ? 'none' : 'block';
+  if (!isVisible) row.querySelector('input').focus();
+}
+
+function setExObs(i, val) {
+  if (editRoutineExercises[i]) {
+    editRoutineExercises[i].obs = val.trim() || null;
+  }
+}
+
+// ── Salvar ficha ─────────────────────────────────────────────────
+function saveRoutine() {
+  _ensureRoutines();
+  const name = document.getElementById('editRoutineName').value.trim();
+  if (!name) { toast('⚠️ Digite o nome da ficha'); return; }
+  if (editingRoutineId) {
+    const idx = db.gymRoutines.findIndex(r => r.id === editingRoutineId);
+    if (idx >= 0) {
+      db.gymRoutines[idx].name = name;
+      db.gymRoutines[idx].exercises = editRoutineExercises;
+    }
+    toast('✅ Ficha atualizada');
+  } else {
+    db.gymRoutines.push({ id: uuid(), name, exercises: editRoutineExercises, createdAt: Date.now(), updatedAt: Date.now(), userId: db._userId||null });
+    toast('✅ Ficha criada');
+  }
+  save();
+  closeSheet('sheetEditRoutine');
+  renderRoutineList();
+  openSheet('sheetGymRoutines');
+}
+
+// ── Apagar ficha ─────────────────────────────────────────────────
+function deleteRoutine(id) {
+  if (!confirm('Apagar esta ficha?')) return;
+  _ensureRoutines();
+  db.gymRoutines = db.gymRoutines.filter(r => r.id !== id);
+  save();
+  toast('Ficha removida');
+  closeSheet('sheetViewRoutine');
+  renderRoutineList();
+  openSheet('sheetGymRoutines');
+}
+
+
+
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: ADMIN — Acesso restrito ao administrador               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const ADMIN_EMAIL    = 'felipebenevenuto@gmail.com';
+const ADMIN_PIN_HASH = 3035; // hash do PIN 290992
+
+function _hashPin(pin) {
+  return pin.split('').reduce(function(acc, c, i){ return acc + c.charCodeAt(0) * (i+7); }, 0);
+}
+
+var _isAdmin = false;
+function isAdmin() { return _isAdmin; }
+
+function _checkAdminPin() {
+  return new Promise(function(resolve) {
+    var ov = document.createElement('div');
+    ov.id = 'admin-pin-overlay';
+    ov.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px';
+
+    var box = document.createElement('div');
+    box.style.cssText = 'background:var(--card);border:1px solid rgba(212,255,0,.2);border-radius:16px;padding:28px 24px;width:100%;max-width:320px;text-align:center';
+
+    var ico = document.createElement('div');
+    ico.style.cssText = 'font-size:32px;margin-bottom:12px';
+    ico.textContent = '🔐';
+
+    var title = document.createElement('div');
+    title.style.cssText = 'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:var(--acid);margin-bottom:6px';
+    title.textContent = 'ADMIN';
+
+    var sub = document.createElement('div');
+    sub.style.cssText = 'font-size:11px;color:var(--muted2);margin-bottom:20px;font-family:Space Mono,monospace';
+    sub.textContent = 'Digite o PIN de acesso';
+
+    var inp = document.createElement('input');
+    inp.id = 'admin-pin-input';
+    inp.type = 'password';
+    inp.setAttribute('inputmode', 'numeric');
+    inp.maxLength = 6;
+    inp.placeholder = '••••••';
+    inp.style.cssText = 'width:100%;text-align:center;font-size:24px;letter-spacing:6px;background:#0c0c0c;border:1px solid var(--border2);color:var(--acid);border-radius:9px;padding:12px;outline:none;font-family:Space Mono,monospace';
+
+    var errEl = document.createElement('div');
+    errEl.id = 'admin-pin-err';
+    errEl.style.cssText = 'font-size:10px;color:var(--red);margin-top:8px;font-family:Space Mono,monospace;min-height:16px';
+
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:8px;margin-top:12px';
+
+    var cancelBtn = document.createElement('button');
+    cancelBtn.style.cssText = 'flex:1;height:44px;border-radius:9px;border:1px solid var(--border2);background:transparent;color:var(--muted2);font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer';
+    cancelBtn.textContent = 'Cancelar';
+    cancelBtn.onclick = function(){ ov.remove(); resolve(false); };
+
+    var okBtn = document.createElement('button');
+    okBtn.id = 'admin-pin-btn';
+    okBtn.style.cssText = 'flex:1;height:44px;border-radius:9px;border:none;background:var(--acid);color:#000;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer';
+    okBtn.textContent = 'Entrar';
+
+    var attempt = function() {
+      if (_hashPin(inp.value.trim()) === ADMIN_PIN_HASH) {
+        _isAdmin = true;
+        ov.remove();
+        resolve(true);
+      } else {
+        errEl.textContent = 'PIN incorreto';
+        inp.value = '';
+        inp.focus();
+      }
+    };
+    okBtn.onclick = attempt;
+    inp.addEventListener('keydown', function(e){ if(e.key==='Enter') attempt(); });
+
+    row.appendChild(cancelBtn);
+    row.appendChild(okBtn);
+    box.appendChild(ico);
+    box.appendChild(title);
+    box.appendChild(sub);
+    box.appendChild(inp);
+    box.appendChild(errEl);
+    box.appendChild(row);
+    ov.appendChild(box);
+    document.body.appendChild(ov);
+    setTimeout(function(){ inp.focus(); }, 100);
+  });
+}
+
+async function openAdminPanel() {
+  if (!_isAdmin) {
+    var ok = await _checkAdminPin();
+    if (!ok) return;
+  }
+  _renderAdminPanel();
+}
+
+function _renderAdminPanel() {
+  var existing = document.getElementById('admin-panel-overlay');
+  if (existing) existing.remove();
+
+  var ov = document.createElement('div');
+  ov.id = 'admin-panel-overlay';
+  ov.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.95);display:flex;flex-direction:column;overflow-y:auto';
+
+  // Header
+  var hdr = document.createElement('div');
+  hdr.style.cssText = 'padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0';
+  var hdrTitle = document.createElement('div');
+  hdrTitle.style.cssText = 'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:var(--acid)';
+  hdrTitle.textContent = '⚡ Admin Panel';
+  var closeBtn = document.createElement('button');
+  closeBtn.style.cssText = 'background:none;border:none;color:var(--muted2);font-size:22px;cursor:pointer;padding:0';
+  closeBtn.textContent = '✕';
+  closeBtn.onclick = function(){ ov.remove(); };
+  hdr.appendChild(hdrTitle);
+  hdr.appendChild(closeBtn);
+  ov.appendChild(hdr);
+
+  // Emails section
+  var emailSec = document.createElement('div');
+  emailSec.style.cssText = 'padding:16px 20px';
+  var emailLabel = document.createElement('div');
+  emailLabel.style.cssText = 'font-family:Space Mono,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px';
+  emailLabel.textContent = 'Emails com acesso';
+  emailSec.appendChild(emailLabel);
+
+  var renderEmailList = function() {
+    var existing2 = emailSec.querySelectorAll('.admin-email-row');
+    existing2.forEach(function(el){ el.remove(); });
+    Auth._allowedEmails.forEach(function(email, idx) {
+      var row2 = document.createElement('div');
+      row2.className = 'admin-email-row';
+      row2.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--card);border:1px solid var(--border2);border-radius:10px;margin-bottom:7px';
+      var span = document.createElement('span');
+      span.style.cssText = 'font-size:11px;color:var(--text);font-family:Space Mono,monospace';
+      span.textContent = email + (email === ADMIN_EMAIL ? ' ★' : '');
+      if (email === ADMIN_EMAIL) span.style.color = 'var(--acid)';
+      row2.appendChild(span);
+      if (email !== ADMIN_EMAIL) {
+        var delBtn = document.createElement('button');
+        delBtn.style.cssText = 'background:none;border:none;color:var(--red);font-size:18px;cursor:pointer;padding:0 4px';
+        delBtn.textContent = '×';
+        delBtn.onclick = function() {
+          if (!confirm('Remover ' + email + '?')) return;
+          Auth._allowedEmails.splice(idx, 1);
+          toast('Email removido');
+          renderEmailList();
+        };
+        row2.appendChild(delBtn);
+      }
+      emailSec.insertBefore(row2, addRow);
+    });
+  };
+
+  // Add email row
+  var addRow = document.createElement('div');
+  addRow.style.cssText = 'display:flex;gap:8px;margin-top:4px';
+  var addInp = document.createElement('input');
+  addInp.type = 'email';
+  addInp.placeholder = 'novo@email.com';
+  addInp.style.cssText = 'flex:1;background:#0c0c0c;border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 12px;font-size:13px;outline:none';
+  var addBtn = document.createElement('button');
+  addBtn.style.cssText = 'height:40px;padding:0 14px;border-radius:8px;border:none;background:var(--acid);color:#000;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:1px;cursor:pointer';
+  addBtn.textContent = '+ Add';
+  addBtn.onclick = function() {
+    var email = addInp.value.trim().toLowerCase();
+    if (!email || !email.includes('@')) { toast('⚠️ Email inválido'); return; }
+    if (Auth._allowedEmails.includes(email)) { toast('⚠️ Já está na lista'); return; }
+    Auth._allowedEmails.push(email);
+    addInp.value = '';
+    toast('✅ ' + email + ' adicionado');
+    renderEmailList();
+  };
+  addRow.appendChild(addInp);
+  addRow.appendChild(addBtn);
+  emailSec.appendChild(addRow);
+  renderEmailList();
+  ov.appendChild(emailSec);
+
+  // Ações
+  var actSec = document.createElement('div');
+  actSec.style.cssText = 'padding:0 20px 32px';
+  var actLabel = document.createElement('div');
+  actLabel.style.cssText = 'font-family:Space Mono,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px';
+  actLabel.textContent = 'Ações';
+
+  var makeActBtn = function(label, color, fn) {
+    var b = document.createElement('button');
+    b.style.cssText = 'width:100%;height:44px;border-radius:10px;border:1px solid ' + color + ';background:transparent;color:' + color + ';font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;margin-bottom:8px;display:block';
+    b.textContent = label;
+    b.onclick = fn;
+    return b;
+  };
+
+  actSec.appendChild(actLabel);
+  actSec.appendChild(makeActBtn('Resetar tela de boas-vindas', 'var(--muted2)', function() {
+    if (!db.settings) db.settings = {};
+    db.settings._seenWelcomeV2 = false;
+    save();
+    toast('✅ Resetado — recarregue o app');
+  }));
+  actSec.appendChild(makeActBtn('Resetar onboarding completo', 'var(--red)', function() {
+    if (!confirm('Resetar onboarding? O app vai recarregar.')) return;
+    resetOnboarding();
+    if (db.settings) { db.settings._seenWelcomeV2 = false; db.onboardingVersion = 0; }
+    save();
+    location.reload();
+  }));
+  ov.appendChild(actSec);
+  document.body.appendChild(ov);
+}
+
+function adminResetWelcome() {
+  if (!db.settings) db.settings = {};
+  db.settings._seenWelcomeV2 = false;
+  save();
+  toast('✅ Tela de boas-vindas resetada — recarregue o app');
+}
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: SUPABASE — Cliente + Auth + Sync                       ║
+// ║  Publishable key segura para front-end com RLS ativo            ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const SUPA_URL = 'https://qxauxsbkjztdfkingmkr.supabase.co';
+const SUPA_KEY = 'sb_publishable_fMY5-ihfUUJUX3Psow94Sg_Tysek_N2';
+
+// ── Cliente Supabase (carregado via CDN sob demanda) ──────────────
+let _supabase = null;
+
+async function _getSupabase() {
+  if (_supabase) return _supabase;
+  // Carrega o SDK do Supabase só quando necessário
+  if (!window.supabase) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('Falha ao carregar Supabase SDK'));
+      document.head.appendChild(s);
+    });
+  }
+  _supabase = window.supabase.createClient(SUPA_URL, SUPA_KEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    }
+  });
+  return _supabase;
+}
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: AUTH — Login com Magic Link (sem senha)                ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const Auth = {
+  // Verifica se há sessão ativa
+  async getSession() {
+    try {
+      const sb = await _getSupabase();
+      const { data } = await sb.auth.getSession();
+      return data?.session || null;
+    } catch(e) { return null; }
+  },
+
+  // Retorna usuário logado ou null
+  async getUser() {
+    const session = await this.getSession();
+    return session?.user || null;
+  },
+
+  // Envia magic link para o email
+  async sendMagicLink(email) {
+    try {
+      const sb = await _getSupabase();
+      const { error } = await sb.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: window.location.href,
+          shouldCreateUser: true,
+        }
+      });
+      if (error) throw error;
+      return { ok: true };
+    } catch(e) {
+      console.error('[Auth] Magic link error:', e);
+      return { ok: false, error: e.message };
+    }
+  },
+
+  // ── Lista de emails com acesso beta ─────────────────────────────
+  // Adicione emails aqui para liberar acesso. Deixe vazio [] para liberar para todos.
+  _allowedEmails: [
+    'liviamazinebenevenuto@gmail.com',
+    'felipebenevenuto@gmail.com',
+    'kmartinso@outlook.com',
+  ],
+
+  // Verifica se o email tem acesso
+  _isAllowed(email) {
+    if (!this._allowedEmails.length) return true; // lista vazia = todos permitidos
+    return this._allowedEmails
+      .map(e => e.toLowerCase().trim())
+      .includes(email.toLowerCase().trim());
+  },
+
+  // Logout
+  async signOut() {
+    try {
+      const sb = await _getSupabase();
+      await sb.auth.signOut();
+      db._userId = null;
+      save();
+      toast('Sessão encerrada');
+    } catch(e) { console.error('[Auth] signOut:', e); }
+  },
+
+  // Ouvir mudanças de sessão (login/logout)
+  async onAuthChange(callback) {
+    const sb = await _getSupabase();
+    sb.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        db._userId = session.user.id;
+        save();
+        await Sync.ensureProfile(session.user);
+      }
+      callback(event, session);
+    });
+  },
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: SYNC — Sincronização local ↔ Supabase                  ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const Sync = {
+
+  // ── Garante que o perfil existe no banco ─────────────────────
+  async ensureProfile(user) {
+    try {
+      const sb = await _getSupabase();
+      const { data } = await sb.from('profiles').select('id').eq('id', user.id).single();
+      if (!data) {
+        // Criar perfil novo
+        await sb.from('profiles').insert({
+          id: user.id,
+          name: db.profile?.name || '',
+          weight_kg: db.profile?.weight || null,
+          created_at: new Date().toISOString(),
+        });
+        console.log('[Sync] Perfil criado no Supabase');
+      }
+    } catch(e) { console.error('[Sync] ensureProfile:', e); }
+  },
+
+  // ── Upload: envia dados locais para o Supabase ────────────────
+  async upload() {
+    const user = await Auth.getUser();
+    if (!user) return { ok: false, error: 'Não autenticado' };
+    try {
+      const sb = await _getSupabase();
+      const uid = user.id;
+      let uploaded = 0;
+
+      // Sessões
+      if (db.sessions?.length) {
+        const rows = db.sessions.map(s => ({
+          id: s.id,
+          user_id: uid,
+          type: s.type,
+          title: s.title || '',
+          kcal: s.kcal || 0,
+          duration: s.dur || null,
+          intensity: s.intensity || null,
+          exercises: s.exercises || null,
+          notes: s.notes || null,
+          ts: s.ts,
+          date_str: s.dateStr || s.date || null,
+          created_at: s.createdAt ? new Date(s.createdAt).toISOString() : new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }));
+        const { error } = await sb.from('sessions').upsert(rows, { onConflict: 'id' });
+        if (!error) uploaded += rows.length;
+        else console.warn('[Sync] sessions:', error.message);
+      }
+
+      // Pesos
+      if (db.weight?.length) {
+        const rows = db.weight.map(w => ({
+          id: String(w.id),
+          user_id: uid,
+          kg: w.kg,
+          date_str: w.date || null,
+          time_str: w.time || null,
+          ts: w.ts || null,
+          source: w.source || 'manual',
+          created_at: w.createdAt ? new Date(w.createdAt).toISOString() : new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }));
+        const { error } = await sb.from('weight_entries').upsert(rows, { onConflict: 'id' });
+        if (!error) uploaded += rows.length;
+        else console.warn('[Sync] weight:', error.message);
+      }
+
+      // Fichas de academia
+      if (db.gymRoutines?.length) {
+        const rows = db.gymRoutines.map(r => ({
+          id: String(r.id),
+          user_id: uid,
+          name: r.name,
+          exercises: r.exercises || [],
+          last_weights: r.lastWeights || {},
+          last_used: r.lastUsed || null,
+          created_at: r.createdAt ? new Date(r.createdAt).toISOString() : new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }));
+        const { error } = await sb.from('gym_routines').upsert(rows, { onConflict: 'id' });
+        if (!error) uploaded += rows.length;
+        else console.warn('[Sync] gym_routines:', error.message);
+      }
+
+      // Entradas de água
+      const waterEntries = db.water?.entries || [];
+      if (waterEntries.length) {
+        const rows = waterEntries.map(w => ({
+          id: w.id || uuid(),
+          user_id: uid,
+          ml: w.ml,
+          date_str: w.date || null,
+          ts: w.ts || null,
+          created_at: new Date().toISOString(),
+        }));
+        const { error } = await sb.from('water_entries').upsert(rows, { onConflict: 'id' });
+        if (!error) uploaded += rows.length;
+        else console.warn('[Sync] water:', error.message);
+      }
+
+      console.log('[Sync] Upload OK:', uploaded, 'registros');
+      return { ok: true, uploaded };
+    } catch(e) {
+      console.error('[Sync] upload error:', e);
+      return { ok: false, error: e.message };
+    }
+  },
+
+  // ── Download: puxa dados do Supabase para o local ─────────────
+  async download() {
+    const user = await Auth.getUser();
+    if (!user) return { ok: false, error: 'Não autenticado' };
+    try {
+      const sb = await _getSupabase();
+      const uid = user.id;
+
+      const [sessions, weights, routines, waters] = await Promise.all([
+        sb.from('sessions').select('*').eq('user_id', uid).order('ts', { ascending: false }),
+        sb.from('weight_entries').select('*').eq('user_id', uid).order('ts', { ascending: false }),
+        sb.from('gym_routines').select('*').eq('user_id', uid),
+        sb.from('water_entries').select('*').eq('user_id', uid).order('ts', { ascending: false }),
+      ]);
+
+      if (sessions.data?.length) {
+        db.sessions = sessions.data.map(s => ({
+          id: s.id, type: s.type, title: s.title,
+          kcal: s.kcal, dur: s.duration, intensity: s.intensity,
+          exercises: s.exercises, notes: s.notes,
+          ts: s.ts, dateStr: s.date_str,
+          createdAt: new Date(s.created_at).getTime(),
+          updatedAt: new Date(s.updated_at).getTime(),
+          userId: s.user_id, source: 'cloud',
+        }));
+      }
+
+      if (weights.data?.length) {
+        db.weight = weights.data.map(w => ({
+          id: w.id, kg: w.kg, date: w.date_str,
+          time: w.time_str, ts: w.ts, source: w.source,
+          createdAt: new Date(w.created_at).getTime(),
+          userId: w.user_id,
+        }));
+      }
+
+      if (routines.data?.length) {
+        db.gymRoutines = routines.data.map(r => ({
+          id: r.id, name: r.name,
+          exercises: r.exercises || [],
+          lastWeights: r.last_weights || {},
+          lastUsed: r.last_used,
+          createdAt: new Date(r.created_at).getTime(),
+          userId: r.user_id,
+        }));
+      }
+
+      if (waters.data?.length) {
+        if (!db.water) db.water = { goal: 3000, entries: [] };
+        db.water.entries = waters.data.map(w => ({
+          id: w.id, ml: w.ml, date: w.date_str, ts: w.ts,
+        }));
+      }
+
+      db._userId = uid;
+      save();
+      console.log('[Sync] Download OK');
+      return { ok: true };
+    } catch(e) {
+      console.error('[Sync] download error:', e);
+      return { ok: false, error: e.message };
+    }
+  },
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  MODULE: STORAGE — Camada de abstração + compressão LZ          ║
+// ║  API: Storage.save(key,val) · Storage.load(key) · Storage.remove║
+// ║  Comprime automaticamente — 4x mais capacidade no localStorage  ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+// ── LZ mini: compressão leve sem dependências externas ────────────
+const LZ = (() => {
+  // Encode para base64 seguro para localStorage
+  function _b64(u8) {
+    let s = '';
+    u8.forEach(b => s += String.fromCharCode(b));
+    return btoa(s);
+  }
+  function _ub64(str) {
+    const bin = atob(str);
+    const u8 = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+    return u8;
+  }
+  // Compressão: usa TextEncoder + CompressionStream quando disponível
+  // Fallback: armazena direto (sem compressão) — transparente para o código
+  async function compress(str) {
+    try {
+      if (typeof CompressionStream === 'undefined') return null;
+      const enc = new TextEncoder().encode(str);
+      const cs = new CompressionStream('deflate-raw');
+      const w = cs.writable.getWriter();
+      w.write(enc); w.close();
+      const chunks = [];
+      const reader = cs.readable.getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+      }
+      const total = chunks.reduce((a, c) => a + c.length, 0);
+      const out = new Uint8Array(total);
+      let off = 0;
+      chunks.forEach(c => { out.set(c, off); off += c.length; });
+      return 'LZ1:' + _b64(out);
+    } catch(e) { return null; }
+  }
+  async function decompress(str) {
+    try {
+      if (!str.startsWith('LZ1:')) return str;
+      const data = _ub64(str.slice(4));
+      const ds = new DecompressionStream('deflate-raw');
+      const w = ds.writable.getWriter();
+      w.write(data); w.close();
+      const chunks = [];
+      const reader = ds.readable.getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+      }
+      const total = chunks.reduce((a, c) => a + c.length, 0);
+      const out = new Uint8Array(total);
+      let off = 0;
+      chunks.forEach(c => { out.set(c, off); off += c.length; });
+      return new TextDecoder().decode(out);
+    } catch(e) { return str; }
+  }
+  return { compress, decompress };
+})();
+
+// ── Storage: camada de abstração pronta para backend ──────────────
+const Storage = {
+  // Salva com compressão assíncrona — fallback síncrono se falhar
+  async save(key, value) {
+    const str = typeof value === 'string' ? value : JSON.stringify(value);
+    try {
+      const compressed = await LZ.compress(str);
+      localStorage.setItem(key, compressed || str);
+    } catch(e) {
+      try { localStorage.setItem(key, str); } catch(e2) {
+        if (e2.name === 'QuotaExceededError') {
+          setTimeout(() => toast('⚠️ Armazenamento cheio — faça um backup!'), 100);
+        }
+        console.warn('[Storage] save error:', e2);
+      }
+    }
+  },
+  // Carrega e descomprime automaticamente
+  async load(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
+      const str = await LZ.decompress(raw);
+      try { return JSON.parse(str); } catch(e) { return str; }
+    } catch(e) {
+      console.warn('[Storage] load error:', e);
+      return null;
+    }
+  },
+  // Remove uma chave
+  remove(key) {
+    try { localStorage.removeItem(key); } catch(e) {}
+  },
+  // Verifica uso estimado em KB
+  usageKB() {
+    try {
+      let total = 0;
+      for (const k in localStorage) {
+        if (!localStorage.hasOwnProperty(k)) continue;
+        total += ((localStorage[k]||'').length + k.length) * 2;
+      }
+      return Math.round(total / 1024);
+    } catch(e) { return 0; }
+  },
+  // Retorna % de uso (base 5MB)
+  usagePct() { return Math.min(100, Math.round(this.usageKB() / 5120 * 100)); },
+
+  // ── Fila de sync para o backend (Fase 3) ─────────────────────
+  // Cada operação fica na fila até ser confirmada pelo servidor
+  enqueue(op, table, data) {
+    if (!db.syncQueue) db.syncQueue = [];
+    db.syncQueue.push({
+      id: uuid(),
+      op,        // 'upsert' | 'delete'
+      table,     // nome da tabela no Supabase
+      data,
+      ts: Date.now(),
+      synced: false,
+    });
+    // Limita a fila a 500 itens para não lotar o storage
+    if (db.syncQueue.length > 500) {
+      db.syncQueue = db.syncQueue.filter(q => !q.synced).slice(-500);
+    }
+  },
+
+  // ── Sync stub — conectar ao Supabase na Fase 3 ───────────────
+  async sync() {
+    // TODO Fase 3: substituir por chamada real ao Supabase
+    // const pending = (db.syncQueue||[]).filter(q => !q.synced);
+    // for (const op of pending) {
+    //   await supabase.from(op.table)[op.op === 'delete' ? 'delete' : 'upsert'](op.data);
+    //   op.synced = true;
+    // }
+    // save();
+    console.log('[Storage.sync] Stub — backend não conectado ainda (Fase 3)');
+    return { pending: (db.syncQueue||[]).filter(q => !q.synced).length };
+  },
+};
 
 // ╔══════════════════════════════════════════════════════════════════╗
 // ║  MODULE: HAPTIC — Vibração contextual                           ║
@@ -7526,6 +10226,35 @@ function copyBackup2() {
     toast('Código copiado');
   }
 }
+// ── Export JSON direto para arquivo — chamado pelo banner semanal ─
+function exportBackupJSON() {
+  try {
+    const now = new Date();
+    const dateStr = now.toISOString().slice(0,10);
+    const payload = {
+      version: 'CT2',
+      exportedAt: now.toISOString(),
+      exportedAtBR: now.toLocaleDateString('pt-BR') + ' ' + now.toTimeString().slice(0,5),
+      db
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'controle-total-backup-' + dateStr + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('✅ Backup exportado com sucesso', 3000);
+    // Atualiza data do último export
+    if (!db.settings) db.settings = {};
+    db.settings._lastExportOffer = Date.now();
+    save();
+  } catch(e) {
+    toast('❌ Erro ao exportar backup');
+    console.error('[CT] exportBackupJSON:', e);
+  }
+}
+
 function generateBackup() {
   const payload = JSON.stringify(db);
   const encoded = btoa(unescape(encodeURIComponent(payload)));
@@ -7552,7 +10281,7 @@ function restoreBackup2() {
     if (!parsed.meals && !parsed.sessions && !parsed.weight) throw new Error('empty');
     if (!confirm('Restaurar backup? Os dados atuais serão substituídos.')) return;
     if (!parsed.water) parsed.water = { goal:3000, entries:[] };
-    if (!parsed.settings) parsed.settings = { showDietTab:true };
+    if (!parsed.settings) parsed.settings = { showDietTab:false };
     if (!parsed.profile) parsed.profile = {name:'', weight:0};
     if (!parsed.dailyStreak) parsed.dailyStreak = {count:0,lastDate:'',totalDays:0,history:[],bestStreak:0};
     if (!parsed.missions) parsed.missions = {lastDate:'',water:false,creatina:false,dieta:false,treino:false};
@@ -8011,16 +10740,24 @@ function showWeightTooltip(dotEl, kg, date) {
 // ╚══════════════════════════════════════════════════════════════════╝
 
 let obCurrentStep = 0;
-const OB_TOTAL = 2;
+const OB_TOTAL = 3;
+// Ocultar nav no step 0 ao iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.getElementById('obNav');
+  if (nav) nav.style.display = 'none';
+});
 
 function obGoTo(step) {
+  // Iniciar canvas do raio quando entrar no step 0
+  if (step === 0 && typeof initBoltCanvas === 'function') {
+    setTimeout(initBoltCanvas, 100);
+  }
   obCurrentStep = Math.max(0, Math.min(OB_TOTAL - 1, step));
-  // Remove classe intro-visible ao sair do step 0 (anims de entrada só no step 1)
   if (obCurrentStep > 0) {
     const ob = document.getElementById('onboarding');
     if (ob) ob.classList.remove('intro-visible');
   }
-  // Move slider
+  // Move slider — 3 steps agora
   const slider = document.getElementById('obSteps');
   if (slider) slider.style.transform = 'translateX(-' + (obCurrentStep * 33.333) + '%)';
   // Update dots
@@ -8028,10 +10765,12 @@ function obGoTo(step) {
     const dot = document.getElementById('obDot' + i);
     if (dot) dot.classList.toggle('on', i === obCurrentStep);
   }
-  // Update nav buttons
+  // Nav: no step 0 esconde nav (tem botão próprio); a partir do step 1 mostra
+  const nav = document.getElementById('obNav');
   const back = document.getElementById('obBack');
   const next = document.getElementById('obNext');
-  if (back) back.style.display = obCurrentStep > 0 ? '' : 'none';
+  if (nav) nav.style.display = obCurrentStep === 0 ? 'none' : '';
+  if (back) back.style.display = obCurrentStep > 1 ? '' : 'none';
   if (next) {
     const isLast = obCurrentStep === OB_TOTAL - 1;
     next.innerHTML = isLast
@@ -8045,6 +10784,17 @@ function obGoNext() {
   if (window._reviewMode) {
     _finishSportsReview();
     return;
+  }
+  // Ao sair do step 0 (welcome), marca que o usuário já viu o novo welcome
+  if (obCurrentStep === 0) {
+    if (!db.settings) db.settings = {};
+    db.settings._seenWelcomeV2 = true;
+    save();
+    // Usuário existente: vai direto ao app após o welcome
+    if (_isReturningUser()) {
+      finishOnboarding();
+      return;
+    }
   }
   if (obCurrentStep < OB_TOTAL - 1) {
     obGoTo(obCurrentStep + 1);
